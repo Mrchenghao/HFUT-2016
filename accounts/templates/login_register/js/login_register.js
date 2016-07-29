@@ -21,7 +21,7 @@ lr.controller("loginCtrl",function($scope,$http){
 		});
 	};
 	
-}).controller("registerCtrl",function($scope){
+}).controller("registerCtrl",function($scope,$http){
 	
 	$scope.register = function(){
 		var opt = {
