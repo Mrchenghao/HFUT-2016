@@ -36,8 +36,13 @@ lr.controller("loginCtrl",function($scope,$http){
 			headers: {'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data){
+<<<<<<< HEAD:accounts/static/login_register/js/login_register.js
 			if (data.successful) {
 				alert("Register SUCCESS!");
+=======
+			if (data.isSuccessful) {
+				$window.location.href = "project_page.html";
+>>>>>>> 2f35002081db44a502f5430ace160fd576f14c79:accounts/templates/login_register/js/login_register.js
 			} else{
 				alert(data.error.msg)
 			}

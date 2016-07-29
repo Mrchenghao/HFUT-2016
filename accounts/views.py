@@ -31,16 +31,12 @@ class myError(Exception):
 		return repr(self.value)
 
 def indexView(request):
-	template = loader.get_template('login_register/login_register.html')
-	context = RequestContext(request, {})
-	return HttpResponse(template.render(context))
+	return render(request, 'login_register/login_register.html')
 
 def getRegister(request):
 	return render(request, 'login_register/login_register.html')
 
 def register(request):
-	if request.method == 'GET':
-		getRegister(request)
 	try:
 		data = json.loads(request.body)
 		userName = data['username']
