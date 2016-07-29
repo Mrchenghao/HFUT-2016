@@ -1,10 +1,10 @@
 var lr = angular.module('login-register',['ngMaterial','ngMessages']);
 
-lr.controller("loginCtrl",function($scope){
+lr.controller("loginCtrl",function($scope,$http){
 	
-	$scope.login = function(){
+	$scope.login = function(username,password){
 		var opt = {
-			url: '/home/login',
+			url: '/accounts/login',
 			method: 'POST',
 			data: JSON.stringify({
 				username: username,
@@ -12,7 +12,7 @@ lr.controller("loginCtrl",function($scope){
 			}),
 			headers: {'Content-Type': 'application/json'}
 		};
-		http(opt).success(function(data){
+		$http(opt).success(function(data){
 			if (data.isSuccessful) {
 				$window.location.href = "project_page.html";
 			} else{
@@ -21,25 +21,25 @@ lr.controller("loginCtrl",function($scope){
 		});
 	};
 	
-}).controller("registerCtrl",function($scope){
+}).controller("registerCtrl",function($scope,$http){
 	
-	$scope.register = function(){
+	$scope.register = function(username,email,password,repassword){
 		var opt = {
-			url: '/home/register',
+			url: '/accounts/register',
 			method: 'POST',
 			data: JSON.stringify({
 				username: username,
 				email: email,
 				password: password,
-				confirm: repassword
+				repassword: repassword
 			}),
 			headers: {'Content-Type': 'application/json'}
 		};
-		http(opt).success(function(data){
-			if (data.isSuccessful) {
-				$window.location.href = "project_page.html";
+		$http(opt).success(function(data){
+			if (data.successful) {
+				alert("Register SUCCESS!");
 			} else{
-				
+				alert(data.error.msg)
 			}
 		});
 	};
