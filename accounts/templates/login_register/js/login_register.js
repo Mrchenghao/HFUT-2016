@@ -1,6 +1,6 @@
 var lr = angular.module('login-register',['ngMaterial','ngMessages']);
 
-lr.controller("loginCtrl",function($scope){
+lr.controller("loginCtrl",function($scope,$http){
 	
 	$scope.login = function(){
 		var opt = {
@@ -12,7 +12,7 @@ lr.controller("loginCtrl",function($scope){
 			}),
 			headers: {'Content-Type': 'application/json'}
 		};
-		http(opt).success(function(data){
+		$http(opt).success(function(data){
 			if (data.isSuccessful) {
 				$window.location.href = "project_page.html";
 			} else{
@@ -35,7 +35,7 @@ lr.controller("loginCtrl",function($scope){
 			}),
 			headers: {'Content-Type': 'application/json'}
 		};
-		http(opt).success(function(data){
+		$http(opt).success(function(data){
 			if (data.isSuccessful) {
 				$window.location.href = "project_page.html";
 			} else{
