@@ -1,0 +1,56 @@
+#bio-sidebar .ai-project-item{
+	color:#111;
+	width:100%;
+}
+
+#bio-sidebar .ai-project-item .ai-project-item-btn{
+	display:block;
+	width: 90%;
+	line-height: 1.3em;
+	font-size: 1.4em;
+}
+
+#bio-sidebar .ai-project-item .ai-device-list{
+	width: 80%;
+	margin: 0 0 0 auto;
+}
+
+#bio-sidebar .ai-project-item .ai-device-list .ai-device-item{
+	width: 100%;
+}
+
+#bio-sidebar .ai-project-item .ai-device-list .ai-device-item .ai-device-item-btn{
+	font-weight: 500;
+	line-height: 2em;
+}
+
+#bio-container .ai-gr,
+.ai-sr{
+	font-size: 1.5rem;
+}
+
+#bio-container .ai-bio-main{
+	background: #f7f7f7;
+}
+
+#bio-container .ai-bio-main .ai-logo-design{
+	margin-top: 10%;
+	text-align: center;
+}
+
+#bio-container .ai-bio-side .ai-device{
+	text-align: center;
+	width: 100%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+}
+
+#bio-container .ai-bio-side .ai-length{
+	text-align: center;
+	width: 100%;
+	margin-bottom: 10%;
+}
+
+#bio-container .ai-bio-side .ai-design{
+	text-align: center;
+}
