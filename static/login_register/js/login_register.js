@@ -14,9 +14,10 @@ lr.controller("loginCtrl",function($scope,$http){
 		};
 		$http(opt).success(function(data){
 			if (data.isSuccessful) {
-				$window.location.href = "project_page.html";
+				sessionStorage.setItem('login',JSON.stringify(data.data.token));
+				window.location.href = "../project_page/project_page.html";
 			} else{
-				
+				showToast($mdToast,"Something strange,please TRY AGAIN!");
 			}
 		});
 	};

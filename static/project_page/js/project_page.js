@@ -25,7 +25,9 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 		var opt = {
 			url: '/home/getProject',
 			method: 'POST',
-			data: login_token,
+			data: {
+				token: login_token
+			},
 			headers: { 'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data){
