@@ -29,7 +29,7 @@
 			          	<md-icon md-svg-src="img/plus.svg" aria-label="add-project"></md-icon>
 			        </md-button>
 			        <span flex></span>
-			        <md-button>
+			        <md-button ng-click="toggle_edit()">
 			        	Edit
 			        </md-button>
 		    	</md-list>
@@ -68,8 +68,8 @@
                     </h2>
 					<span flex></span>
                     <div class="md-toolbar-item docs-tools layout-row" layout="row">
-                    	<md-button class="md-raised md-accent ai-gr" aria-label="Result">Get Result</md-button>
-				      	<md-button class="md-raised md-accent ai-sr" aria-label="Result">System</md-button>
+                    	<md-button class="md-raised md-accent ai-gr" aria-label="Get-Result">Get Result</md-button>
+				      	<md-button class="md-raised md-accent ai-sr" aria-label="System">System</md-button>
 				      	<!--登出url-->
 				      	<md-button href="#" class="md-raised" aria-label="Learn More">
 			          		Logout

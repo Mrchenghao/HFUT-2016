@@ -50,7 +50,17 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	
 	//发送http请求获取下标为index对应的project_info的所有分支
 	$scope.getDevices = function(index, id){
-		$http.get("/home/getChainList?id=" + id).success(function(data) {
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/home/getUserDevice',
+			method: 'POST',
+			data: {
+				token: login_token
+				id: id
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data) {
 			$scope.project_info[index].devices = data;
 		});
 	}
