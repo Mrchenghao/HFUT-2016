@@ -13,7 +13,7 @@ lr.controller("loginCtrl",function($scope,$http){
 			headers: {'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data){
-			if (data.isSuccessful) {
+			if (data.successful) {
 				sessionStorage.setItem('login',JSON.stringify(data.data.token));
 				window.location.href = "../project_page/project_page.html";
 			} else{
