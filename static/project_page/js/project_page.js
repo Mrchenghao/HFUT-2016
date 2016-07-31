@@ -61,7 +61,8 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 			headers: { 'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data) {
-			$scope.project_info[index].devices = data;
+			console.log(data)
+			$scope.project_info[index].devices = data.data;
 		});
 	}
 	

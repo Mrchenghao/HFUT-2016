@@ -75,6 +75,34 @@ def getUserProject(request):
 	finally:
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
+def getTracks(request):
+	try:
+		tracks = Tracks.objects.all()
+		tracksList = []
+		for track in tracks:
+			tracksList.append({
+				'track_id': track.id,
+				'track_name': track.track
+				})
+		result = {
+			'successful': True,
+			'data': tracksList,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
+
 
 def addProject(request):
 	try:
@@ -137,7 +165,7 @@ def  deleteProject(request):
 	finally:
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
-def getProjectChains(request):
+def getProjectDevices(request):
 	try:
 		data = json.loads(request.body)
 		print data
@@ -174,7 +202,7 @@ def getProjectChains(request):
 	finally:
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
-def addProjectChain(request):
+def addProjectDevice(request):
 	try:
 		data = json.loads(request.body)
 		print data
