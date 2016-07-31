@@ -21,8 +21,15 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	
 	//发送http请求从后台数据库导入项目列表到变量project_info中
 	$scope.init = function(){
-		$http.get("/home/getUserProject").success(function(data){
-			if(data.isSuccessful){
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/home/getProject',
+			method: 'POST',
+			data: login_token,
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
 				var projects = data.projects;
 				for (var i = 0;i < projects.length;i++) {
 					$scope.project_info.push({

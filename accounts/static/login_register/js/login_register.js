@@ -14,6 +14,7 @@ lr.controller("loginCtrl",function($scope,$http){
 		};
 		$http(opt).success(function(data){
 			if (data.successful) {
+				sessionStorage.setItem('login',JSON.stringify(data.token));
 				window.location.href = "/home";
 			} else{
 				
