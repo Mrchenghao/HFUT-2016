@@ -36,12 +36,6 @@ class myError(Exception):
 	def __str__(self):
 		return repr(self.value)
 
-def indexView(request):
-	return render(request, 'login_register/login_register.html')
-
-def getRegister(request):
-	return render(request, 'login_register/login_register.html')
-
 def register(request):
 	try:
 		data = json.loads(request.body)

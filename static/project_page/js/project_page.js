@@ -4,7 +4,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.project_info = [];//项目列表
 	$scope.isEdit = false;//默认编辑状态为未编辑
 	$scope.isChosen = false;//默认未选中
-	$scope.device_img_src = "/static/project_page/img/logo_design.png";//主体图
+	$scope.device_img_src = "img/logo_design.png";//主体图
 	$scope.length = 0;
 	
 	//反转分支的显示状态
@@ -86,7 +86,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
   		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
   		$mdDialog.show({
   			controller:NewDeviceCtrl,
-  			templateUrl:'/static/html/new_device.tmp.html',
+  			templateUrl:'html/new_device.tmp.html',
   			parent:angular.element(document.body),
   			targetEvent:ev,
   			clickOutsideToClose:true,
@@ -109,7 +109,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
   		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
   		$mdDialog.show({
   			controller:NewProjectCtrl,
-  			templateUrl:'/static/html/new_project.tmp.html',
+  			templateUrl:'html/new_project.tmp.html',
   			parent:angular.element(document.body),
   			targetEvent:ev,
   			clickOutsideToClose:true,

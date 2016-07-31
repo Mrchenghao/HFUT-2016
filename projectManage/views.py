@@ -6,8 +6,8 @@
 """
 
 from django.shortcuts import render
-from django.shortcuts import render
 from models import *
+from accounts.models import *
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
@@ -38,12 +38,10 @@ class myError(Exception):
 	def __str__(self):
 		return repr(self.value)
 
-def projectView(request):
-	return render(request, 'project_page/project_page.html')
-
 def getUserProject(request):
 	try:
 		data = json.loads(request.body)
+		print data
 		token = Token()
 		token = Token.objects.filter(token=data['token']).first()
 		user = User()
@@ -52,10 +50,11 @@ def getUserProject(request):
 		projectsList = []
 		for project in projects:
 			projectsList.append({
-				'project_name': project.project_name,
+				'project_name': noneIfEmptyString(project.project_name),
 				'project_id': project.id,
 				'track': project.track.track,
-				'function': project.function.function,
+				'function': noneIfEmptyString(project.function),
+				'creator': project.creator.userName
 				})
 		result = {
 			'successful': True,

@@ -4,7 +4,6 @@ from django.conf.urls import *
 import views
 
 urlpatterns = [
-	url(r'^$', views.projectView),
     url(r'^getUserProject$', views.getUserProject),
 #     url(r'^login$', views.login),
 #     # url(r'^logout$', views.logout),
