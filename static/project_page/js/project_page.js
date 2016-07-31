@@ -52,16 +52,17 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.getDevices = function(index, id){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
-			url: '/home/getUserDevice',
+			url: '/home/getProjectDevices',
 			method: 'POST',
 			data: {
-				token: login_token
-				id: id
+				token: login_token,
+				project_id: id
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data) {
-			$scope.project_info[index].devices = data;
+			console.log(data)
+			$scope.project_info[index].devices = data.data;
 		});
 	}
 	

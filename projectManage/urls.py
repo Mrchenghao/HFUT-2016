@@ -5,6 +5,8 @@ import views
 
 urlpatterns = [
     url(r'^getUserProject$', views.getUserProject),
+    url(r'^getProjectDevices$', views.getProjectDevices),
+    url(r'^getTracks$', views.getTracks),
 #     url(r'^login$', views.login),
 #     # url(r'^logout$', views.logout),
 #     # url(r'^user/change_info$', views.change_info),
