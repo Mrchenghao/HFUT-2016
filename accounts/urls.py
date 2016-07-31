@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.views.generic import TemplateView
 from django.conf.urls import *
 import views
 
@@ -12,5 +11,4 @@ urlpatterns = [
     # url(r'^user/change_password$', views.change_password),
     # url(r'^user/confirm$', views.confirm),
     # url(r'^user/reconfirm$', views.reconfirm),
-    # url(r'^user/renew$', views.renew),
 ]
