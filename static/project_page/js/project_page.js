@@ -52,11 +52,11 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.getDevices = function(index, id){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
-			url: '/home/getUserDevice',
+			url: '/home/getProjectDevices',
 			method: 'POST',
 			data: {
-				token: login_token
-				id: id
+				token: login_token,
+				project_id: id
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
@@ -208,9 +208,9 @@ function NewProjectCtrl($scope, $mdDialog, $http, $mdToast){
 	$scope.new_project_name = "";
 	
 	$scope.init = function(){
-		$http.get('/home/tracks').success(function(data){
-			if (data.isSuccessful) {
-				$scope.tracks = data.tracks;
+		$http.get('/home/getTracks').success(function(data){
+			if (data.successful) {
+				$scope.tracks = data.data;
 				console.log($scope.tracks);
 			}
 		});
