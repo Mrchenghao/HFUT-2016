@@ -52,7 +52,7 @@ def getUserProject(request):
 			projectsList.append({
 				'project_name': noneIfEmptyString(project.project_name),
 				'project_id': project.id,
-				'track': project.track.track,
+				'track': noneIfEmptyString(project.track.track),
 				'function': noneIfEmptyString(project.function),
 				'creator': project.creator.userName
 				})
@@ -104,7 +104,7 @@ def getTracks(request):
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
 
-def addProject(request):
+def createNewProject(request):
 	try:
 		data = json.loads(request.body)
 		print data
@@ -113,13 +113,13 @@ def addProject(request):
 		user = User()
 		user = token.user
 		project_name = data['project_name']
-		track = Tracks.objects.filter(track=data['track']).first()
-		function = Functions.objects.filter(function=data['function']),first()
+		track = Tracks.objects.filter(id=data['track']).first()
+		# function = Functions.objects.filter(function=data['function']),first()
 		project = Project()
 		project.creator = user
 		project.project_name = project_name
 		project.track = track
-		project.function = function
+		# project.function = function
 		project.save()
 		result = {
 			'successful': True,
@@ -202,21 +202,16 @@ def getProjectDevices(request):
 	finally:
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
-def addProjectDevice(request):
+def createProjectDevice(request):
 	try:
 		data = json.loads(request.body)
 		print data
 		project_id = data['project_id']
-		project = Project.objects.filter(project_id=project_id).first()
-		
-		track = Tracks.objects.filter(track=data['track']).first()
-		function = Functions.objects.filter(function=data['function']),first()
-		project = Project()
-		project.creator = user
-		project.project_name = project_name
-		project.track = track
-		project.function = function
-		project.save()
+		project = Project.objects.filter(id=project_id).first()
+		chain = Chain()
+		chain.name = data['device_name']
+		chain.project = project
+		chain.save()
 		result = {
 			'successful': True,
 			'error': {

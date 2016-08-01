@@ -34,9 +34,9 @@
         	</div>
 					<span flex></span>
 					<div flex="80">
-						<md-select ng-model="new_project_track">
-							<md-option ng-repeat="track in tracks" ng-value="track.id">
-								{{track.track}}
+						<md-select ng-model="new_project_track" aria-label="track-select">
+							<md-option ng-repeat="track in tracks" ng-value="{{track.track_id}}">
+								{{track.track_name}}
 							</md-option>
 						</md-select>
 					</div>
@@ -46,7 +46,7 @@
     <md-dialog-actions layout="row" layout-padding>
       <span flex></span>
       <md-button ng-click="cancel()">Cancel</md-button>
-      <md-button class="md-primary md-raised" ng-click="create_project()">Confirm</md-button>
+      <md-button class="md-primary md-raised" ng-click="create_project(new_project_name, new_project_track)">Confirm</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

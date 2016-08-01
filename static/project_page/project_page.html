@@ -37,10 +37,10 @@
 					<div class="ai-project-item-btn" layout="row">
 						<span flex ng-click="toggle_device($index)">{{project.name}}</span>
 						<div ng-hide="!isEdit">
-							<md-button class="md-icon-button" ng-click="showNewDeviceDialog($event, project.id)">
+							<md-button class="md-icon-button" ng-click="showNewDeviceDialog($event, project.id)" aria-label="show-new-device">
 								<md-icon md-svg-src="img/plus.svg"></md-icon>
 							</md-button>
-							<md-button class="md-icon-button" ng-click="delete_project($index, project.id)">
+							<md-button class="md-icon-button" ng-click="delete_project($index, project.id)" aria-label="delete-project">
 								<md-icon md-svg-src="img/close.svg"></md-icon>
 							</md-button>
 						</div>

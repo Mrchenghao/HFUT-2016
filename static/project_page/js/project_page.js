@@ -146,12 +146,12 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 			url: '/home/deleteProject',
 			method: 'POST',
 			data: JSON.stringify({
-				id:id
+				project_id:id
 			}),
 			headers: { 'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data){
-			if (data.isSuccessful) {
+			if (data.successful) {
 				$scope.project_info.splice(index, 1);
 				showToast($mdToast, "Project deleted successfully");
 			} else{
@@ -179,11 +179,11 @@ function NewDeviceCtrl($scope, $mdDialog, $http, $mdToast, project_id){
 	
 	$scope.create_device = function(){
 		var opt = {
-			url: "/home/newDevice",
+			url: "/home/createProjectDevice",
 			method: 'POST',
 			data: JSON.stringify({
-				name: $scope.new_device_name,
-				id: project_id
+				device_name: $scope.new_device_name,
+				project_id: project_id
 			}),
 			headers: {'Content-Type': 'applicaiton/json'}
 		}
@@ -191,7 +191,7 @@ function NewDeviceCtrl($scope, $mdDialog, $http, $mdToast, project_id){
 			if ($scope.new_device_name.length == 0) {
 				return;
 			} else{
-				if (data.isSuccessful) {
+				if (data.successful) {
 					$mdDialog.hide();
 					showToast($mdToast, "Device created SUCCESS");
 				} else{
@@ -227,21 +227,24 @@ function NewProjectCtrl($scope, $mdDialog, $http, $mdToast){
 		$mdDialog.cancel();
 	}
 	
-	$scope.create_project = function(){
-		if ($scope.new_project_track.length == 0 || $scope.new_project_name.length == 0) {
-			return;
-		} else{
+	$scope.create_project = function(new_project_name, new_project_track){
+		// if (new_project_track.length == 0 || new_project_name.length == 0) {
+		// 	return;
+		// } else{
+			console.log(new_project_name);
+			var login_token = JSON.parse(sessionStorage.getItem('login'));
 			var opt = {
-				url: '/home/newProject',
+				url: '/home/createNewProject',
 				method: 'POST',
 				data: JSON.stringify({
-					name: $scope.new_project_name,
-					track: $scope.new_project_track
+					token: login_token,
+					project_name: new_project_name,
+					track: new_project_track,
 				}),
 				headers: {'Content-Type': 'application/json'}
 			};
 			$http(opt).success(function(data){
-				if (data.isSuccessful) {
+				if (data.successful) {
 					$mdDialog.hide();
 					showToast($mdToast, "Project created successfully");
 				} else{
@@ -249,7 +252,7 @@ function NewProjectCtrl($scope, $mdDialog, $http, $mdToast){
 					showToast($mdToast, "Project created FAILED");
 				}
 			});
-		}
+		// }
 	}
 }
 
