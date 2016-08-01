@@ -5,10 +5,12 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.isEdit = false;//默认编辑状态为未编辑
 	$scope.isChosen = false;//默认未选中
 	$scope.device_img_src = "img/logo_design.png";//主体图
+	$scope.addr = "";
 	$scope.length = 0;
 	
 	//反转分支的显示状态
 	$scope.toggle_device = function(index){
+		$scope.addr = $scope.project_info[index].name;
 		$scope.getDevices(index, $scope.project_info[index].id);
 		$scope.project_info[index].isDeviceShowed = !$scope.project_info[index].isDeviceShowed;
 	}
@@ -68,9 +70,10 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	
 	//点击分支事件，反转isChosen状态，改为选中；同步中间基因链的图
 	$scope.device_clicked = function(device_id) {
+		$scope.addr += device_id;
 		$scope.isChosen = true;
 		$http.get("/home/getResultImage?id=" + device_id).success(function(data) {
-			if (data.isSuccessful) {
+			if (data.successful) {
 				console.log(data);
 				$scope.device_img_src = data.filePath;
 			} else {
