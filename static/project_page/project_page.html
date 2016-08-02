@@ -64,18 +64,34 @@
 			<div class="md-toolbar-tools">
 				<div layout="row" class="fill-height layout-row flex">
 					<h2 class="md-toolbar-item md-breadcrumb md-headline">
-                      	<span class="md-breadcrumb-page ng-binding">动态标题</span>
+                      	<span class="md-breadcrumb-page ng-binding">{{addr}}</span>
                     </h2>
 					<span flex></span>
                     <div class="md-toolbar-item docs-tools layout-row" layout="row">
                     	<md-button class="md-raised md-accent ai-gr" aria-label="Get-Result">Get Result</md-button>
 				      	<md-button class="md-raised md-accent ai-sr" aria-label="System">System</md-button>
-				      	<!--登出url-->
-				      	<md-button href="#" class="md-raised" aria-label="Learn More">
-			          		Logout
-				        </md-button>
+				       	<md-menu md-position-mode="target-right target" >
+				          	<md-button aria-label="menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+				            	<md-icon md-menu-origin md-svg-icon="img/account.svg"></md-icon>
+				          	</md-button>
+				          	<md-menu-content width="3">
+				            	<md-menu-item>
+				              		<md-button>
+				                  		<div layout="row" flex>
+				                    		<p flex>Settings</p>
+				                  		</div>
+				              		</md-button>
+				            	</md-menu-item>
+				            	<md-menu-item>
+				              		<md-button>
+				                  		<div layout="row" flex>
+				                    		<p flex>Logout</p>
+				                  		</div>
+				              		</md-button>
+				            	</md-menu-item>
+				          	</md-menu-content>
+				        </md-menu>
                     </div>
-                    <!-- 头像没写 -->
 				</div>
 			</div>
   		</md-toolbar>
