@@ -74,18 +74,18 @@
 				          	<md-button aria-label="menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
 				            	<md-icon md-menu-origin md-svg-icon="img/account.svg"></md-icon>
 				          	</md-button>
-				          	<md-menu-content width="3">
+				          	<md-menu-content width="2">
 				            	<md-menu-item>
-				              		<md-button>
+				              		<md-button ng-click="showChangePasswordDialog($event)">
 				                  		<div layout="row" flex>
-				                    		<p flex>Settings</p>
+				                    		<p flex>Change Password</p>
 				                  		</div>
 				              		</md-button>
 				            	</md-menu-item>
 				            	<md-menu-item>
-				              		<md-button>
+				              		<md-button ng-click="showLogOutDialog($event)">
 				                  		<div layout="row" flex>
-				                    		<p flex>Logout</p>
+				                    		<p flex>LogOut</p>
 				                  		</div>
 				              		</md-button>
 				            	</md-menu-item>
