@@ -59,7 +59,7 @@ def register(request):
 		user.userName = userName
 		user.password = make_password(password)
 		user.email = email
-		send_verificationEmail(email)
+		# send_verificationEmail(email)
 		user.save()
 		result = {
 		'successful': True,

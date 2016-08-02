@@ -41,7 +41,6 @@ class myError(Exception):
 def getUserProject(request):
 	try:
 		data = json.loads(request.body)
-		print data
 		token = Token()
 		token = Token.objects.filter(token=data['token']).first()
 		user = User()
@@ -107,7 +106,6 @@ def getTracks(request):
 def createNewProject(request):
 	try:
 		data = json.loads(request.body)
-		print data
 		token = Token()
 		token = Token.objects.filter(token=data['token']).first()
 		user = User()
@@ -139,13 +137,52 @@ def createNewProject(request):
 	finally:
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
-def  deleteProject(request):
+def changeProjectName(request):
 	try:
 		data = json.loads(request.body)
-		print data
+		token = data['token']
 		project_id = data['project_id']
 		project = Project()
 		project = Project.objects.filter(id=project_id).first()
+		if token.user != project.creator:
+			raise myError('Change Failed.')
+		project.project_name = data['project_name']
+		project.save()
+		result = {
+			'successful': True,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
+
+def  deleteProject(request):
+	try:
+		data = json.loads(request.body)
+		token = data['token']
+		project_id = data['project_id']
+		project = Project()
+		project = Project.objects.filter(id=project_id).first()
+		if token.user != project.creator:
+			raise myError('Delete Failed.')
 		project.delete()
 		result = {
 			'successful': True,
@@ -153,6 +190,14 @@ def  deleteProject(request):
 				'id': '',
 				'msg': '',
 			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
 		}
 	except Exception,e:
 		result = {
@@ -168,10 +213,12 @@ def  deleteProject(request):
 def getProjectDevices(request):
 	try:
 		data = json.loads(request.body)
-		print data
+		token = data['token']
 		project_id = data['project_id']
 		project = Project()
 		project = Project.objects.filter(id=project_id).first()
+		if token.user != project.creator:
+			raise myError('Check Failed.')
 		chains = Chain.objects.filter(project=project)
 		chainsList = []
 		for chain in chains:
@@ -191,6 +238,14 @@ def getProjectDevices(request):
 				'msg': '',
 			},
 		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
 	except Exception,e:
 		result = {
 			'successful': False,
@@ -205,9 +260,11 @@ def getProjectDevices(request):
 def createProjectDevice(request):
 	try:
 		data = json.loads(request.body)
-		print data
+		token = data['token']
 		project_id = data['project_id']
 		project = Project.objects.filter(id=project_id).first()
+		if token.user != project.creator:
+			raise myError('Create Failed.')
 		chain = Chain()
 		chain.name = data['device_name']
 		chain.project = project
@@ -218,6 +275,50 @@ def createProjectDevice(request):
 				'id': '',
 				'msg': '',
 			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
+
+def deleteProjectDevice(request):
+	try:
+		data = json.loads(request.body)
+		token = data['token']
+		project_id = data['project_id']
+		project = Project.objects.filter(id=project_id).first()
+		if token.user != project.creator:
+			raise myError('Delete Failed.')
+		chain = Chain()
+		chain = chain
+		result = {
+			'successful': True,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
 		}
 	except Exception,e:
 		result = {
