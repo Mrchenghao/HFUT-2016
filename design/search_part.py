@@ -117,14 +117,14 @@ def get_func_parts(func_list):
     @return : parts related to functions
     @rtype: list
     """
-    part_list = list()
-    for func_id in func_list:
-        team_list = Teams.objects.filter(function_id=func_id)
-        for team_obj in team_list:
-            part_list.extend(Team_Parts.objects.filter(team=team_obj))
-    result = list()
-    for part_obj in part_list:
-        result.append(part_obj.part_id)
+    # part_list = list()
+    # for func_id in func_list:
+    #     team_list = Teams.objects.filter(function_id=func_id)
+    #     for team_obj in team_list:
+    #         part_list.extend(Team_Parts.objects.filter(team=team_obj))
+    # result = list()
+    # for part_obj in part_list:
+    #     result.append(part_obj.part_id)
     return result
 
 

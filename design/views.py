@@ -21,7 +21,7 @@ import random
 
 # Create your views here.
 def searchParts(request):
-    try:
+    #try:
         data = json.loads(request.body)
         # token = Token()
         # token = Token.objects.filter(token=data.data['token']).first()
@@ -32,7 +32,7 @@ def searchParts(request):
             funcs = data['funcs']
         except:
             funcs = ''
-        searchResult = ambiguousSearch(keyword, funcs)
+        searchResult = ambiguousSearch(keyword, funcs = None)
         result = {
             'successful': True,
             'data': searchResult,
@@ -41,15 +41,15 @@ def searchParts(request):
                 'msg': '',
             }
         }
-    except Exception, e:
-        result = {
-            'successful': False,
-            'error': {
-                'id': '',
-                'msg': e.args,
-            }
-        }
-    finally:
+    # except Exception, e:
+    #     result = {
+    #         'successful': False,
+    #         'error': {
+    #             'id': '',
+    #             'msg': e.args,
+    #         }
+    #     }
+    # finally:
         return HttpResponse(json.dumps(result), content_type='application/json')
 
 def getParts(request):
@@ -144,7 +144,7 @@ def getMRecommend(request):
         data = json.loads(request.body)
         token = Token()
         token = Token.objects.filter(token=data.data['token']).first()
-        part_id = data.data['part_id']    
+        part_id = data.data['part_id']
         recommend_list = getMarkovRecommend(part_id)
         if not recommend_list:
             result = {
