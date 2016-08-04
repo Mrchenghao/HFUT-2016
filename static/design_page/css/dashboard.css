@@ -13,7 +13,15 @@
 #dashboard div{
     float:left;
     cursor: move;
+    width:20%;
+    height: 20%;
+    text-align: center;
 }
+
+#dashboard div span{
+    display:block;
+}
+
 #dashboard div md-divider{
     display: none;
 }

@@ -97,6 +97,11 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
     	$mdSidenav('left').toggle();
   	};
   	
+  	$scope.jumpToDesign = function(){
+		sessionStorage.setItem('chain_id',JSON.stringify(data.data.chain_id));
+  		window.location.href = "../design_page/design_page.html";
+  	}
+  	
   	//显示新建分支窗口
   	$scope.showNewDeviceDialog = function(ev, project_id){
   		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
