@@ -5,7 +5,7 @@ search_part.py realize the part search
 """
 
 from elasticsearch import Elasticsearch
-from projectManage.models import Parts, Teams, Team_Parts, Part_Papers, Paper
+from projectManage.models import Parts, Teams, Team_Parts, Part_Papers, Paper, Functions
 import traceback
 
 def getPart(partName):
@@ -80,6 +80,7 @@ def ambiguousSearch(keyword, funcs):
     @rtype: list
     """
     es = Elasticsearch()
+    print funcs
     result = format_fuzzy_result(sort_result(fuzzy_search_parts(es, keyword), funcs))
     return result
 
@@ -119,7 +120,8 @@ def get_func_parts(func_list):
     """
     part_list = list()
     for func_id in func_list:
-        team_list = Teams.objects.filter(function_id=func_id)
+        function = Functions.objects.filter(id=func_id).first()
+        team_list = Teams.objects.filter(function=function)
         for team_obj in team_list:
             part_list.extend(Team_Parts.objects.filter(team=team_obj))
     result = list()

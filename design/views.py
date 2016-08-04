@@ -31,7 +31,7 @@ def searchParts(request):
         try:
             funcs = data['funcs']
         except:
-            funcs = ''
+            funcs = None
         searchResult = ambiguousSearch(keyword, funcs)
         result = {
             'successful': True,
