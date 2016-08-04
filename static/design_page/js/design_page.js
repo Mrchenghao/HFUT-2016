@@ -45,6 +45,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 					$scope.search_info.push({
 						img: '../img/' + search_result[i].part_type + '.png',
 						name: search_result[i].part_name,
+                        id:search_result[i].part_id,
 					});
 				}
 			}
