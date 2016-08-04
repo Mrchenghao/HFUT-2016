@@ -1,4 +1,5 @@
 #edit-container .ai-edit-main {
+	margin:8px;
 	background: #f7f7f7;
 }
 #edit-sidebar .ai-edit-search {
@@ -10,7 +11,7 @@
 }
 #edit-sidebar .ai-search-item {
 	color:#111;
-	width:100%;
+	/*width:100%;*/
 }
 #edit-sidebar .ai-search-item .ai-search-item-btn {
 	display:block;

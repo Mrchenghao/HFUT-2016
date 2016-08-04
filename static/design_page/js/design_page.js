@@ -1,7 +1,13 @@
 var editPro = angular.module('edit-app', ['ngMaterial']);
 
 editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $http, $mdDialog, $mdToast) {
-	$scope.search_info = [];//搜索结果
+	$scope.search_info = [
+    {img:'xxx',name:'test1'},
+    {img:'xxx',name:'test2'},
+    {img:'xxx',name:'test3'},
+    {img:'xxx',name:'test4'},
+    {img:'xxx',name:'test5'},
+  ];//搜索结果
 	
 	//获得所有基因
 	$scope.getAllGene = function(){
