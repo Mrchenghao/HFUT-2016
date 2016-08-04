@@ -2,7 +2,8 @@ var editPro = angular.module('edit-app', ['ngMaterial','ng-sortable']);
 
 editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $http, $mdDialog, $mdToast) {
 	$scope.search_info = [];//搜索结果
-	
+	$scope.inSearch = true;
+    $scope.inDesign = false;
 	$scope.putConfig = {
 		group: {
 			name:'gene',
@@ -19,6 +20,10 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             put:false,
 		},
 		animation: 150,
+        onRemove: function (/**Event*/evt) {
+            console.log(evt);
+            console.log(evt.newIndex);
+        },
 	};
 	
 	//获得搜索结果
