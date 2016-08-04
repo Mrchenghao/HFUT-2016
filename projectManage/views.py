@@ -140,7 +140,7 @@ def createNewProject(request):
 def changeProjectName(request):
 	try:
 		data = json.loads(request.body)
-		token = data['token']
+		token = Token.objects.filter(token=data['token']).first()
 		project_id = data['project_id']
 		project = Project()
 		project = Project.objects.filter(id=project_id).first()
@@ -177,7 +177,7 @@ def changeProjectName(request):
 def  deleteProject(request):
 	try:
 		data = json.loads(request.body)
-		token = data['token']
+		token = Token.objects.filter(token=data['token']).first()
 		project_id = data['project_id']
 		project = Project()
 		project = Project.objects.filter(id=project_id).first()
@@ -213,7 +213,7 @@ def  deleteProject(request):
 def getProjectDevices(request):
 	try:
 		data = json.loads(request.body)
-		token = data['token']
+		token = Token.objects.filter(token=data['token']).first()
 		project_id = data['project_id']
 		project = Project()
 		project = Project.objects.filter(id=project_id).first()
@@ -260,7 +260,7 @@ def getProjectDevices(request):
 def createProjectDevice(request):
 	try:
 		data = json.loads(request.body)
-		token = data['token']
+		token = Token.objects.filter(token=data['token']).first()
 		project_id = data['project_id']
 		project = Project.objects.filter(id=project_id).first()
 		if token.user != project.creator:
@@ -298,7 +298,7 @@ def createProjectDevice(request):
 def deleteProjectDevice(request):
 	try:
 		data = json.loads(request.body)
-		token = data['token']
+		token = Token.objects.filter(token=data['token']).first()
 		project_id = data['project_id']
 		project = Project.objects.filter(id=project_id).first()
 		if token.user != project.creator:
@@ -319,6 +319,35 @@ def deleteProjectDevice(request):
 				'id': '3',
 				'msg': e.value,
 			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
+
+def getChainLength(request):
+	try:
+		data = json.loads(request.body)
+		token = Token.objects.filter(token=data['token']).first()
+		chain_id = data.data['chain_id']
+		chain = Chain.objects.filter(id=chain_id).first()
+		seq = chain.sequence
+		if seq.startswith('_'):
+			seq = seq[1:]
+		chainLength = len(seq.split('_'))
+		result = {
+			'successful': True,
+			'data': chainLength,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
 		}
 	except Exception,e:
 		result = {

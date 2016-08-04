@@ -4,7 +4,7 @@ implement recommend for parts
 @author: Bowen, Ray, Yu
 """
 
-from design.models import parts, team_parts, teams
+from projectManage.models import Parts, Teams, Team_Parts
 from operator import itemgetter
 import json
 import os.path
@@ -31,18 +31,14 @@ def getApriorRecommend(chainStr, funcStr=None):
     strResult = getResult(dataList, fList, funcStr)
     recommend_list = list()
     for partId in strResult:
-        partObj = parts.objects.get(part_id=int(partId))
+        partObj = Parts.objects.filter(part_id=int(partId)).first()
         partInfo = {
             'part_id': partObj.part_id,
             'part_name': partObj.part_name,
             'part_type': partObj.part_type,
         }
         recommend_list.append(partInfo)
-    result = {
-        'isSuccessful' : True,
-        'recommend_list': recommend_list,
-    }
-    return result
+    return recommend_list
 
 def analyseData(dataList,dataLength = 2):
     tempData = []
@@ -126,6 +122,7 @@ def toBeOne(data):#delete chong fu xiang
             if item2 not in result:
                 result.append(item2)
     return result
+
 def toFrozenset(data):
     result = []
     for item in data:
@@ -144,14 +141,10 @@ def getBetweenMarkovRecommend(part_id):
     @return : recommendations
     @rytpe: dict
     """
-    result = {
-        'isSuccessful' : True,
-    }
+    chains = list()
     predictChains = predict(1, 5, part_id, loadA())
     if not predictChains:
-        result['isSuccessful'] = False
-        return result
-    chains = list()
+        return chains
     for predictChain in predictChains:
         chain = list()
         for part in predictChain:
@@ -165,8 +158,8 @@ def getBetweenMarkovRecommend(part_id):
             }
             chain.append(item)
         chains.append(chain)
-    result['recommend_list'] = chains
-    return result
+    recommend_list = chains
+    return recommend_list
 
 def getMarkovRecommend(part_id):
     """
@@ -177,14 +170,10 @@ def getMarkovRecommend(part_id):
     @return : recommendations
     @rytpe: dict
     """
-    result = {
-        'isSuccessful' : True,
-    }
+    chains = list()
     predictChains = predict(4, 5, part_id, loadA())
     if not predictChains:
-        result['isSuccessful'] = False
-        return result
-    chains = list()
+        return chains
     for predictChain in predictChains:
         chain = list()
         for part in predictChain:
@@ -198,8 +187,8 @@ def getMarkovRecommend(part_id):
             }
             chain.append(item)
         chains.append(chain)
-    result['recommend_list'] = chains
-    return result
+    recommend_list = chains
+    return recommend_list
 
 def loadA():
     tranFile = open(BASE+'/../tran.json', 'r')
@@ -208,7 +197,7 @@ def loadA():
 
 def getPartNameAndType(part_id):
     try:
-        partObj = parts.objects.get(part_id=int(part_id))
+        partObj = Parts.objects.filter(part_id=int(part_id)).first()
         return partObj.part_name, partObj.part_type
     except:
         return None, None
