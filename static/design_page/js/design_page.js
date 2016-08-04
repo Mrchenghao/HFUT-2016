@@ -20,8 +20,8 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 				var search_result = data.data;
 				for (var i = 0;i < search_result.length;i++) {
 					$scope.search_info.push({
-						img: search_result[i].img,
-						name: search_result[i].name
+						img: '../img/' + search_result[i].part_type + '.png',
+						name: search_result[i].part_name,
 					});
 				}
 			}

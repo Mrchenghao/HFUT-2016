@@ -35,7 +35,7 @@
             </md-list>
             <div id='test'>
 		    	<div class='search_item' ng-repeat="gene in search_info">
-                        <img src="'../img/ss' + {{gene.img}} + '.png'" alt="gene_img">
+                        <img ng-src="{{gene.img}}" alt="gene_img">
 						<span>{{gene.name}}</span>
 					<md-divider></md-divider>
 				</div>
