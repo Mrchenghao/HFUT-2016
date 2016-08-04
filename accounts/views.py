@@ -59,7 +59,7 @@ def register(request):
 		user.userName = userName
 		user.password = make_password(password)
 		user.email = email
-		send_verificationEmail(email)
+		# send_verificationEmail(email)
 		user.save()
 		result = {
 		'successful': True,
@@ -171,16 +171,18 @@ def logout(request):
 	finally:
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
-def change_password(request):
+def changePassword(request):
 	try:
 		data = json.loads(request.body)
 		user = User()
 		token = Token()
 		token = Token.objects.get(token=data['token'])
 		user = token.user
-		if(not check_password(data['user']['old_password'],user.password)):
+		if(not check_password(data['old_password'],user.password)):
 			raise myError('Wrong old password.')
-		user.password = make_password(data['user']['new_password'])
+		if(data['new_password'] != data['re_password']):
+			raise myError('Two passwords are different.')
+		user.password = make_password(data['new_password'])
 		user.save()
 		result = {
 			'successful': True,

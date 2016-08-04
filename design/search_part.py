@@ -5,7 +5,7 @@ search_part.py realize the part search
 """
 
 from elasticsearch import Elasticsearch
-from design.models import parts, teams, team_parts, part_papers, paper
+from projectManage.models import Parts, Teams, Team_Parts, Part_Papers, Paper
 import traceback
 
 def getPart(partName):
@@ -18,8 +18,8 @@ def getPart(partName):
     @rtype: dict
     """
     try:
-        partObj = parts.objects.get(part_name=partName)
-        papers = part_papers.objects.filter(part=partObj)
+        partObj = Parts.objects.filter(part_name=partName).first()
+        papers = Part_Papers.objects.filter(part=partObj)
         result = {
                 'isSuccessful': True,
                 'isEmpty': False,
@@ -119,9 +119,9 @@ def get_func_parts(func_list):
     """
     part_list = list()
     for func_id in func_list:
-        team_list = teams.objects.filter(function_id=func_id)
+        team_list = Teams.objects.filter(function_id=func_id)
         for team_obj in team_list:
-            part_list.extend(team_parts.objects.filter(team=team_obj))
+            part_list.extend(Team_Parts.objects.filter(team=team_obj))
     result = list()
     for part_obj in part_list:
         result.append(part_obj.part_id)

@@ -149,10 +149,12 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	
 	//删除项目
 	$scope.delete_project = function(index, id){
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
 			url: '/home/deleteProject',
 			method: 'POST',
 			data: JSON.stringify({
+				token: login_token,
 				project_id:id
 			}),
 			headers: { 'Content-Type': 'application/json'}
@@ -231,10 +233,12 @@ function NewDeviceCtrl($scope, $mdDialog, $http, $mdToast, project_id){
 	}
 	
 	$scope.create_device = function(){
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
 			url: "/home/createProjectDevice",
 			method: 'POST',
 			data: JSON.stringify({
+				token: login_token,
 				device_name: $scope.new_device_name,
 				project_id: project_id
 			}),
@@ -309,7 +313,7 @@ function NewProjectCtrl($scope, $mdDialog, $http, $mdToast){
 	}
 }
 
-function LogOutCtrl($scope, $mdDialog){
+function LogOutCtrl($scope, $mdDialog, $http){
 	
 	$scope.hide = function(){
 		$mdDialog.hide();
@@ -320,8 +324,24 @@ function LogOutCtrl($scope, $mdDialog){
 	}
 	
 	$scope.log_out = function(){
-		$mdDialog.hide();
-		window.location.href = "../login_register/login_register.html";
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/accounts/logout',
+			method: 'POST',
+			data: JSON.stringify({
+				token: login_token,
+			}),
+			headers: {'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if (data.successful) {
+				$mdDialog.hide();
+				window.location.href = "../login_register/login_register.html";
+			} else{
+				
+			}
+		});
+		
 	}
 }
 
@@ -345,7 +365,7 @@ function ChangePasswordCtrl($scope, $mdDialog, $http, $mdToast){
 	 	} else {
 			var login_token = JSON.parse(sessionStorage.getItem('login'));
 			var opt = {
-				url: '/home/changePassword',
+				url: '/accounts/changePassword',
 				method: 'POST',
 				data: JSON.stringify({
 					token: login_token,

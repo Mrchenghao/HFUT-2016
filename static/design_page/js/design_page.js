@@ -7,11 +7,11 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	$scope.getSearchResult = function(key_word){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
-			url: '/home/getSearchResult',
+			url: '/design/searchParts',
 			method: 'POST',
 			data: {
 				token: login_token,
-				key_word: key_word
+				keyword: key_word
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
