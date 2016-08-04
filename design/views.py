@@ -23,13 +23,13 @@ import random
 def searchParts(request):
     try:
         data = json.loads(request.body)
-        token = Token()
-        token = Token.objects.filter(token=data.data['token']).first()
-        user = User()
-        user = token.user
-        keyword = data.data['keyword']
+        # token = Token()
+        # token = Token.objects.filter(token=data.data['token']).first()
+        # user = User()
+        # user = token.user
+        keyword = data['keyword']
         try:
-            funcs = data.data['funcs']
+            funcs = data['funcs']
         except:
             funcs = ''
         searchResult = ambiguousSearch(keyword, funcs)
