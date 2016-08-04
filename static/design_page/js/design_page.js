@@ -16,7 +16,8 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 		onAdd: function(evt) {
 			var login_token = JSON.parse(sessionStorage.getItem('login'));
 			var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
-			$scope.chain_info.push({
+			$scope.chain_new = $scope.chain_info;
+			$scope.chain_new.push({
 				img: evt.model.img,
 				name: evt.model.name, 
 				id: evt.model.id,
@@ -28,7 +29,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 				data: {
 					token: login_token,
 					chain_id: chain_id,
-					chain_info: chain_info,
+					chain_info: chain_new,
 				},
 				headers: { 'Content-Type': 'application/json'}
 			};
