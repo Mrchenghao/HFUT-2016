@@ -1,0 +1,32 @@
+#design_background {
+    position:absolute;
+    top:0px;
+    left:0px;
+    z-index:-1;
+}
+.info{
+    display:inline-block;
+}
+#dashboard{
+    list-style: none;
+}
+#dashboard div{
+    float:left;
+    cursor: move;
+}
+#dashboard div md-divider{
+    display: none;
+}
+.search_item{
+    background: #106CC8;
+    cursor: move;
+}
+#dashboard{
+    overflow :auto;
+}
+#recommend{
+    margin-left: 5px;
+}
+#clipboard{
+    overflow :auto;
+}
