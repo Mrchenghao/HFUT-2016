@@ -5,6 +5,9 @@
 #edit-sidebar .ai-edit-search {
 	padding-left: 0;
 }
+#edit-sidebar .btn-search {
+	margin: 0;
+}
 #edit-sidebar .ai-edit-search label{
 	left: 0;
 	color: #000000;

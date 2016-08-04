@@ -6,9 +6,9 @@
 	<title>BioDesigner|Design</title>
 	
 	<link rel="stylesheet" href="../public/angular-material/angular-material.css">
+    <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="css/docs.css">
     <link rel="stylesheet" href="css/design_page.css">
-    <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="css/dashboard.css">
 	
 	<!-- Favicon and touch icons -->
@@ -16,7 +16,7 @@
 </head>
 <body class="docs-body layout-row" layout="row" ng-controller="designController">
 	<div id="edit-sidebar"  layout="row">
-		<!-- 侧边栏 -->
+		<!-- side bar -->
 	  	<md-sidenav md-component-id="left" tabindex="-1" class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print md-closed ng-isolate-scope md-locked-open" md-is-locked-open="$mdMedia('gt-sm')">
 	 		<header class="nav-header">
 		      	<a href="#" ng-href="/" class="docs-logo">
@@ -26,14 +26,16 @@
 		    </header>
             <md-list layout="row" layout-wrap layout-margin layout-align="center">
                 <md-input-container class="ai-edit-search">
-                    <md-icon md-svg-src="img/search.svg" aria-label="search"></md-icon>
                     <label>Search</label>
-                    <input type="text" ng-model="gene_name">
+                    <input type="text" ng-model="key_word">
                 </md-input-container>
+                <md-button class="md-icon-button btn-search" ng-click="getSearchResult(key_word)">
+                	<md-icon md-svg-src="img/search.svg" aria-label="search"></md-icon>
+                </md-button>
             </md-list>
-            <div id = 'test'>
-		    	<div class = 'search_item' ng-repeat="gene in search_info | filter:gene_name">
-                        <img src="../icons/Coding_large.png" alt="">
+            <div id='test'>
+		    	<div class='search_item' ng-repeat="gene in search_info">
+                        <img src="'../img/ss' + {{gene.img}} + '.png'" alt="gene_img">
 						<span>{{gene.name}}</span>
 					<md-divider></md-divider>
 				</div>

@@ -4,39 +4,29 @@
     left:0px;
     z-index:-1;
 }
-
 .info{
     display:inline-block;
 }
 #dashboard{
     list-style: none;
 }
-
 #dashboard div{
     float:left;
     cursor: move;
-    //text-align: center;
 }
-
 #dashboard div md-divider{
     display: none;
 }
-
 .search_item{
     background: #106CC8;
     cursor: move;
 }
-
 #dashboard{
     overflow :auto;
 }
-
 #recommend{
     margin-left: 5px;
 }
-/*.recommend_item{
-    text-align: center;
-}*/
 #clipboard{
     overflow :auto;
 }

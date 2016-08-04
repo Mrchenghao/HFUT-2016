@@ -1,28 +1,32 @@
 var editPro = angular.module('edit-app', ['ngMaterial']);
 
 editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $http, $mdDialog, $mdToast) {
-	$scope.search_info = [
-    {img:'xxx',name:'test1'},
-    {img:'xxx',name:'test2'},
-    {img:'xxx',name:'test3'},
-    {img:'xxx',name:'test4'},
-    {img:'xxx',name:'test5'},
-  ];//搜索结果
+	$scope.search_info = [];//搜索结果
 	
-	//获得所有基因
-	$scope.getAllGene = function(){
-		$http.get("/home/getAllGene").success(function(data) {
-			if (data.isSuccessful) {
-				var gene_info = data.gene_info;
-				for(var i = 0;i < gene_info.length;i++){
+	//获得搜索结果
+	$scope.getSearchResult = function(key_word){
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/home/getSearchResult',
+			method: 'POST',
+			data: {
+				token: login_token,
+				key_word: key_word
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
+				var search_result = data.data;
+				for (var i = 0;i < search_result.length;i++) {
 					$scope.search_info.push({
-						img: gene_info[i].img,
-						name: gene_info[i].name
+						img: search_result[i].img,
+						name: search_result[i].name
 					});
 				}
 			}
 		});
-	};
+	}
 
 	//侧边栏方法
   	$scope.openLeftMenu = function() {
@@ -51,9 +55,6 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
   			$scope.customFullscreen = (wantsFullScreen === true);
   		});
   	}
-  	
-  	//页面初始化时显示所有基因
-  	$scope.getAllGene();
 });
 
 function AddFunctionTagsCtrl($scope, $mdDialog) {
