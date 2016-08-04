@@ -99,11 +99,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 					$scope.search_info.push({
 						img: '../img/' + search_result[i].part_type + '.png',
 						name: search_result[i].part_name,
-<<<<<<< HEAD
-                        id:search_result[i].part_id,
-=======
 						id: search_result[i].part_id,
->>>>>>> dc6b11418f54a339367bc5e624481f2c0845c353
 					});
 				}
 			}
