@@ -34,7 +34,7 @@
                 </md-button>
             </md-list>
             <div id='test' ng-sortable="pullConfig">
-		    	<div ng-class="{'search-item': inSearch, 'col-lg-2 col-md-2 col-sm-3 col-xs-3': inDesign}" ng-repeat="gene in search_info">
+		    	<div class="search_item" ng-repeat="gene in search_info">
                     <img ng-src="{{gene.img}}" alt="gene_img">
 					<span>{{gene.name}}</span>
 					<md-divider></md-divider>
@@ -54,7 +54,7 @@
   		<md-content class="layout-row flex" layout="row">
 			<div class="layout-column flex" layout="column" flex="80">
 				<div id="dashboard" flex="66" class="ai-edit-main row" ng-sortable="putConfig">
-					<div ng-class="{'search-item': inSearch, 'col-lg-2 col-md-2 col-sm-3 col-xs-3': inDesign}" ng-repeat="gene in chain_info">
+					<div ng-repeat="gene in chain_info">
 	                    <img ng-src="{{gene.img}}" alt="gene_img">
 						<span>{{gene.name}}</span>
 						<md-divider></md-divider>

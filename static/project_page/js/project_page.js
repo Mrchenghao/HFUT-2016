@@ -7,6 +7,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.device_img_src = "img/logo_design.png";//主体图
 	$scope.addr = "";
 	$scope.length = 0;
+    $scope.chin_id = 0;
 	
 	//反转分支的显示状态
 	$scope.toggle_device = function(index){
