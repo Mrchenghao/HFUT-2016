@@ -22,6 +22,14 @@ lr.controller("loginCtrl",function($scope,$http){
 		});
 	};
 	
+	$scope.login_by_keyboard = function($event,username,password){
+		console.log('aaa');
+      	if($event.keyCode == 13) {//回车
+          	login(username,password);
+          	
+      	}
+  	};
+	
 }).controller("registerCtrl",function($scope,$http,$mdToast){
 		
 	$scope.register = function(username,email,password,repassword){
@@ -45,6 +53,12 @@ lr.controller("loginCtrl",function($scope,$http){
 		});
 		
 	};
+	
+	$scope.register_by_keyboard = function($event,username,email,password,repassword){
+      	if($event.keyCode == 13) {//回车
+          	register(username,email,password,repassword);
+      	}
+  	};
 	
 });
 
