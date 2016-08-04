@@ -28,7 +28,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 				data: {
 					token: login_token,
 					chain_id: chain_id,
-					chain_info: chain_info,
+					chain_info: $scope.chain_info,
 				},
 				headers: { 'Content-Type': 'application/json'}
 			};
