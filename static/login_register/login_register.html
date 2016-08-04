@@ -48,7 +48,9 @@
 						        </div>
 					      	</md-input-container>
                     	</form>
-                    	<md-button ng-click="login(username,password)">Log In</md-button>
+                    	<md-button ng-click="login(username,password)" ng-keypress="login_by_keyboard($event,username,password)">
+                    		Log In
+                    	</md-button>
                     </div>
 	            </div>
             </div>
@@ -88,7 +90,9 @@
 						        </div>
 					      	</md-input-container>
                     	</form>
-                    	<md-button ng-click="register(username,email,password,repassword)">Register</md-button>
+                    	<md-button ng-click="register(username,email,password,repassword)" ng-keypress="register_by_keyboard($event,username,email,password,repassword)">
+                    		Register
+                    	</md-button>
                     </div>
 	            </div>
             </div>

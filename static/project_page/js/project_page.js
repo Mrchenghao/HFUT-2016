@@ -98,6 +98,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
   	};
   	
   	$scope.jumpToDesign = function(){
+		sessionStorage.setItem('chain_id',JSON.stringify(data.data.chain_id));
   		window.location.href = "../design_page/design_page.html";
   	}
   	

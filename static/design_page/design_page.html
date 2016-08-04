@@ -35,8 +35,8 @@
             </md-list>
             <div id='test' ng-sortable="pullConfig">
 		    	<div ng-class="{'search-item': inSearch, 'col-lg-2 col-md-2 col-sm-3 col-xs-3': inDesign}" ng-repeat="gene in search_info">
-                        <img ng-src="{{gene.img}}" alt="gene_img">
-						<span>{{gene.name}}</span>
+                    <img ng-src="{{gene.img}}" alt="gene_img">
+					<span>{{gene.name}}</span>
 					<md-divider></md-divider>
 				</div>
 	      	</div>
@@ -54,6 +54,11 @@
   		<md-content class="layout-row flex" layout="row">
 			<div class="layout-column flex" layout="column" flex="80">
 				<div id="dashboard" flex="66" class="ai-edit-main row" ng-sortable="putConfig">
+					<div ng-class="{'search-item': inSearch, 'col-lg-2 col-md-2 col-sm-3 col-xs-3': inDesign}" ng-repeat="gene in chain_info">
+	                    <img ng-src="{{gene.img}}" alt="gene_img">
+						<span>{{gene.name}}</span>
+						<md-divider></md-divider>
+					</div>
                     <canvas id="design_background"></canvas>
 				</div>
                 <div flex layout="row">
@@ -128,7 +133,6 @@
 
     <script src="../public/analytics/analytics.js"></script>
     <script src="../public/jquery/dist/jquery.js"></script>
-    <!--<script src="../public/Sortable/Sortable/jquery.fn.sortable.js"></script>-->
 	<script src="../public/bootstrap/dist/js/bootstrap.js"></script>
   	<script src="../public/angular/angular.js"></script>
   	<script src="../public/angular-animate/angular-animate.js"></script>
@@ -139,6 +143,5 @@
   	<script src="../public/angular-sortable/Sortable.js"></script>
   	<script src="../public/angular-sortable/ng-sortable.js"></script>
     <script src="./js/design_page.js"></script>
-  	<!--<script src="./js/dashboard.js"></script>-->
 </body>
 </html>
