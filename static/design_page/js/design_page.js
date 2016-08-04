@@ -1,7 +1,25 @@
-var editPro = angular.module('edit-app', ['ngMaterial']);
+var editPro = angular.module('edit-app', ['ngMaterial','ng-sortable']);
 
 editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $http, $mdDialog, $mdToast) {
 	$scope.search_info = [];//搜索结果
+	
+	$scope.putConfig = {
+		group: {
+			name:'gene',
+            pull:false,
+            put:true,
+		},
+		animation: 150,
+	};
+	
+	$scope.pullConfig = {
+		group: {
+			name:'gene',
+            pull:'clone',
+            put:false,
+		},
+		animation: 150,
+	};
 	
 	//获得搜索结果
 	$scope.getSearchResult = function(key_word){

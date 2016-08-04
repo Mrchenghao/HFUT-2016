@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="css/docs.css">
     <link rel="stylesheet" href="css/design_page.css">
-	<link rel="stylesheet" href="css/dashboard.css">
+	<!--<link rel="stylesheet" href="css/dashboard.css">-->
 	
 	<!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="img/logo_black_small.png">
@@ -33,7 +33,7 @@
                 	<md-icon md-svg-src="img/search.svg" aria-label="search"></md-icon>
                 </md-button>
             </md-list>
-            <div id='test'>
+            <div id='test' ng-sortable="pullConfig">
 		    	<div class='search_item' ng-repeat="gene in search_info">
                         <img ng-src="{{gene.img}}" alt="gene_img">
 						<span>{{gene.name}}</span>
@@ -53,7 +53,7 @@
   		</md-toolbar>
   		<md-content class="layout-row flex" layout="row">
 			<div class="layout-column flex" layout="column" flex="80">
-				<div id="dashboard" flex="66" class="ai-edit-main row">
+				<div layout="row" id="dashboard" flex="66" class="ai-edit-main row" ng-sortable="putConfig">
                     <canvas id="design_background"></canvas>
 				</div>
                 <div flex layout="row">
@@ -128,7 +128,7 @@
 
     <script src="../public/analytics/analytics.js"></script>
     <script src="../public/jquery/dist/jquery.js"></script>
-    <script src="../public/Sortable/Sortable/jquery.fn.sortable.js"></script>
+    <!--<script src="../public/Sortable/Sortable/jquery.fn.sortable.js"></script>-->
 	<script src="../public/bootstrap/dist/js/bootstrap.js"></script>
   	<script src="../public/angular/angular.js"></script>
   	<script src="../public/angular-animate/angular-animate.js"></script>
@@ -136,7 +136,9 @@
   	<script src="../public/angular-aria/angular-aria.js"></script>
   	<script src="../public/angular-messages/angular-messages.js"></script>
   	<script src="../public/angular-material/angular-material.js"></script>
+  	<script src="../public/angular-sortable/Sortable.js"></script>
+  	<script src="../public/angular-sortable/ng-sortable.js"></script>
     <script src="./js/design_page.js"></script>
-  	<script src="./js/dashboard.js"></script>
+  	<!--<script src="./js/dashboard.js"></script>-->
 </body>
 </html>
