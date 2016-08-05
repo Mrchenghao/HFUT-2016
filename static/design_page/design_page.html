@@ -60,12 +60,14 @@
 						<span>{{gene.name}}</span>
 					</div>
 				</div>
-                <div flex layout="row">
-				    <div flex = '60' id="recommend" flex="34">
-                       	
+                <div flex layout="row" class="md-whiteframe-z2 re">
+				    <div flex = '60' id="recommend" flex="34" >
+                       	<div ng-repeat="gene in recommend_info" class='recommend_item' ng-sortable="recommendConfig">
+                            <img ng-src="{{gene.img}}" alt="gene_img">
+                            <span>{{gene.name}}</span>
+                        </div>
 				    </div>
                     <div id='clipboard' flex>
-                        <p class="md-title">此处有垃圾桶图</p>
                     </div>
 			    </div>
             </div>

@@ -31,7 +31,8 @@
     margin-left: 5px;
 }
 #clipboard{
-    overflow :auto;
+    background:url('../img/ljt.jpg');
+    background-size:contain;
 }
 
 .pull_left{
@@ -69,4 +70,17 @@
 .lb{
     background:url('../img/lb_bg.png');
     background-size:100%;
+}
+
+.recommend_item{
+    float:left;
+    background:url('../img/x_bg.png');
+}
+
+.recommend_item span{
+    display:block;
+}
+
+.re{
+    margin-bottom: 8px;
 }
