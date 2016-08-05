@@ -42,7 +42,7 @@ class Parts(models.Model):
 		return self.part_name
 
 	class Meta:
-		db_table = 'bio_parts' 
+		db_table = 'bio_parts'
 
 class Part_Parameters(models.Model):
 	part = models.ForeignKey(Parts)

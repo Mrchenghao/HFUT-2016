@@ -34,7 +34,8 @@
                 </md-button>
             </md-list>
             <div id='test' ng-sortable="pullConfig">
-		    	<div ng-class="{'search-item': inSearch, 'col-lg-2 col-md-2 col-sm-3 col-xs-3': inDesign}" ng-repeat="gene in search_info">
+		    	<div ng-repeat="gene in search_info">
+                    <img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
                     <img ng-src="{{gene.img}}" alt="gene_img">
 					<span>{{gene.name}}</span>
 					<md-divider></md-divider>
@@ -54,12 +55,10 @@
   		<md-content class="layout-row flex" layout="row">
 			<div class="layout-column flex" layout="column" flex="80">
 				<div id="dashboard" flex="66" class="ai-edit-main row" ng-sortable="putConfig">
-					<div ng-class="{'search-item': inSearch, 'col-lg-2 col-md-2 col-sm-3 col-xs-3': inDesign}" ng-repeat="gene in chain_info">
+					<div ng-repeat="gene in chain_info" ng-class="{'pull_right':gene.float_right,'pull_left':gene.float_left}">
 	                    <img ng-src="{{gene.img}}" alt="gene_img">
 						<span>{{gene.name}}</span>
-						<md-divider></md-divider>
 					</div>
-                    <canvas id="design_background"></canvas>
 				</div>
                 <div flex layout="row">
 				    <div flex = '60' id="recommend" flex="34">
@@ -143,5 +142,6 @@
   	<script src="../public/angular-sortable/Sortable.js"></script>
   	<script src="../public/angular-sortable/ng-sortable.js"></script>
     <script src="./js/design_page.js"></script>
+    <!-- <script src="./js/dashboard_bg.js"></script> -->
 </body>
 </html>

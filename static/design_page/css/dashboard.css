@@ -1,22 +1,17 @@
-#design_background {
-    position:absolute;
-    top:0px;
-    left:0px;
-    z-index:-1;
-}
 .info{
     display:inline-block;
 }
 #dashboard{
     list-style: none;
+    overflow :auto;
 }
 #dashboard div{
-    float:left;
     cursor: move;
     width:20%;
     height: 20%;
     text-align: center;
 }
+
 
 #dashboard div span{
     display:block;
@@ -26,15 +21,23 @@
     display: none;
 }
 .search_item{
-    background: #106CC8;
     cursor: move;
-}
-#dashboard{
-    overflow :auto;
 }
 #recommend{
     margin-left: 5px;
 }
 #clipboard{
     overflow :auto;
+}
+
+.pull_left{
+    float:left;
+}
+
+.pull_right{
+    float:right;
+}
+
+.handle{
+    margin-right: 10%;
 }
