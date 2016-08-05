@@ -237,7 +237,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             pull:'clone',
             put:false,
         },
-        sort:true,
+        sort:false,
         animation: 150,
     };
 
