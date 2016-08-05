@@ -72,6 +72,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.device_clicked = function(device_id,project_id) {
 		$scope.addr += device_id;
 		$scope.isChosen = true;
+		console.log(device_id);
 		sessionStorage.setItem('chain_id',JSON.stringify(device_id));
 		sessionStorage.setItem('project_id',JSON.stringify(project_id));
 		$http.get("/home/getResultImage?id=" + device_id).success(function(data) {

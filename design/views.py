@@ -30,10 +30,23 @@ def getChain(request):
         project = Project.objects.filter(id=project_id).first()
         if token.user != project.creator:
             raise myError('Check Failed.')
-        chain = Chain.objects.filter(id=data['chain_id]']).first()
+        chain = Chain.objects.filter(id=data['chain_id']).first()
+        sequence = chain.sequence
+        if sequence.startswith('_'):
+            sequence = sequence[1:]
+        if sequence.endswith('_'):
+            sequence = sequence[:-1]
+        sequenceList = sequence.split('_')
+        partList = []
+        for seq in sequenceList:
+            part = Parts.objects.filter(part_id=seq).first()
+            partList.append({
+                    'part_name': part.part_name,
+                    'part_type': part.part_type
+                })
         result = {
             'successful': True,
-            'data': chain,
+            'data': partList,
             'error': {
                 'id': '',
                 'msg': '',
