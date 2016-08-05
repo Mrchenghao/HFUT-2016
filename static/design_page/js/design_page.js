@@ -3,7 +3,7 @@ var editPro = angular.module('edit-app', ['ngMaterial','ng-sortable']);
 editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $http, $mdDialog, $mdToast) {
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
-    $scope.chain_new = $scope.chain_info.concat();
+    $scope.chain_new = [];
     $scope.float_right = false;
     $scope.float_left = true;
 
@@ -244,6 +244,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 		$http(opt).success(function(data) {
 			if (data.successful) {
 				$scope.chain_result = data.data;
+                $scope.chain_new = $scope.chain_result.concat()
 				for (var i = 0;i < chain_result.length;i++) {
 					$scope.chain_info.push({
 						img: '../img/' + chain_result[i].part_type + '.png',
