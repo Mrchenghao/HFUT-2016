@@ -160,7 +160,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
                     }
                 }
             }
-
+            console.log(evt)
             $scope.chain_new.push({
                 img: evt.model.img,
                 name: evt.model.name,
@@ -352,6 +352,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 		$http(opt).success(function(data){
 			if(data.successful){
 				var recommend_result = data.data;
+                console.log(recommend_result)
                 $scope.recommend_info = [];
 				for (var i = 0;i < recommend_result.length;i++) 
 					for (var j = 0;j < recommend_result[i].length;j++){

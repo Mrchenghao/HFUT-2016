@@ -24,11 +24,15 @@ import random
 def getChain(request):
     try:
         data = json.loads(request.body)
-        token = Token.objects.filter(token=data['token']).first()
+        try:
+            token = Token.objects.filter(token=data['token']).first()
+            user = token.user
+        except:
+            raise myError('Please Log In.')
         project_id = data['project_id']
         project = Project()
         project = Project.objects.filter(id=project_id).first()
-        if token.user != project.creator:
+        if user != project.creator:
             raise myError('Check Failed.')
         chain = Chain.objects.filter(id=data['chain_id']).first()
         sequence = chain.sequence
@@ -75,10 +79,11 @@ def getChain(request):
 def searchParts(request):
     try:
         data = json.loads(request.body)
-        token = Token()
-        token = Token.objects.filter(token=data['token']).first()
-        user = User()
-        user = token.user
+        try:
+            token = Token.objects.filter(token=data['token']).first()
+            user = token.user
+        except:
+            raise myError('Please Log In.')
         keyword = data['keyword']
         try:
             funcs = data['funcs']
@@ -107,8 +112,11 @@ def searchParts(request):
 def getParts(request):
     try:
         data = json.loads(request.body)
-        token = Token()
-        token = Token.objects.filter(token=data.data['token']).first()
+        try:
+            token = Token.objects.filter(token=data['token']).first()
+            user = token.user
+        except:
+            raise myError('Please Log In.')
         partname = data.data['partname']
         searchResult = getPart(partname)
         if searchResult.successful:
@@ -137,8 +145,17 @@ def getParts(request):
 def updateChain(request):
     try:
         data = json.loads(request.body)
-        token = Token()
-        token = Token.objects.filter(token=data['token']).first()
+        data = json.loads(request.body)
+        try:
+            token = Token.objects.filter(token=data['token']).first()
+            user = token.user
+        except:
+            raise myError('Please Log In.')
+        project_id = data['project_id']
+        project = Project()
+        project = Project.objects.filter(id=project_id).first()
+        if user != project.creator:
+            raise myError('Update Failed.')
         chainid = data['chain_id']
         chain = Chain()
         chain = Chain.objects.filter(id=data['chain_id']).first()
@@ -210,9 +227,10 @@ def getMRecommend(request):
     try:
         data = json.loads(request.body)
         token = Token()
-        token = Token.objects.filter(token=data.data['token']).first()
-        part_id = data.data['part_id']
+        token = Token.objects.filter(token=data['token']).first()
+        part_id = str(data['part_id'])
         recommend_list = getMarkovRecommend(part_id)
+        print recommend_list
         if not recommend_list:
             result = {
             'successful': False,

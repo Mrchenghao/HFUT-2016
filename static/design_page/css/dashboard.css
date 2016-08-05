@@ -29,6 +29,7 @@
 }
 #recommend{
     margin-left: 5px;
+    overflow :auto;
 }
 #clipboard{
     background:url('../img/ljt.jpg');
@@ -73,8 +74,11 @@
 }
 
 .recommend_item{
+    width: 25%;
+    min-height: 30%;
     float:left;
     background:url('../img/x_bg.png');
+    background-size:contain;
 }
 
 .recommend_item span{
