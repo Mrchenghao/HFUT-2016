@@ -4,8 +4,6 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
     $scope.chain_new = $scope.chain_info.concat();
-    $scope.left_arrow_show = false;//基因左侧箭头显示标志
-    $scope.right_arrow_show = false;//基因右侧箭头显示标志
     $scope.float_right = false;
     $scope.float_left = true;
 
@@ -25,17 +23,55 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 
             for (var i = 0;i < $scope.chain_info.length;i++) {
                 if ((Math.floor(i / 5) + 1) % 2 == 0) {
-                    $scope.chain_info[i].left_arrow_show = false;
-                    $scope.chain_info[i].right_arrow_show = true;
+                    $scope.chain_info[i].float_right = true;
+                    $scope.chain_info[i].float_left = false;
+                    if ((i + 1) % 5 == 0) {
+                        //头
+                        $scope.chain_info[i].rb = true;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else if (i % 5 == 0) {
+                        //尾
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = true;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else {
+                        //中间
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = true;
+                    }
                 } else {
-                    $scope.chain_info[i].right_arrow_show = false;
-                    $scope.chain_info[i].left_arrow_show = true;
-                }
-
-                if ((i + 1) % 5 == 0) {
-                    $scope.chain_info[i].down_arrow_show = false;
-                } else {
-                    $scope.chain_info[i].down_arrow_show = true;
+                    $scope.chain_info[i].float_right = false;
+                    $scope.chain_info[i].float_left = true;
+                    if ((i + 1) % 5 == 0) {
+                        //尾
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = true;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else if (i % 5 == 0) {
+                        //头
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = true;
+                        $scope.chain_info[i].line = false;
+                    } else {
+                        //中间
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = true;
+                    }
                 }
             }
 
@@ -69,19 +105,55 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 
             for (var i = 0;i < $scope.chain_info.length;i++) {
                 if ((Math.floor(i / 5) + 1) % 2 == 0) {
-                    $scope.chain_info[i].left_arrow_show = false;
-                    $scope.chain_info[i].right_arrow_show = true;
                     $scope.chain_info[i].float_right = true;
                     $scope.chain_info[i].float_left = false;
+                    if ((i + 1) % 5 == 0) {
+                        //头
+                        $scope.chain_info[i].rb = true;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else if (i % 5 == 0) {
+                        //尾
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = true;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else {
+                        //中间
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = true;
+                    }
                 } else {
-                    $scope.chain_info[i].right_arrow_show = false;
-                    $scope.chain_info[i].left_arrow_show = true;
                     $scope.chain_info[i].float_right = false;
                     $scope.chain_info[i].float_left = true;
-                }
-
-                if ((i + 1) % 5 == 0) {
-                    $scope.chain_info[i].down_arrow_show = false;
+                    if ((i + 1) % 5 == 0) {
+                        //尾
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = true;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else if (i % 5 == 0) {
+                        //头
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = true;
+                        $scope.chain_info[i].line = false;
+                    } else {
+                        //中间
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = true;
+                    }
                 }
             }
 
@@ -89,8 +161,6 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
                 img: evt.model.img,
                 name: evt.model.name,
                 id: evt.model.id,
-                right_arrow_show: evt.model.right_arrow_show,
-                left_arrow_show: evt.model.left_arrow_show,
             });
 
 
@@ -176,24 +246,36 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 					$scope.chain_info.push({
 						img: '../img/' + chain_result[i].part_type + '.png',
 						name: chain_result[i].part_name,
-                        left_arrow_show: true,
-                        right_arrow_show: true,
 					});
 
                     if ((Math.floor(i / 5) + 1) % 2 == 0) {
-                        $scope.chain_info[i].left_arrow_show = false;
-                        $scope.chain_info[i].right_arrow_show = true;
+                        //偶数行
                         $scope.chain_info[i].float_right = true;
                         $scope.chain_info[i].float_left = false;
+                        if ((i + 1) % 5 == 0) {
+                            //头
+                            $scope.chain_info[i].rb = true;
+                        } else if (i % 5 == 0) {
+                            //尾
+                            $scope.chain_info[i].lt = true;
+                        } else {
+                            //中间
+                            $scope.chain_info[i].line = true;
+                        }
                     } else {
-                        $scope.chain_info[i].right_arrow_show = false;
-                        $scope.chain_info[i].left_arrow_show = true;
+                        //奇数行
                         $scope.chain_info[i].float_right = false;
                         $scope.chain_info[i].float_left = true;
-                    }
-
-                    if ((i + 1) % 5 == 0) {
-                        $scope.chain_info[i].down_arrow_show = false;
+                        if ((i + 1) % 5 == 0) {
+                            //尾
+                            $scope.chain_info[i].lb = true;
+                        } else if (i % 5 == 0) {
+                            //头
+                            $scope.chain_info[i].rt = true;
+                        } else {
+                            //中间
+                            $scope.chain_info[i].line = true;
+                        }
                     }
 				}
 			}
@@ -221,9 +303,6 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 						img: '../img/' + search_result[i].part_type + '.png',
 						name: search_result[i].part_name,
 						id: search_result[i].part_id,
-                        left_arrow_show: true,
-                        right_arrow_show: true,
-                        down_arrow_show: true,
 					});
 				}
 			}

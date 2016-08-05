@@ -17,6 +17,10 @@
     display:block;
 }
 
+#dashboard div img{
+    margin-top: 10%;
+}
+
 #dashboard div md-divider{
     display: none;
 }
@@ -40,4 +44,29 @@
 
 .handle{
     margin-right: 10%;
+}
+
+.line{
+    background:url('../img/x_bg.png');
+    background-size:100%;
+}
+
+.rt{
+    background:url('../img/rt_bg.png');
+    background-size:100%;
+}
+
+.rb{
+    background:url('../img/rb_bg.png');
+    background-size:100%;
+}
+
+.lt{
+    background:url('../img/lt_bg.png');
+    background-size:100%;
+}
+
+.lb{
+    background:url('../img/lb_bg.png');
+    background-size:100%;
 }
