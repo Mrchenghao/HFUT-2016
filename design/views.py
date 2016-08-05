@@ -21,17 +21,18 @@ import random
 
 # Create your views here.
 def searchParts(request):
-    #try:
+    try:
         data = json.loads(request.body)
-        # token = Token()
-        # token = Token.objects.filter(token=data.data['token']).first()
-        # user = User()
-        # user = token.user
+        token = Token()
+        token = Token.objects.filter(token=data['token']).first()
+        user = User()
+        user = token.user
         keyword = data['keyword']
         try:
             funcs = data['funcs']
         except:
-        searchResult = ambiguousSearch(keyword, funcs = None)
+            funcs = None
+        searchResult = ambiguousSearch(keyword, funcs)
         result = {
             'successful': True,
             'data': searchResult,
@@ -40,15 +41,15 @@ def searchParts(request):
                 'msg': '',
             }
         }
-    # except Exception, e:
-    #     result = {
-    #         'successful': False,
-    #         'error': {
-    #             'id': '',
-    #             'msg': e.args,
-    #         }
-    #     }
-    # finally:
+    except Exception, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.args,
+            }
+        }
+    finally:
         return HttpResponse(json.dumps(result), content_type='application/json')
 
 def getParts(request):
@@ -82,12 +83,24 @@ def updateChain(request):
     try:
         data = json.loads(request.body)
         token = Token()
-        token = Token.objects.filter(token=data.data['token']).first()
-        partname = data.data['partname']
-        searchResult = getPart(partname)
+        token = Token.objects.filter(token=data['token']).first()
+        chainid = data['chain_id']
+        chain = Chain()
+        chain = Chain.objects.filter(id=data['chain_id']).first()
+        if len(data['chain_info']):
+            seq = ''
+            for chain_item in data['chain_info']:
+                if seq:
+                    print chain_item
+                    seq += '_' + str(chain_item[u'id'])
+                else:
+                    print chain_item
+                    seq += str(chain_item[u'id'])
+        chain.sequence = seq
+        chain.save()
         result = {
             'successful': True,
-            'data': searchResult,
+            'data': seq,
             'error': {
                 'id': '',
                 'msg': '',

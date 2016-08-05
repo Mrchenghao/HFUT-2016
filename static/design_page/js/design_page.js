@@ -4,6 +4,12 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
     $scope.chain_new = $scope.chain_info.concat();
+    $scope.left_arrow_show = false;//基因左侧箭头显示标志
+    $scope.right_arrow_show = false;//基因右侧箭头显示标志
+    $scope.float_right = false;
+    $scope.float_left = true;
+
+    //拖动配置(user)
 	$scope.putConfig = {
 		group: {
 			name:'gene',
@@ -11,9 +17,28 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             put:true,
 		},
 		animation: 150,
-		onAdd: function(evt) {
+		onUpdate: function(evt) {
+            console.log('update:');
+            console.log(evt);
 			var login_token = JSON.parse(sessionStorage.getItem('login'));
 			var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
+
+            for (var i = 0;i < $scope.chain_info.length;i++) {
+                if ((Math.floor(i / 5) + 1) % 2 == 0) {
+                    $scope.chain_info[i].left_arrow_show = false;
+                    $scope.chain_info[i].right_arrow_show = true;
+                } else {
+                    $scope.chain_info[i].right_arrow_show = false;
+                    $scope.chain_info[i].left_arrow_show = true;
+                }
+
+                if ((i + 1) % 5 == 0) {
+                    $scope.chain_info[i].down_arrow_show = false;
+                } else {
+                    $scope.chain_info[i].down_arrow_show = true;
+                }
+            }
+
 			$scope.chain_new.push({
 				img: evt.model.img,
 				name: evt.model.name,
@@ -32,13 +57,90 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 			};
 
 			$http(opt).success(function(data) {
-			if (data.successful) {
-				showToast($mdToast,"save SUCCESS!");
-			}
-		});
-		}
+    			if (data.successful) {
+    				showToast($mdToast,"save SUCCESS!");
+    			}
+    		});
+		},
+        onAdd: function(evt) {
+            console.log($scope.chain_info);
+            var login_token = JSON.parse(sessionStorage.getItem('login'));
+            var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
+
+            for (var i = 0;i < $scope.chain_info.length;i++) {
+                if ((Math.floor(i / 5) + 1) % 2 == 0) {
+                    $scope.chain_info[i].left_arrow_show = false;
+                    $scope.chain_info[i].right_arrow_show = true;
+                    $scope.chain_info[i].float_right = true;
+                    $scope.chain_info[i].float_left = false;
+                } else {
+                    $scope.chain_info[i].right_arrow_show = false;
+                    $scope.chain_info[i].left_arrow_show = true;
+                    $scope.chain_info[i].float_right = false;
+                    $scope.chain_info[i].float_left = true;
+                }
+
+                if ((i + 1) % 5 == 0) {
+                    $scope.chain_info[i].down_arrow_show = false;
+                }
+            }
+
+            $scope.chain_new.push({
+                img: evt.model.img,
+                name: evt.model.name,
+                id: evt.model.id,
+                right_arrow_show: evt.model.right_arrow_show,
+                left_arrow_show: evt.model.left_arrow_show,
+            });
+
+
+            var opt = {
+                url: '/design/updateChain',
+                method: 'POST',
+                data: {
+                    token: login_token,
+                    chain_id: 20,
+                    chain_info: $scope.chain_new,
+                },
+                headers: { 'Content-Type': 'application/json'}
+            };
+
+            $http(opt).success(function(data) {
+                if (data.successful) {
+                    showToast($mdToast,"save SUCCESS!");
+                }
+            });
+        },
+        onRemove: function(evt) {
+            console.log(evt);
+            var login_token = JSON.parse(sessionStorage.getItem('login'));
+            var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
+            $scope.chain_new.push({
+                img: evt.model.img,
+                name: evt.model.name,
+                id: evt.model.id,
+            });
+
+            var opt = {
+                url: '/design/updateChain',
+                method: 'POST',
+                data: {
+                    token: login_token,
+                    chain_id: 20,
+                    chain_info: $scope.chain_new,
+                },
+                headers: { 'Content-Type': 'application/json'}
+            };
+
+            $http(opt).success(function(data) {
+                if (data.successful) {
+                    showToast($mdToast,"save SUCCESS!");
+                }
+            });
+        },
 	};
 
+    //拖动配置(side)
 	$scope.pullConfig = {
 		group: {
 			name:'gene',
@@ -51,6 +153,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             console.log(evt);
             console.log(evt.newIndex);
         },
+        handle:'.handle'
 	};
 
 	//页面初始化
@@ -73,7 +176,25 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 					$scope.chain_info.push({
 						img: '../img/' + chain_result[i].part_type + '.png',
 						name: chain_result[i].part_name,
+                        left_arrow_show: true,
+                        right_arrow_show: true,
 					});
+
+                    if ((Math.floor(i / 5) + 1) % 2 == 0) {
+                        $scope.chain_info[i].left_arrow_show = false;
+                        $scope.chain_info[i].right_arrow_show = true;
+                        $scope.chain_info[i].float_right = true;
+                        $scope.chain_info[i].float_left = false;
+                    } else {
+                        $scope.chain_info[i].right_arrow_show = false;
+                        $scope.chain_info[i].left_arrow_show = true;
+                        $scope.chain_info[i].float_right = false;
+                        $scope.chain_info[i].float_left = true;
+                    }
+
+                    if ((i + 1) % 5 == 0) {
+                        $scope.chain_info[i].down_arrow_show = false;
+                    }
 				}
 			}
 		});
@@ -94,11 +215,15 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 		$http(opt).success(function(data){
 			if(data.successful){
 				var search_result = data.data;
+                $scope.search_info = [];
 				for (var i = 0;i < search_result.length;i++) {
 					$scope.search_info.push({
 						img: '../img/' + search_result[i].part_type + '.png',
 						name: search_result[i].part_name,
 						id: search_result[i].part_id,
+                        left_arrow_show: true,
+                        right_arrow_show: true,
+                        down_arrow_show: true,
 					});
 				}
 			}
