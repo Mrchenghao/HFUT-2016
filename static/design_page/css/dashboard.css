@@ -75,9 +75,10 @@
 
 .recommend_item{
     width: 25%;
-    height: 20%;
+    min-height: 30%;
     float:left;
     background:url('../img/x_bg.png');
+    background-size:contain;
 }
 
 .recommend_item span{
