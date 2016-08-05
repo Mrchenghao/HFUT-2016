@@ -88,3 +88,7 @@
 .re{
     margin-bottom: 8px;
 }
+
+#info_card{
+    overflow :auto;
+}
