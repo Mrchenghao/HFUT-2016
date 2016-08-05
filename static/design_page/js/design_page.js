@@ -166,7 +166,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
                 method: 'POST',
                 data: {
                     token: login_token,
-                    project_id: project_id
+                    project_id: project_id,
                     chain_id: chain_id,
                     chain_info: $scope.chain_new,
                 },
