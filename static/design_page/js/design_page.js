@@ -4,6 +4,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
     $scope.chain_new = [];
+    $scope.recommend_info = [];
     $scope.float_right = false;
     $scope.float_left = true;
 
@@ -21,6 +22,9 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 			var login_token = JSON.parse(sessionStorage.getItem('login'));
 			var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
 			var project_id = JSON.parse(sessionStorage.getItem('project_id'));
+			
+			var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
+            $scope.getMrkvChain(part_id);
 
             for (var i = 0;i < $scope.chain_info.length;i++) {
                 if ((Math.floor(i / 5) + 1) % 2 == 0) {
@@ -99,6 +103,9 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             var login_token = JSON.parse(sessionStorage.getItem('login'));
             var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
             var project_id = JSON.parse(sessionStorage.getItem('project_id'));
+            
+            var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
+            $scope.getMrkvChain(part_id);
 
             for (var i = 0;i < $scope.chain_info.length;i++) {
                 if ((Math.floor(i / 5) + 1) % 2 == 0) {
@@ -224,6 +231,17 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
         handle:'.handle'
 	};
 
+    $scope.recommendConfig = {
+        group: {
+            name:'gene',
+            pull:'clone',
+            put:false,
+        },
+        sort:true,
+        animation: 150,
+    };
+
+
 	//页面初始化
 	$scope.init = function(){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
@@ -317,6 +335,34 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
       	if($event.keyCode == 13) {//回车
           	$scope.getSearchResult(key_word);
       	}
+  	};
+  	
+  	//获得马尔科夫链
+  	$scope.getMrkvChain = function(part_id){
+  		var login_token = JSON.parse(sessionStorage.getItem('login'));
+  		var opt = {
+			url: '/design/getMRecommend',
+			method: 'POST',
+			data: {
+				token: login_token,
+				part_id: part_id
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
+				var recommend_result = data.data;
+                $scope.recommend_info = [];
+				for (var i = 0;i < recommend_result.length;i++) 
+					for (var j = 0;j < recommend_result[i].length;i++){
+						$scope.recommend_info.push({
+							img: '../img/' + recommend_result[i][j].part_type + '.png',
+							name: recommend_result[i][j].part_name,
+							part_id: recommend_result[i][j].part_id,
+						});
+					}
+			}
+		});
   	};
 
 	//侧边栏方法
