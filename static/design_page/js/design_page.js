@@ -314,7 +314,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	$scope.search_by_keyboard = function($event,key_word){
 		console.log('aaa');
       	if($event.keyCode == 13) {//回车
-          	getSearchResult(key_word);
+          	$scope.getSearchResult(key_word);
       	}
   	};
 
