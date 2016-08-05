@@ -164,7 +164,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             $scope.chain_new.push({
                 img: evt.model.img,
                 name: evt.model.name,
-                part_id: evt.model.id,
+                part_id: evt.model.part_id,
             });
 
 
@@ -354,7 +354,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 				var recommend_result = data.data;
                 $scope.recommend_info = [];
 				for (var i = 0;i < recommend_result.length;i++) 
-					for (var j = 0;j < recommend_result[i].length;i++){
+					for (var j = 0;j < recommend_result[i].length;j++){
 						$scope.recommend_info.push({
 							img: '../img/' + recommend_result[i][j].part_type + '.png',
 							name: recommend_result[i][j].part_name,
