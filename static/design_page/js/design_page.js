@@ -20,6 +20,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             console.log(evt);
 			var login_token = JSON.parse(sessionStorage.getItem('login'));
 			var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
+			var project_id = JSON.parse(sessionStorage.getItem('project_id'));
 
             for (var i = 0;i < $scope.chain_info.length;i++) {
                 if ((Math.floor(i / 5) + 1) % 2 == 0) {
@@ -80,6 +81,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 				method: 'POST',
 				data: {
 					token: login_token,
+					project_id: project_id,
 					chain_id: chain_id,
 					chain_info: evt.models,
 				},
@@ -96,6 +98,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             console.log($scope.chain_info);
             var login_token = JSON.parse(sessionStorage.getItem('login'));
             var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
+            var project_id = JSON.parse(sessionStorage.getItem('project_id'));
 
             for (var i = 0;i < $scope.chain_info.length;i++) {
                 if ((Math.floor(i / 5) + 1) % 2 == 0) {
@@ -163,7 +166,8 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
                 method: 'POST',
                 data: {
                     token: login_token,
-                    chain_id: 20,
+                    project_id: project_id
+                    chain_id: chain_id,
                     chain_info: $scope.chain_new,
                 },
                 headers: { 'Content-Type': 'application/json'}
