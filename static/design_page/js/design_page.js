@@ -244,6 +244,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 					$scope.chain_info.push({
 						img: '../img/' + $scope.chain_result[i].part_type + '.png',
 						name: $scope.chain_result[i].part_name,
+                        part_id:$scope.chain_result[i].part_id,
 					});
 
                     if ((Math.floor(i / 5) + 1) % 2 == 0) {
