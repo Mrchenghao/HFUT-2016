@@ -20,9 +20,7 @@ def getPart(partName):
     try:
         partObj = Parts.objects.filter(part_name=partName).first()
         papers = Part_Papers.objects.filter(part=partObj)
-        result = {
-                'isSuccessful': True,
-                'isEmpty': False,
+        part = {
                 'part_id': partObj.part_id,
                 'ok': partObj.ok,
                 'part_name': partObj.part_name,
@@ -57,14 +55,18 @@ def getPart(partName):
         for paper in papers:
             paper_info = {
                 'name': paper.paper.paper_name,
-                'url' : paper.paper.paper_url
+                'url': paper.paper.paper_url
             }
             paper_list.append(paper_info)
-        result['paper'] = paper_list
+        result = {
+            'succussful': True,
+            'part': part,
+            'paper': paper_list
+        }
     except:
         traceback.print_exc()
         result = {
-            'isSuccessful': False
+            'successful': False
         }
     return result
 

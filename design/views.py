@@ -20,13 +20,51 @@ import string
 import random
 
 # Create your views here.
-def searchParts(request):
-    #try:
+
+def getChain(request):
+    try:
         data = json.loads(request.body)
-        # token = Token()
-        # token = Token.objects.filter(token=data.data['token']).first()
-        # user = User()
-        # user = token.user
+        token = Token.objects.filter(token=data['token']).first()
+        project_id = data['project_id']
+        project = Project()
+        project = Project.objects.filter(id=project_id).first()
+        if token.user != project.creator:
+            raise myError('Check Failed.')
+        chain = Chain.objects.filter(id=data['chain_id]']).first()
+        result = {
+            'successful': True,
+            'data': chain,
+            'error': {
+                'id': '',
+                'msg': '',
+            },
+        }
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '3',
+                'msg': e.value,
+            }
+        }
+    except Exception,e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '1024',
+                'msg': e.args
+            }
+        }
+    finally:
+        return HttpResponse(json.dumps(result), content_type='application/json')
+
+def searchParts(request):
+    try:
+        data = json.loads(request.body)
+        token = Token()
+        token = Token.objects.filter(token=data.data['token']).first()
+        user = User()
+        user = token.user
         keyword = data['keyword']
         try:
             funcs = data['funcs']
@@ -40,15 +78,15 @@ def searchParts(request):
                 'msg': '',
             }
         }
-    # except Exception, e:
-    #     result = {
-    #         'successful': False,
-    #         'error': {
-    #             'id': '',
-    #             'msg': e.args,
-    #         }
-    #     }
-    # finally:
+    except Exception, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.args,
+            }
+        }
+    finally:
         return HttpResponse(json.dumps(result), content_type='application/json')
 
 def getParts(request):
@@ -58,14 +96,17 @@ def getParts(request):
         token = Token.objects.filter(token=data.data['token']).first()
         partname = data.data['partname']
         searchResult = getPart(partname)
-        result = {
-            'successful': True,
-            'data': searchResult,
-            'error': {
-                'id': '',
-                'msg': '',
+        if searchResult.successful:
+            result = {
+                'successful': True,
+                'data': searchResult,
+                'error': {
+                    'id': '',
+                    'msg': '',
+                }
             }
-        }
+        else:
+            raise myError('Check Failed.')
     except Exception, e:
         result = {
             'successful': False,
