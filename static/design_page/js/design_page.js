@@ -154,7 +154,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             $scope.chain_new.push({
                 img: evt.model.img,
                 name: evt.model.name,
-                id: evt.model.id,
+                part_id: evt.model.id,
             });
 
 
@@ -223,10 +223,11 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	//页面初始化
 	$scope.init = function(){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
+        console.log(login_token);
 		var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
-		var project_id = JSON.parse(sessionStorage.getItem('peoject_id'));
+		var project_id = JSON.parse(sessionStorage.getItem('project_id'));
 		var opt = {
-			url: '/home/getChain',
+			url: '/design/getChain',
 			method: 'POST',
 			data: {
 				token: login_token,
@@ -238,11 +239,11 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 		$http(opt).success(function(data) {
 			if (data.successful) {
 				$scope.chain_result = data.data;
+				for (var i = 0;i < $scope.chain_result.length;i++) {
                 $scope.chain_new = $scope.chain_result.concat()
-				for (var i = 0;i < chain_result.length;i++) {
 					$scope.chain_info.push({
-						img: '../img/' + chain_result[i].part_type + '.png',
-						name: chain_result[i].part_name,
+						img: '../img/' + $scope.chain_result[i].part_type + '.png',
+						name: $scope.chain_result[i].part_name,
 					});
 
                     if ((Math.floor(i / 5) + 1) % 2 == 0) {
