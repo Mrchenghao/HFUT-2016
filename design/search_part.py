@@ -59,7 +59,7 @@ def getPart(partName):
             }
             paper_list.append(paper_info)
         result = {
-            'succussful': True,
+            'successful': True,
             'part': part,
             'paper': paper_list
         }
