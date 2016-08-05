@@ -73,6 +73,7 @@
 }
 
 .recommend_item{
+    width: 25%;
     float:left;
     background:url('../img/x_bg.png');
 }
