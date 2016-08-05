@@ -230,12 +230,14 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	$scope.init = function(){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
+		var project_id = JSON.parse(sessionStorage.getItem('peoject_id'));
 		var opt = {
 			url: '/home/getChain',
 			method: 'POST',
 			data: {
 				token: login_token,
 				chain_id: chain_id,
+				project_id: project_id,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
