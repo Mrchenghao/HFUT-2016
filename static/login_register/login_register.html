@@ -32,7 +32,7 @@
                         <h1><strong>BioDesigner</strong> Login </h1>
                     </div>
                     <div class="col-sm-4 col-sm-offset-4" layout="column" ng-cloak>
-                    	<form name="loginForm">
+                    	<form name="loginForm" ng-keypress="login_by_keyboard($event,username,password)">
                     		<md-input-container class="md-block">
 						        <label>Username</label>
 						        <input type="text" required name="username" ng-model="username">
@@ -48,7 +48,7 @@
 						        </div>
 					      	</md-input-container>
                     	</form>
-                    	<md-button ng-click="login(username,password)" ng-keypress="login_by_keyboard($event,username,password)">
+                    	<md-button ng-click="login(username,password)">
                     		Log In
                     	</md-button>
                     </div>
@@ -60,7 +60,7 @@
                         <h1>Create a new Account</h1>
                     </div>
                     <div class="col-sm-4 col-sm-offset-4" layout="column" ng-cloak>
-                    	<form name="loginForm">
+                    	<form name="loginForm" ng-keypress="register_by_keyboard($event,username,email,password,repassword)">
                     		<md-input-container class="md-block">
 						        <label>Username</label>
 						        <input type="text" required name="username" ng-model="username">
@@ -90,7 +90,7 @@
 						        </div>
 					      	</md-input-container>
                     	</form>
-                    	<md-button ng-click="register(username,email,password,repassword)" ng-keypress="register_by_keyboard($event,username,email,password,repassword)">
+                    	<md-button ng-click="register(username,email,password,repassword)">
                     		Register
                     	</md-button>
                     </div>

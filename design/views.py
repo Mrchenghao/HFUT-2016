@@ -41,6 +41,7 @@ def getChain(request):
         for seq in sequenceList:
             part = Parts.objects.filter(part_id=seq).first()
             partList.append({
+                    'part_id': part.part_id,
                     'part_name': part.part_name,
                     'part_type': part.part_type
                 })
@@ -146,10 +147,10 @@ def updateChain(request):
             for chain_item in data['chain_info']:
                 if seq:
                     print chain_item
-                    seq += '_' + str(chain_item[u'id'])
+                    seq += '_' + str(chain_item[u'part_id'])
                 else:
                     print chain_item
-                    seq += str(chain_item[u'id'])
+                    seq += str(chain_item[u'part_id'])
         chain.sequence = seq
         chain.save()
         result = {

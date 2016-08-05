@@ -3,7 +3,7 @@ var editPro = angular.module('edit-app', ['ngMaterial','ng-sortable']);
 editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $http, $mdDialog, $mdToast) {
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
-    $scope.chain_new = $scope.chain_info.concat();
+    $scope.chain_new = [];
     $scope.float_right = false;
     $scope.float_left = true;
 
@@ -160,7 +160,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             $scope.chain_new.push({
                 img: evt.model.img,
                 name: evt.model.name,
-                id: evt.model.id,
+                part_id: evt.model.id,
             });
 
 
@@ -246,6 +246,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 			if (data.successful) {
 				$scope.chain_result = data.data;
 				for (var i = 0;i < $scope.chain_result.length;i++) {
+                $scope.chain_new = $scope.chain_result.concat()
 					$scope.chain_info.push({
 						img: '../img/' + $scope.chain_result[i].part_type + '.png',
 						name: $scope.chain_result[i].part_name,
@@ -315,7 +316,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	$scope.search_by_keyboard = function($event,key_word){
 		console.log('aaa');
       	if($event.keyCode == 13) {//回车
-          	getSearchResult(key_word);
+          	$scope.getSearchResult(key_word);
       	}
   	};
 
