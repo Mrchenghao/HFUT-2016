@@ -18,7 +18,7 @@ def getPart(partName):
     @rtype: dict
     """
     try:
-        partObj = Parts.objects.filter(part_name=partName).first()
+        partObj = Parts.objects.get(part_name=partName)
         papers = Part_Papers.objects.filter(part=partObj)
         part = {
                 'part_id': partObj.part_id,
