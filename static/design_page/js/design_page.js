@@ -385,7 +385,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 				$scope.part_short_desc = data.data.part.short_desc;
 				$scope.description = data.data.part.description;
 				$scope.score = data.data.part.score;
-				$scope.papers = data.data.paper[1];
+				$scope.papers = data.data.paper;
 			}
 		});
   	}
