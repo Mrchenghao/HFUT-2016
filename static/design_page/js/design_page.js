@@ -166,7 +166,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
                 method: 'POST',
                 data: {
                     token: login_token,
-                    project_id: project_id
+                    project_id: project_id,
                     chain_id: chain_id,
                     chain_info: $scope.chain_new,
                 },
@@ -223,6 +223,17 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
         },
         handle:'.handle'
 	};
+
+    $scope.recommendConfig = {
+        group: {
+            name:'gene',
+            pull:'clone',
+            put:false,
+        },
+        sort:true,
+        animation: 150,
+    };
+
 
 	//页面初始化
 	$scope.init = function(){
