@@ -75,19 +75,13 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
                 }
             }
 
-			$scope.chain_new.push({
-				img: evt.model.img,
-				name: evt.model.name,
-				id: evt.model.id,
-			});
-
 			var opt = {
 				url: '/design/updateChain',
 				method: 'POST',
 				data: {
 					token: login_token,
-					chain_id: 20,
-					chain_info: $scope.chain_new,
+					chain_id: chain_id,
+					chain_info: evt.models,
 				},
 				headers: { 'Content-Type': 'application/json'}
 			};
