@@ -237,7 +237,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             pull:'clone',
             put:false,
         },
-        sort:true,
+        sort:false,
         animation: 150,
     };
 
@@ -365,6 +365,30 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 			}
 		});
   	};
+  	
+  	//获得基因信息
+  	$scope.getGeneInfo = function(name){
+  		var login_token = JSON.parse(sessionStorage.getItem('login'));
+  		var opt = {
+			url: '/design/getParts',
+			method: 'POST',
+			data: {
+				token: login_token,
+				part_name: name,
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
+				$scope.part_type = data.data.part.part_type;
+				$scope.part_nick_name = data.data.part.nickname;
+				$scope.part_short_desc = data.data.part.short_desc;
+				$scope.description = data.data.part.description;
+				$scope.score = data.data.part.score;
+				$scope.papers = data.data.paper[1];
+			}
+		});
+  	}
 
 	//侧边栏方法
   	$scope.openLeftMenu = function() {

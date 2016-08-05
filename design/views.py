@@ -117,9 +117,9 @@ def getParts(request):
             user = token.user
         except:
             raise myError('Please Log In.')
-        partname = data.data['partname']
+        partname = data['part_name']
         searchResult = getPart(partname)
-        if searchResult.successful:
+        if searchResult['successful']:
             result = {
                 'successful': True,
                 'data': searchResult,
