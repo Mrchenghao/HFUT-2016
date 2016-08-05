@@ -160,11 +160,11 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
                     }
                 }
             }
-
+            console.log(evt)
             $scope.chain_new.push({
                 img: evt.model.img,
                 name: evt.model.name,
-                part_id: evt.model.id,
+                part_id: evt.model.part_id,
             });
 
 

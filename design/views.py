@@ -227,9 +227,10 @@ def getMRecommend(request):
     try:
         data = json.loads(request.body)
         token = Token()
-        token = Token.objects.filter(token=data.data['token']).first()
-        part_id = data.data['part_id']
+        token = Token.objects.filter(token=data['token']).first()
+        part_id = str(data['part_id'])
         recommend_list = getMarkovRecommend(part_id)
+        print recommend_list
         if not recommend_list:
             result = {
             'successful': False,
