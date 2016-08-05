@@ -29,6 +29,7 @@
 }
 #recommend{
     margin-left: 5px;
+    overflow :auto;
 }
 #clipboard{
     background:url('../img/ljt.jpg');
@@ -74,6 +75,7 @@
 
 .recommend_item{
     width: 25%;
+    height: 20%;
     float:left;
     background:url('../img/x_bg.png');
 }
