@@ -91,7 +91,9 @@
 				</md-card-title-text>
 				<md-card-title-text>
 					<h4>Papers:</h4>
-					<a ng-href="p.url" ng-repeat="p in papers">{{p.name}}</a>
+					<ul ng-repeat="p in papers">
+						<li><a ng-href="{{p.url}}">{{p.name}}</a></li>
+					</ul>
 				</md-card-title-text>
 			</md-card>
   		</md-content>
