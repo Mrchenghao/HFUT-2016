@@ -7,7 +7,6 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.device_img_src = "img/logo_design.png";//主体图
 	$scope.addr = "";
 	$scope.length = 0;
-    $scope.chin_id = 0;
 	
 	//反转分支的显示状态
 	$scope.toggle_device = function(index){
@@ -73,6 +72,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.device_clicked = function(device_id) {
 		$scope.addr += device_id;
 		$scope.isChosen = true;
+		sessionStorage.setItem('chain_id',JSON.stringify(device_id));
 		$http.get("/home/getResultImage?id=" + device_id).success(function(data) {
 			if (data.successful) {
 				console.log(data);
@@ -99,7 +99,6 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
   	};
   	
   	$scope.jumpToDesign = function(){
-		// sessionStorage.setItem('chain_id',JSON.stringify(data.data.chain_id));
   		window.location.href = "../design_page/design_page.html";
   	}
   	

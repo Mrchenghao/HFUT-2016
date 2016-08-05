@@ -235,7 +235,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 			method: 'POST',
 			data: {
 				token: login_token,
-				chain_id: chain_id
+				chain_id: chain_id,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
