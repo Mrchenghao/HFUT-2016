@@ -61,13 +61,13 @@
 					</div>
 				</div>
                 <div flex layout="row" class="md-whiteframe-z2 re">
-				    <div flex = '60' id="recommend" flex="34" ng-sortable="recommendConfig">
+				    <div id="recommend" flex="34" ng-sortable="recommendConfig">
                        	<div ng-repeat="gene in recommend_info" class='recommend_item'>
                             <img ng-src="{{gene.img}}" alt="gene_img">
                             <span>{{gene.name}}</span>
                         </div>
 				    </div>
-                    <div id='clipboard' flex>
+                    <div id='clipboard' flex = '20' ng-sortable="deleteConfig" class="md-whiteframe-z2">
                     </div>
 			    </div>
             </div>

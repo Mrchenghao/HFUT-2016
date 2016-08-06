@@ -11,18 +11,15 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
     //拖动配置(user)
 	$scope.putConfig = {
 		group: {
-			name:'gene',
-            pull:false,
-            put:true,
+			name:'d_gene',
+            pull:true,
+            put:['s_gene','r_gene'],
 		},
 		animation: 150,
 		onUpdate: function(evt) {
-            console.log('update:');
-            console.log(evt);
 			var login_token = JSON.parse(sessionStorage.getItem('login'));
 			var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
 			var project_id = JSON.parse(sessionStorage.getItem('project_id'));
-			
 			var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
             $scope.getMrkvChain(part_id);
 
@@ -103,7 +100,6 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             var login_token = JSON.parse(sessionStorage.getItem('login'));
             var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
             var project_id = JSON.parse(sessionStorage.getItem('project_id'));
-            
             var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
             $scope.getMrkvChain(part_id);
 
@@ -190,19 +186,74 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             console.log(evt);
             var login_token = JSON.parse(sessionStorage.getItem('login'));
             var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
-            $scope.chain_new.push({
-                img: evt.model.img,
-                name: evt.model.name,
-                id: evt.model.id,
-            });
+            var project_id = JSON.parse(sessionStorage.getItem('project_id'));
+            
+            var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
+            $scope.getMrkvChain(part_id);
 
+            $scope.chain_info.splice(evt.oldIndex,1);
+            $scope.chain_new = $scope.chain_info.concat();
+            for (var i = 0;i < $scope.chain_info.length;i++) {
+                if ((Math.floor(i / 5) + 1) % 2 == 0) {
+                    $scope.chain_info[i].float_right = true;
+                    $scope.chain_info[i].float_left = false;
+                    if ((i + 1) % 5 == 0) {
+                        //头
+                        $scope.chain_info[i].rb = true;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else if (i % 5 == 0) {
+                        //尾
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = true;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else {
+                        //中间
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = true;
+                    }
+                } else {
+                    $scope.chain_info[i].float_right = false;
+                    $scope.chain_info[i].float_left = true;
+                    if ((i + 1) % 5 == 0) {
+                        //尾
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = true;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = false;
+                    } else if (i % 5 == 0) {
+                        //头
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = true;
+                        $scope.chain_info[i].line = false;
+                    } else {
+                        //中间
+                        $scope.chain_info[i].rb = false;
+                        $scope.chain_info[i].lt = false;
+                        $scope.chain_info[i].lb = false;
+                        $scope.chain_info[i].rt = false;
+                        $scope.chain_info[i].line = true;
+                    }
+                }
+            }
             var opt = {
                 url: '/design/updateChain',
                 method: 'POST',
                 data: {
                     token: login_token,
-                    chain_id: 20,
-                    chain_info: $scope.chain_new,
+                    project_id: project_id,
+                    chain_id: chain_id,
+                    chain_info: $scope.chain_info,
                 },
                 headers: { 'Content-Type': 'application/json'}
             };
@@ -218,7 +269,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
     //拖动配置(side)
 	$scope.pullConfig = {
 		group: {
-			name:'gene',
+			name:'s_gene',
             pull:'clone',
             put:false,
 		},
@@ -233,9 +284,19 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 
     $scope.recommendConfig = {
         group: {
-            name:'gene',
+            name:'r_gene',
             pull:'clone',
             put:false,
+        },
+        sort:false,
+        animation: 150,
+    };
+
+    $scope.deleteConfig = {
+        group: {
+            name:'delete',
+            pull:true,
+            put:['d_gene'],
         },
         sort:false,
         animation: 150,

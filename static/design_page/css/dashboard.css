@@ -32,8 +32,9 @@
     overflow :auto;
 }
 #clipboard{
-    background:url('../img/ljt.jpg');
-    background-size:contain;
+    background:url('../img/ljt.JPG') no-repeat;
+    background-size:100%;
+    background-position: center;
 }
 
 .pull_left{
@@ -74,6 +75,7 @@
 }
 
 .recommend_item{
+    text-align: center;
     width: 25%;
     min-height: 30%;
     float:left;
