@@ -1,6 +1,6 @@
 var system = angular.module('sys-app',['ngMaterial']);
 
-system.controller('systemController',function($scope){
+system.controller('systemController',function($scope, $http, $event){
 	
 	$scope.compound_info = [];
 	
