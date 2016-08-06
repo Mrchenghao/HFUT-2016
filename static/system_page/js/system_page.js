@@ -59,6 +59,7 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 	}
 	
 	$scope.addCompoundTags = function(name){
-		$scope.compound_tags.push(name);
+		if($scope.compound_tags.indexOf(name) == -1)
+			$scope.compound_tags.push(name);
 	}
 });
