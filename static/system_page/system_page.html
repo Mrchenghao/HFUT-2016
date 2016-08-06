@@ -34,7 +34,7 @@
             </md-list>
             <div>
 		    	<div ng-repeat="compound in compound_info">
-		    		<md-button class="md-icon-button">
+		    		<md-button class="md-icon-button" ng-click="addCompoundTags(compound.name)">
 	                	<md-icon md-svg-src="img/plus.svg" aria-label="add"></md-icon>
 	                </md-button>
 					<span ng-click="getCompoundInfo(compound.id)">{{compound.name}}</span>
@@ -47,8 +47,9 @@
   	<div id="edit-container" class="layout-column flex" layout="column" tabindex="-1" role="main">
   		<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
 			<div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1">
-				<div layout="row" flex="" class="fill-height layout-row flex">
+				<div layout="row" flex class="fill-height layout-row flex">
 					<md-button class="md-raised">Run</md-button>
+					<md-chips ng-model="compound_tags"></md-chips>
 				</div>
 			</div>
   		</md-toolbar>
