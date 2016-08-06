@@ -34,7 +34,7 @@
             </md-list>
             <div>
 		    	<div ng-repeat="compound in compound_info">
-		    		<md-button class="md-icon-button" ng-click="addCompoundTags(compound.name)">
+		    		<md-button class="md-icon-button" ng-click="addCompoundTags(compound)">
 	                	<md-icon md-svg-src="img/plus.svg" aria-label="add"></md-icon>
 	                </md-button>
 					<span ng-click="getCompoundInfo(compound.id)">{{compound.name}}</span>
@@ -55,7 +55,7 @@
 			</div>
   		</md-toolbar>
   		<md-content class="layout-row flex" layout="row">
-			<div class="layout-column flex" layout="column" flex="80">
+			<div id="my-svg" class="layout-column flex" layout="column" flex="80">
 				
             </div>
 			<md-card layout="column" flex="20" tabindex="-1" class="md-whiteframe-z2" layout-padding>
@@ -93,6 +93,8 @@
   	<script src="../public/angular-aria/angular-aria.js"></script>
   	<script src="../public/angular-messages/angular-messages.js"></script>
   	<script src="../public/angular-material/angular-material.js"></script>
+  	<script src="../public/d3/d3.min.js"></script>
     <script src="js/system_page.js"></script>
+    <script src="js/draw.js"></script>
 </body>
 </html>
