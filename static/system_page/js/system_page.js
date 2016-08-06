@@ -18,6 +18,7 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
+				$scope.compound_info = [];
 				var compound_result = data.data;
 				for (var i = 0;i < compound_result.length;i++) {
 					$scope.compound_info.push({
@@ -61,5 +62,13 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 	$scope.addCompoundTags = function(name){
 		if($scope.compound_tags.indexOf(name) == -1)
 			$scope.compound_tags.push(name);
+	}
+	
+	$scope.removeAllCompoundTags = function(){
+		$scope.compound_tags = [];
+	}
+	
+	$scope.runCompoundTags = function(){
+		
 	}
 });

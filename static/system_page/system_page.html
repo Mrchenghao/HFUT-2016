@@ -48,7 +48,8 @@
   		<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
 			<div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1">
 				<div layout="row" flex class="fill-height layout-row flex">
-					<md-button class="md-raised">Run</md-button>
+					<md-button class="md-raised" ng-click="runCompoundTags()">Run</md-button>
+					<md-button class="md-raised" ng-click="removeAllCompoundTags()">Remove All</md-button>
 					<md-chips ng-model="compound_tags"></md-chips>
 				</div>
 			</div>
