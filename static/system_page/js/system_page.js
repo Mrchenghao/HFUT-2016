@@ -1,6 +1,6 @@
-var system = angular.module('sys-app',['ngMaterial']);
+var system = angular.module('sys-app',['ngMaterial','ngAnimate']);
 
-system.controller('systemController',function($scope){
+system.controller('systemController',function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast){
 	
 	$scope.compound_info = [];
 	
