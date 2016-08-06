@@ -187,6 +187,10 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             var login_token = JSON.parse(sessionStorage.getItem('login'));
             var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
             var project_id = JSON.parse(sessionStorage.getItem('project_id'));
+            
+            var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
+            $scope.getMrkvChain(part_id);
+
             $scope.chain_info.splice(evt.oldIndex,1);
             $scope.chain_new = $scope.chain_info.concat();
             for (var i = 0;i < $scope.chain_info.length;i++) {
