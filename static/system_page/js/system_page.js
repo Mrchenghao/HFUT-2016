@@ -12,7 +12,7 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 			method: 'POST',
 			data: {
 				token: login_token,
-				key_word: key_word,
+				keyword: key_word,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
@@ -38,21 +38,21 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 	$scope.getCompoundInfo = function(id){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
-			url: '/system/searchCompound',
+			url: '/system/getCompound',
 			method: 'POST',
 			data: {
 				token: login_token,
-				id: id,
+				compound_id: id,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
-				$scope.compound_id = data.data.part.compound_id;
-				$scope.name = data.data.part.name;
-				$scope.nick_name = data.data.part.nick_name;
-				$scope.mol_weight = data.data.part.mol_weight;
-				$scope.exact_mass = data.data.part.exact_mass;
+				$scope.compound_id = data.data.compound_id;
+				$scope.name = data.data.name;
+				$scope.nick_name = data.data.nicknames;
+				$scope.mol_weight = data.data.mol_weight;
+				$scope.exact_mass = data.data.exact_mass;
 				$scope.formula = data.data.formula;
 			}
 		});

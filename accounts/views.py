@@ -12,29 +12,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth.hashers import make_password, check_password
 from django.core.mail import send_mail
+from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,myError
+
 import json
 import string
 import random
 # Create your views here.
-
-def noneIfEmptyString(value):
-	if value == "":
-		return None
-	return value
-
-def noneIfNoKey(dict, key):
-	if key in dict:
-		value = dict[key]
-		if value == "":
-			return None
-		return value
-	return None
-
-class myError(Exception):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
 
 def register(request):
 	try:
