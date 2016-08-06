@@ -23,10 +23,8 @@ lr.controller("loginCtrl",function($scope,$http){
 	};
 	
 	$scope.login_by_keyboard = function($event,username,password){
-		console.log('aaa');
       	if($event.keyCode == 13) {//回车
           	$scope.login(username,password);
-          	
       	}
   	};
 	
