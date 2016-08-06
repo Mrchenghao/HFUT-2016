@@ -145,7 +145,6 @@ def getParts(request):
 def updateChain(request):
     try:
         data = json.loads(request.body)
-        data = json.loads(request.body)
         try:
             token = Token.objects.filter(token=data['token']).first()
             user = token.user
@@ -226,8 +225,11 @@ def getARecommend(request):
 def getMRecommend(request):
     try:
         data = json.loads(request.body)
-        token = Token()
-        token = Token.objects.filter(token=data['token']).first()
+        try:
+            token = Token.objects.filter(token=data['token']).first()
+            user = token.user
+        except:
+            raise myError('Please Log In.')
         part_id = str(data['part_id'])
         recommend_list = getMarkovRecommend(part_id)
         print recommend_list

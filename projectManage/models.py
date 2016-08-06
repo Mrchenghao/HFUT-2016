@@ -173,3 +173,113 @@ class Part_Papers(models.Model):
 
 	class Meta:
 		db_table = 'bio_part_papers'
+
+class Compound(models.Model):
+    compound_id = models.CharField(primary_key=True, max_length=32)
+    name = models.CharField(max_length=255, null=True)
+    nicknames = models.TextField(null=True)
+    formula = models.CharField(max_length=255)
+    exact_mass = models.FloatField(null=True)
+    mol_mass = models.FloatField(null=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'bio_compound' 
+
+class Gene(models.Model):
+    gene_id = models.CharField(primary_key=True, max_length=32)
+    name = models.CharField(max_length=64)
+    nicknames = models.TextField(null=True)
+    definition = models.TextField(null=True)
+    organism_short = models.CharField(max_length=16)
+    organism = models.CharField(max_length=256)
+    position = models.CharField(max_length=16)
+    ntseq_length = models.IntegerField()
+    ntseq = models.TextField(null=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'bio_gene' 
+
+class Reaction(models.Model):
+    reaction_id = models.CharField(primary_key=True, max_length=32)
+    name = models.CharField(max_length=255)
+    definition = models.TextField(null=True)
+    equation = models.TextField(null=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'bio_reactions' 
+
+class Reaction_Compound(models.Model):
+    reaction = models.ForeignKey(Reaction)
+    compound = models.ForeignKey(Compound)
+    isReactant = models.BooleanField(default=False)
+    isResultant = models.BooleanField(default=False)
+    amount = models.IntegerField(null=True, default=1)
+
+    def __unicode__(self):
+        return self.reaction_id
+
+    class Meta:
+        db_table = 'bio_reaction_compounds' 
+
+class Compound_Gene(models.Model):
+    compound = models.ForeignKey(Compound)
+    gene = models.ForeignKey(Gene)
+
+    def __unicode__(self):
+        return self.compound.id
+
+    class Meta:
+        db_table = 'bio_compound_gene'
+
+class Part_Gene(models.Model):
+    part = models.ForeignKey(Parts)
+    gene = models.ForeignKey(Gene)
+    score = models.FloatField()
+
+    def __unicode__(self):
+        return self.score
+
+    class Meta:
+        db_table = 'bio_part_gene'
+
+class Organism(models.Model):
+    organism_id = models.CharField(primary_key=True, max_length=32)
+    organism_short = models.CharField(max_length=16, null=True)
+    organism_name = models.TextField(null=True)
+
+    def __unicode__(self):
+        return self.organism_short
+
+    class Meta:
+        db_table = 'bio_organism'
+
+class Pathway(models.Model):
+    pathway_id = models.CharField(primary_key=True, max_length=32)
+    pathway_name = models.CharField(max_length=255, null=True)
+    organism = models.ForeignKey(Organism)
+
+    def __unicode__(self):
+        return self.pathway_name
+
+    class Meta:
+        db_table = 'bio_pathway'
+
+class Pathway_Compound(models.Model):
+    pathway = models.ForeignKey(Pathway)
+    compound = models.ForeignKey(Compound)
+    score = models.IntegerField(null=True)
+
+    def __unicode__(self):
+        return self.pathway.pathway_name
+
+    class Meta:
+        db_table = 'bio_pathway_compound'

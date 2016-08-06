@@ -11,5 +11,4 @@ urlpatterns = [
     url(r'^createNewProject$', views.createNewProject),
     url(r'^deleteProject$', views.deleteProject),
    	url(r'^createProjectDevice$', views.createProjectDevice),
-   	url(r'^getChainLength$', views.getChainLength),
 ]

@@ -13,38 +13,21 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth.hashers import make_password, check_password
 from django.core.mail import send_mail
+from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,myError
 import json
 import string
 import random
 
 # Create your views here.
 
-def noneIfEmptyString(value):
-	if value == "":
-		return None
-	return value
-
-def noneIfNoKey(dict, key):
-	if key in dict:
-		value = dict[key]
-		if value == "":
-			return None
-		return value
-	return None
-
-class myError(Exception):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
-
 def getUserProject(request):
 	try:
 		data = json.loads(request.body)
-		token = Token()
-		token = Token.objects.filter(token=data['token']).first()
-		user = User()
-		user = token.user
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
 		projects = Project.objects.filter(creator=user)
 		projectsList = []
 		for project in projects:
@@ -61,6 +44,14 @@ def getUserProject(request):
 			'error': {
 				'id': '',
 				'msg': '',
+			}
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
 			}
 		}
 	except Exception, e:
@@ -106,10 +97,11 @@ def getTracks(request):
 def createNewProject(request):
 	try:
 		data = json.loads(request.body)
-		token = Token()
-		token = Token.objects.filter(token=data['token']).first()
-		user = User()
-		user = token.user
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
 		project_name = data['project_name']
 		track = Tracks.objects.filter(id=data['track']).first()
 		# function = Functions.objects.filter(function=data['function']),first()
@@ -126,6 +118,14 @@ def createNewProject(request):
 				'msg': '',
 			},
 		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
 	except Exception,e:
 		result = {
 			'successful': False,
@@ -140,11 +140,15 @@ def createNewProject(request):
 def changeProjectName(request):
 	try:
 		data = json.loads(request.body)
-		token = Token.objects.filter(token=data['token']).first()
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
 		project_id = data['project_id']
 		project = Project()
 		project = Project.objects.filter(id=project_id).first()
-		if token.user != project.creator:
+		if user != project.creator:
 			raise myError('Change Failed.')
 		project.project_name = data['project_name']
 		project.save()
@@ -177,11 +181,15 @@ def changeProjectName(request):
 def  deleteProject(request):
 	try:
 		data = json.loads(request.body)
-		token = Token.objects.filter(token=data['token']).first()
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
 		project_id = data['project_id']
 		project = Project()
 		project = Project.objects.filter(id=project_id).first()
-		if token.user != project.creator:
+		if user != project.creator:
 			raise myError('Delete Failed.')
 		project.delete()
 		result = {
@@ -213,15 +221,28 @@ def  deleteProject(request):
 def getProjectDevices(request):
 	try:
 		data = json.loads(request.body)
-		token = Token.objects.filter(token=data['token']).first()
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
 		project_id = data['project_id']
 		project = Project()
 		project = Project.objects.filter(id=project_id).first()
-		if token.user != project.creator:
+		if user != project.creator:
 			raise myError('Check Failed.')
 		chains = Chain.objects.filter(project=project)
 		chainsList = []
 		for chain in chains:
+			seq = chain.sequence
+			if not seq:
+				chainLength = 0
+			else:
+				if seq.startswith('_'):
+					seq = seq[1:]
+				if seq.endswith('_'):
+					seq = seq[:-1]
+				chainLength = len(seq.split('_'))
 			chainsList.append(
 				{
 					'chain_id': chain.id,
@@ -229,6 +250,7 @@ def getProjectDevices(request):
 					'chain_name': chain.name,
 					'chain_isModified': chain.isModified,
 					'chain_image_file_path': chain.image_file_path,
+					'chain_Length': chainLength
 				})
 		result = {
 			'successful': True,
@@ -260,10 +282,14 @@ def getProjectDevices(request):
 def createProjectDevice(request):
 	try:
 		data = json.loads(request.body)
-		token = Token.objects.filter(token=data['token']).first()
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
 		project_id = data['project_id']
 		project = Project.objects.filter(id=project_id).first()
-		if token.user != project.creator:
+		if user != project.creator:
 			raise myError('Create Failed.')
 		chain = Chain()
 		chain.name = data['device_name']
@@ -298,10 +324,14 @@ def createProjectDevice(request):
 def deleteProjectDevice(request):
 	try:
 		data = json.loads(request.body)
-		token = Token.objects.filter(token=data['token']).first()
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
 		project_id = data['project_id']
 		project = Project.objects.filter(id=project_id).first()
-		if token.user != project.creator:
+		if user != project.creator:
 			raise myError('Delete Failed.')
 		chain = Chain()
 		chain = chain
@@ -319,35 +349,6 @@ def deleteProjectDevice(request):
 				'id': '3',
 				'msg': e.value,
 			}
-		}
-	except Exception,e:
-		result = {
-			'successful': False,
-			'error': {
-				'id': '1024',
-				'msg': e.args
-			}
-		}
-	finally:
-		return HttpResponse(json.dumps(result), content_type='application/json')
-
-def getChainLength(request):
-	try:
-		data = json.loads(request.body)
-		token = Token.objects.filter(token=data['token']).first()
-		chain_id = data.data['chain_id']
-		chain = Chain.objects.filter(id=chain_id).first()
-		seq = chain.sequence
-		if seq.startswith('_'):
-			seq = seq[1:]
-		chainLength = len(seq.split('_'))
-		result = {
-			'successful': True,
-			'data': chainLength,
-			'error': {
-				'id': '',
-				'msg': '',
-			},
 		}
 	except Exception,e:
 		result = {
