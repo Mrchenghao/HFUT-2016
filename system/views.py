@@ -125,7 +125,7 @@ def getGene(request):
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
 def getRelatedCompound(request):
-	# try:
+	try:
 		data = json.loads(request.body)
 		try:
 			token = Token.objects.filter(token=data['token']).first()
@@ -144,21 +144,21 @@ def getRelatedCompound(request):
 				'msg': '',
 			},
 		}
-	# except myError, e:
-	# 	result = {
-	# 		'successful': False,
-	# 		'error': {
-	# 			'id': '3',
-	# 			'msg': e.value,
-	# 		}
-	# 	}
-	# except Exception,e:
-	# 	result = {
-	# 		'successful': False,
-	# 		'error': {
-	# 			'id': '1024',
-	# 			'msg': e.args
-	# 		}
-	# 	}
-	# finally:
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
 		return HttpResponse(json.dumps(result), content_type='application/json')

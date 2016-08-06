@@ -33,12 +33,11 @@
                 </md-button>
             </md-list>
             <div>
-		    	<div ng-repeat="compound in compound_info" layout="row">
-					<span>{{compound.name}}</span>
-					<span flex></span>
-					<md-button class="md-icon-button">
+		    	<div ng-repeat="compound in compound_info">
+		    		<md-button class="md-icon-button">
 	                	<md-icon md-svg-src="img/plus.svg" aria-label="add"></md-icon>
 	                </md-button>
+					<span ng-click="getCompoundInfo(compound.id)">{{compound.name}}</span>
 					<md-divider></md-divider>
 				</div>
 	      	</div>
@@ -62,7 +61,7 @@
 					<h2>Message</h2>
 				</md-card-title-text>
 				<md-card-title-text>
-					<h4>compound-id: {{compound-id}}</h4>
+					<h4>compound-id: {{compound_id}}</h4>
 				</md-card-title-text>
 				<md-card-title-text>
 					<h4>name: {{name}}</h4>
