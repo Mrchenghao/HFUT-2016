@@ -98,6 +98,14 @@ def searchParts(request):
                 'msg': '',
             }
         }
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.value,
+            }
+        }
     except Exception, e:
         result = {
             'successful': False,
