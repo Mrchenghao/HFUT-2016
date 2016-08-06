@@ -1,6 +1,6 @@
-var system = angular.module('sys-app',['ngMaterial']);
+var system = angular.module('sys-app',['ngMaterial','ngAnimate']);
 
-system.controller('systemController',function($scope, $http, $event){
+system.controller('systemController',function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast){
 	
 	$scope.compound_info = [];
 	
@@ -11,7 +11,7 @@ system.controller('systemController',function($scope, $http, $event){
 			method: 'POST',
 			data: {
 				token: login_token,
-				key_word: key_word,
+				keyword: key_word,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
@@ -28,7 +28,7 @@ system.controller('systemController',function($scope, $http, $event){
 	}
 	
 	$scope.compound_by_keyboard = function($event,key_word){
-		if (event.keyCode == 13) {
+		if ($event.keyCode == 13) {
 			getCompoundResult(key_word);
 		}
 	}
