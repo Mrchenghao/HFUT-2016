@@ -25,10 +25,15 @@ def randomGene(request):
 		gene_list = json.loads(gene_file.read())
 		gene_name = random.choice(gene_list)
 		search_result = search_relation(gene_name)
+		if len(search_result['children']) > 20:
+			search_result['children'] = search_result['children'][:20]
 		for gene in search_result['children']:
 			gene_name = gene['name']
 			temp_result = search_relation(gene_name)
-			gene['children'] = temp_result['children']
+			if len(temp_result['children']) > 20:
+				gene['children'] = temp_result['children'][:20]
+			else:
+				gene['children'] = temp_result['children']
 		result = {
 			'successful': True,
 			'data': search_result,
