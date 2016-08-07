@@ -41,6 +41,12 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
 		});
 	}
 	
+	$scope.gene_info_by_board = function($event,key_word){
+		if ($event.keyCode == 13) {
+			$scope.getGeneInfo(key_word);
+		}
+	}
+	
 	$scope.visualGene = function(name){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {

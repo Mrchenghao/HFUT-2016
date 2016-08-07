@@ -26,7 +26,7 @@
             <md-list layout="row" layout-wrap layout-margin layout-align="center">
                 <md-input-container class="ai-edit-search">
                     <label>Search</label>
-                    <input type="text" ng-model="key_word">
+                    <input type="text" ng-model="key_word" ng-keypress="gene_info_by_board($event,key_word)">
                 </md-input-container>
                 <md-button class="md-icon-button btn-search" ng-click="getGeneInfo(key_word)">
                 	<md-icon md-svg-src="img/search.svg" aria-label="search"></md-icon>
