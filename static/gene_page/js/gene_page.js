@@ -31,10 +31,10 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
 			if(data.successful){
 				$scope.gene_info = [];
 				var gene_result = data.data;
+				console.log(gene_result);
 				for (var i = 0;i < gene_result.length;i++) {
 					$scope.gene_info.push({
-						name: gene_result[i].name,
-						id: gene_result[i].gene_id,
+						name: gene_result[i],
 					});
 				}
 			}

@@ -109,7 +109,7 @@ class Project(models.Model):
 		db_table = 'bio_project'
 
 class Chain(models.Model):
-	sequence = models.CharField(max_length=255,null=True)
+	sequence = models.TextField(null=True)
 	project = models.ForeignKey(Project)
 	name = models.CharField(max_length=64, null=False)
 	isModified = models.BooleanField(default=True)
