@@ -63,7 +63,7 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
 	$scope.getRandomGene = function(){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
-			url: '/geneRelationship/getRandomGene',
+			url: '/geneRelationship/randomGene',
 			method: 'POST',
 			data: {
 				token: login_token,

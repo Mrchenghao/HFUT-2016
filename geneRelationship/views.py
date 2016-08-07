@@ -27,7 +27,8 @@ def randomGene(request):
 		search_result = search_relation(gene_name)
 		for gene in search_result['children']:
 			gene_name = gene['name']
-			gene['children'] = search_relation(gene_name)
+			temp_result = search_relation(gene_name)
+			gene['children'] = temp_result['children']
 		result = {
 			'successful': True,
 			'data': search_result,
