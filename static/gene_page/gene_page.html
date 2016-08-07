@@ -28,18 +28,15 @@
                     <label>Search</label>
                     <input type="text" ng-model="key_word">
                 </md-input-container>
-                <md-button class="md-icon-button btn-search">
+                <md-button class="md-icon-button btn-search" ng-click="getGeneInfo()">
                 	<md-icon md-svg-src="img/search.svg" aria-label="search"></md-icon>
                 </md-button>
             </md-list>
             <div>
-		    	<!--<div ng-repeat="compound in compound_info">
-		    		<md-button class="md-icon-button" ng-click="addCompoundTags(compound)">
-	                	<md-icon md-svg-src="img/plus.svg" aria-label="add"></md-icon>
-	                </md-button>
-					<span ng-click="getCompoundInfo(compound.id)">{{compound.name}}</span>
+		    	<div ng-repeat="gene in gene_info">
+					<span>{{gene.name}}</span>
 					<md-divider></md-divider>
-				</div>-->
+				</div>
 	      	</div>
 	  	</md-sidenav>
 	</div>

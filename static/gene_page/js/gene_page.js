@@ -2,6 +2,8 @@ var gene = angular.module('gene-app',['ngMaterial','ngAnimate']);
 
 gene.controller('geneController',function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast){
 	
+	$scope.gene_info = [];
+	
 	$scope.jumpToSystem = function(){
   		window.location.href = "../system_page/system_page.html";
   	}
@@ -13,6 +15,31 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
 	$scope.jumpToProject = function(){
   		window.location.href = "../project_page/project_page.html";
   	}
+	
+	$scope.getGeneInfo = function(){
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/geneRelationship/searchGenes',
+			method: 'POST',
+			data: {
+				token: login_token,
+				keyword: key_word,
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
+				$scope.gene_info = [];
+				var gene_result = data.data;
+				for (var i = 0;i < gene_result.length;i++) {
+					$scope.gene_info.push({
+						name: gene_result[i].name,
+						id: gene_result[i].gene_id,
+					});
+				}
+			}
+		});
+	}
 	
 	//显示登出窗口
   	$scope.showLogOutDialog = function(ev){
