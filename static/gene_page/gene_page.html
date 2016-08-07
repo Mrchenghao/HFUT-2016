@@ -32,12 +32,12 @@
                 	<md-icon md-svg-src="img/search.svg" aria-label="search"></md-icon>
                 </md-button>
             </md-list>
-            <div>
-		    	<div ng-repeat="gene in gene_info">
-					<span class="ai-gene-name">{{gene.name}}</span>
+            <md-list>
+		    	<md-list-item ng-repeat="gene in gene_info">
+					<span >{{gene.name}}</span>
 					<md-divider></md-divider>
-				</div>
-	      	</div>
+				</md-list-item>
+	      	</md-list>
 	  	</md-sidenav>
 	</div>
 	<!-- 主窗口 -->
