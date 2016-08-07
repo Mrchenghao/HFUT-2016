@@ -16,7 +16,7 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
   		window.location.href = "../project_page/project_page.html";
   	}
 	
-	$scope.getGeneInfo = function(){
+	$scope.getGeneInfo = function(key_word){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
 			url: '/geneRelationship/searchGenes',
