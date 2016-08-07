@@ -5,19 +5,16 @@
 @author:    ZhangAYongqin
 """
 from django.shortcuts import render
-from models import *
 from projectManage.models import *
 from accounts.models import *
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.hashers import make_password, check_password
 from search_part import ambiguousSearch, getPart
 from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,myError
 from recommend import *
 from search_part import *
 import json
 import string
-import random
 
 # Create your views here.
 
@@ -125,8 +122,8 @@ def getParts(request):
             user = token.user
         except:
             raise myError('Please Log In.')
-        partname = data['part_name']
-        searchResult = getPart(partname)
+        part_name = data['part_name']
+        searchResult = getPart(part_name)
         if searchResult['successful']:
             result = {
                 'successful': True,
