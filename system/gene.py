@@ -134,11 +134,7 @@ class gene_graph:
         @param ogm: organisms
         @type ogm:str
         """
-        if cid_list.startswith('_'):
-            cid_list = cid_list[1:]
-        if cid_list.endswith('_'):
-            cid_list = cid_list[:-1]
-        self.cid_list = cid_list.split('_')
+        self.cid_list = cid_list
         self.nodes = list()
         self.edges = list()
         self.index_dict = dict()
@@ -212,7 +208,6 @@ class gene_graph:
         else:
             organism_pathway_id_list = Pathway.objects.all()
         valued_pathway_id_list = Pathway_Compound.objects.filter(pathway_id__in=organism_pathway_id_list, compound=compound_obj).values_list('pathway', flat=True)
-        print valued_pathway_id_list
         valued_compound_list = Pathway_Compound.objects.filter(Q(pathway_id__in=valued_pathway_id_list), ~Q(compound=compound_obj)).values_list('compound', flat=True)
         compound_list = Compound.objects.filter(compound_id__in=valued_compound_list)
         return compound_list

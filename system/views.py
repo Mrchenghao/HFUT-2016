@@ -132,8 +132,11 @@ def getRelatedCompound(request):
 			user = token.user
 		except:
 			raise myError('Please Log In.')
-		cstr = data['related_id']
-		graph = gene_graph(cstr, None)
+		compound_tags = data['compound_tags']
+		cid_list = []
+		for compound in compound_tags:
+			cid_list.append(compound['id'])
+		graph = gene_graph(cid_list, None)
 		graph.cal_graph()
 		graph_result = graph.get_graph()
 		result = {

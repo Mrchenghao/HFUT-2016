@@ -71,17 +71,17 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 	$scope.runCompoundTags = function(){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
-			url: '/system/getCompound',
+			url: '/system/getRelatedCompound',
 			method: 'POST',
 			data: {
 				token: login_token,
-				compound_tags: compound_tags,
+				compound_tags: $scope.compound_tags,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
-				draw();
+				draw(data.data);
 			}
 		});
 		

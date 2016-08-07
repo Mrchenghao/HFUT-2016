@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'accounts',
     'projectManage',
     'design',
-    'system'
+    'system',
+    'geneRelationship'
 ]
 
 MIDDLEWARE_CLASSES = [
