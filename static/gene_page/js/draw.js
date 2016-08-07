@@ -1,6 +1,6 @@
 function draw(data){
-    var width = 1150,
-        height = 600,
+    var width = $('#wrap').width(),
+        height = $('#wrap').height(),
         color = d3.scale.category20(),
         tree = d3.layout.tree();
     var x,y,s;

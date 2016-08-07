@@ -8,9 +8,52 @@ from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,my
 from search_relation import search_relation, search_genes
 import json
 import string
+import random
 
 
 # Create your views here.
+
+def randomGene(request):
+	try:
+		data = json.loads(request.body)
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
+		gene_file = open('gene_name.json', 'r')
+		gene_list = json.loads(gene_file.read())
+		gene_name = random.choice(gene_list)
+		search_result = search_relation(gene_name)
+		for gene in search_result['children']:
+			gene_name = gene['name']
+			gene['children'] = search_relation(gene_name)
+		result = {
+			'successful': True,
+			'data': search_result,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
 
 def searchGenes(request):
 	try:

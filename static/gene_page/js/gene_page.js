@@ -48,7 +48,7 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
 			method: 'POST',
 			data: {
 				token: login_token,
-				name: name,
+				gene_name: name,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};

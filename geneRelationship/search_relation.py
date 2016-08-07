@@ -9,8 +9,8 @@ collection = db['biodesignver']
 def search_relation(key_word):
 	search_result = collection.find_one({"main_gene":key_word })
 	gene_realation = {}
-	gene_realation['main_gene'] = search_result['main_gene']
-	gene_realation['related_gene'] = search_result['related_gene']
+	gene_realation['name'] = search_result['main_gene']
+	gene_realation['children'] = search_result['related_gene']
 	return gene_realation 
 
 def search_genes(key_word):

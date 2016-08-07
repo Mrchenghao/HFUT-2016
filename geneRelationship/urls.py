@@ -5,4 +5,5 @@ import views
 urlpatterns = [
 	url(r'^searchGenes$', views.searchGenes),
     url(r'^getRelatedGene$', views.getRelatedGene),
+    url(r'^randomGene$', views.randomGene),
 ]
