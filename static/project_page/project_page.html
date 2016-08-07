@@ -47,7 +47,7 @@
 					</div>
 					<md-list ng-hide="project.isDeviceShowed" class="ai-device-list" layout-padding>
 						<md-list-item class="ai-device-item" ng-repeat="device in project.devices">
-							<div ng-click="device_clicked(device.chain_id,project.id,device.len)" class="ai-device-item-btn" layout="row">
+							<div ng-click="device_clicked(device.chain_id,project.id,device.chain_Length)" class="ai-device-item-btn" layout="row">
 								<span flex>{{device.chain_name}}</span>
 							</div>
 							<md-divider></md-divider>
@@ -98,7 +98,7 @@
   		<md-content class="layout-row flex" layout="row">
 			<div flex="80" class="ai-bio-main">
 				<div class="ai-logo-design">
-					<img src="{{device_img_src}}" alt="logo-design">
+					<img ng-src="{{device_img_src}}" alt="logo-design">
 				</div>
 			</div>
 			<div flex="20" class="md-whiteframe-z2 ai-bio-side">

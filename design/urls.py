@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^updateChain$', views.updateChain),
     url(r'^getARecommend$', views.getARecommend),
     url(r'^getMRecommend$', views.getMRecommend),
+    url(r'^getResultImage$', views.getResultImage),
 ]

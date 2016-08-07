@@ -13,6 +13,7 @@ from search_part import ambiguousSearch, getPart
 from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,myError
 from recommend import *
 from search_part import *
+from getImage import *
 import json
 import string
 
@@ -135,6 +136,14 @@ def getParts(request):
             }
         else:
             raise myError('Check Failed.')
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.value,
+            }
+        }
     except Exception, e:
         result = {
             'successful': False,
@@ -182,6 +191,14 @@ def updateChain(request):
                 'msg': '',
             }
         }
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.value,
+            }
+        }
     except Exception, e:
         result = {
             'successful': False,
@@ -214,6 +231,14 @@ def getARecommend(request):
             'error': {
                 'id': '',
                 'msg': '',
+            }
+        }
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.value,
             }
         }
     except Exception, e:
@@ -255,6 +280,76 @@ def getMRecommend(request):
                     'msg': '',
                 }
             }
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.value,
+            }
+        }
+    except Exception, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.args,
+            }
+        }
+    finally:
+        return HttpResponse(json.dumps(result), content_type='application/json')
+
+def getResultImage(request):
+    try:
+        data = json.loads(request.body)
+        try:
+            token = Token.objects.filter(token=data['token']).first()
+            user = token.user
+        except:
+            raise myError('Please Log In.')
+        project_id = data['project_id']
+        project = Project()
+        project = Project.objects.filter(id=project_id).first()
+        if user != project.creator:
+            raise myError('Get Failed.')
+        chainid = data['chain_id']
+        chain = Chain()
+        chain = Chain.objects.filter(id=data['chain_id']).first()
+        sequence = chain.sequence
+        print sequence
+        if not sequence:
+            filepath = None
+        else:
+            if sequence.startswith('_'):
+                sequence = sequence[1:]
+            if sequence.endswith('_'):
+                sequence = sequence[:-1]
+            chainName = chain.name
+            width = 80 * len(sequence.split('_'))
+            height = 100
+            if width > 800:
+                width = 800
+                height = 100 * (len(sequence.split('_')) / 10)
+            filepath = getSequenceResultImage(sequence, width, height, chainName)
+            chain.isModified = False
+            chain.image_file_path = filepath
+            chain.save()
+        result = {
+            'successful': True,
+            'data': filepath,
+            'error': {
+                'id': '',
+                'msg': '',
+            }
+        }
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.value,
+            }
+        }
     except Exception, e:
         result = {
             'successful': False,
