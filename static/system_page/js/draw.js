@@ -80,9 +80,9 @@ function draw(dataset){
                     });
                 })
                 .on("click", function(d, i){
-                    $('div#message-area ul#message').addClass('hide');
-                    $('div#message-area ul#gene-message').removeClass('hide');
+                    var $scope = angular.element('#my_body').scope();
                     $scope.getGeneInfo(d.id);
+                    scope.$apply();
                 })
                 .on("dblclick",function(d,i){
                     d.fixed = false;
