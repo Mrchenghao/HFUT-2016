@@ -13,33 +13,113 @@ import string
 
 def searchGenes(request):
 	try:
-        data = json.loads(request.body)
-        try:
-            token = Token.objects.filter(token=data['token']).first()
-            user = token.user
-        except:
-            raise myError('Please Log In.')
-        keyword = data['keyword']
-        searchResult = search_genes(keyword)
-        if searchResult['successful']:
-            result = {
-                'successful': True,
-                'data': searchResult,
-                'error': {
-                    'id': '',
-                    'msg': '',
-                }
-            }
-        else:
-            raise myError('Check Failed.')
-    except Exception, e:
-        result = {
-            'successful': False,
-            'error': {
-                'id': '',
-                'msg': e.args,
-            }
-        }
-    finally:
-        return HttpResponse(json.dumps(result), content_type='application/json')
+		data = json.loads(request.body)
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
+		keyword = data['keyword']
+		search_result = search_genes(keyword)
+		result = {
+			'successful': True,
+			'data': search_result,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
 
+
+def getGeneInfo(request):
+	try:
+		data = json.loads(request.body)
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
+		gene_id = data['gene_id']
+		get_result = get_gene_info(gene_id)
+		result = {
+			'successful': get_result[0],
+			'data': get_result[1],
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
+
+def getRelatedGene(request):
+	try:
+		data = json.loads(request.body)
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
+		gene_name = data['gene_name']
+		realated_gene_list = []
+		realated_genes = search_realated_genes(gene_name)
+		result = {
+			'successful': True,
+			'data': graph_result,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
