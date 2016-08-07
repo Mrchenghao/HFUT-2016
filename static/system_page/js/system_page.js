@@ -71,6 +71,28 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 		});
 	}
 	
+	$scope.getGeneInfo = function(id){
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/system/getGene',
+			method: 'POST',
+			data: {
+				token: login_token,
+				gene_id: id,
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
+				$scope.gene_id = data.data.gene_id;
+				$scope.gene_name = data.data.gene_name;
+				$scope.definition = data.data.definition;
+				$scope.organism_short = data.data.organism_short;
+				$scope.organism = data.data.organism;
+			}
+		});
+	}
+	
 	$scope.addCompoundTags = function(compound){
 		if($scope.compound_tags.indexOf(compound) == -1)
 			$scope.compound_tags.push(compound);

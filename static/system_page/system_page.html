@@ -85,29 +85,51 @@
 			<div id="my-svg" class="layout-column flex" layout="column" flex="80">
 				
             </div>
-			<md-card layout="column" flex="20" tabindex="-1" class="md-whiteframe-z2" layout-padding>
-				<md-card-title-text>
-					<h2>Message</h2>
-				</md-card-title-text>
-				<md-card-title-text>
-					<h4>compound-id: {{compound_id}}</h4>
-				</md-card-title-text>
-				<md-card-title-text>
-					<h4>name: {{name}}</h4>
-				</md-card-title-text>
-				<md-card-title-text>
-					<h4>nick names: {{nick_name}}</h4>
-				</md-card-title-text>
-				<md-card-title-text>
-					<h4>mol weight: {{mol_weight}}</h4>
-				</md-card-title-text>
-				<md-card-title-text>
-					<h4>exact mass: {{exact_mass}}</h4>
-				</md-card-title-text>
-				<md-card-title-text>
-					<h4>formula: {{formula}}</h4>
-				</md-card-title-text>
-			</md-card>
+            <div layout="column" flex="20" class="md-whiteframe-z2">
+				<md-card class="ai-compound-info" layout="column" flex="50" tabindex="-1" class="md-whiteframe-z2" layout-padding>
+					<md-card-title-text>
+						<h2>Message</h2>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>compound-id: {{compound_id}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>name: {{name}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>nick names: {{nick_name}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>mol weight: {{mol_weight}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>exact mass: {{exact_mass}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>formula: {{formula}}</h4>
+					</md-card-title-text>
+				</md-card>
+				<md-card class="ai-gene-info" layout="column" flex="50" tabindex="-1" class="md-whiteframe-z2" layout-padding>
+					<md-card-title-text>
+						<h2>Gene Message</h2>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>gene-id: {{gene_id}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>name: {{gene_name}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>definition: {{definition}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>organism_short: {{organism_short}}</h4>
+					</md-card-title-text>
+					<md-card-title-text>
+						<h4>organism: {{organism}}</h4>
+					</md-card-title-text>
+				</md-card>
+			</div>
   		</md-content>
   	</div>
 

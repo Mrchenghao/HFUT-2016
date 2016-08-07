@@ -24,3 +24,6 @@ span {
 	line-height: 1.3em;
 	font-size: 1.4em;
 }
+#edit-container .ai-compound-info,.ai-gene-info {
+	overflow: auto;
+}
