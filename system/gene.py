@@ -82,7 +82,7 @@ def get_gene_info(gid):
     """
     base_gene_url = 'http://www.ncbi.nlm.nih.gov/gene/'
     try:
-        gene_obj = Gene.objects.get(gene_id=gid)
+        gene_obj = Gene.objects.filter(gene_id=gid).first()
         result = {
             'gene_id': gene_obj.gene_id,
             'name': gene_obj.name,
@@ -107,7 +107,7 @@ def get_compound_info(cid):
     """
 
     try:
-        compound_obj = Compound.objects.get(compound_id=cid)
+        compound_obj = Compound.objects.filter(compound_id=cid).first()
         result = {
             'compound_id' : compound_obj.compound_id,
             'name': compound_obj.name,
@@ -159,12 +159,13 @@ class gene_graph:
         @rtype: compound
         """
         try:
-            compound_obj = Compound.objects.get(compound_id=cid)
+            compound_obj = Compound.objects.filter(compound_id=cid).first()
             return compound_obj
         except:
             return None
 
     def retrive_gene_detain(self, gid):
+        print gid
         """
         get gene data from ncib
 
@@ -182,7 +183,7 @@ class gene_graph:
             response = urllib2.urlopen(req)
             resStr = response.read()
             result = json.loads(resStr)
-            infos = result['result'][gid]
+            infos = result['result']['%s' % gid]
             detail_info = dict()
             detail_info['name'] = infos['name']
             detail_info['definition'] = infos['description']
@@ -245,7 +246,7 @@ class gene_graph:
         gene_list = self.search_gene(compound_obj)
         for gene_id in gene_list:
             try:
-                gene_obj = Gene.objects.get(gene_id=gene_id)
+                gene_obj = Gene.objects.filter(gene_id=gene_id).first()
                 if self.create_node(gene_obj.name, gene_obj.gene_id):
                     edge_info = {
                         'source' : self.index_dict[center_node],
@@ -270,7 +271,7 @@ class gene_graph:
         """
     #get in database
         try:
-            gene_obj = Gene.objects.get(gene_id=gid)
+            gene_obj = Gene.objects.filter(gene_id=gid).first()
             return gene_obj
         except:
             #get from ncbi
@@ -282,7 +283,7 @@ class gene_graph:
             for gn in gene_dict.keys():
                 gid = gn.split('|')[1]
                 #get detail information
-                new_gene_obj = gene(gene_id=gid)
+                new_gene_obj = Gene(gene_id=gid)
                 detail_info = self.retrive_gene_detain(gid)
                 if detail_info == None:
                     continue
