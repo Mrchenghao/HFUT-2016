@@ -41,6 +41,24 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
 		});
 	}
 	
+	$scope.visualGene = function(name){
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/geneRelationship/getRelatedGene',
+			method: 'POST',
+			data: {
+				token: login_token,
+				name: name,
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
+				draw(data.data);
+			}
+		});
+	}
+	
 	//显示登出窗口
   	$scope.showLogOutDialog = function(ev){
   		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
