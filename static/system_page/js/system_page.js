@@ -4,6 +4,8 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 	
 	$scope.compound_info = [];//侧边栏数据
 	$scope.compound_tags = [];//导航栏数据
+	$scope.message_show = false;//默认侧边栏信息显示
+	$scope.gene_message_show = true;//基因信息不显示
 	
 	$scope.jumpToSystem = function(){
   		window.location.href = "../system_page/system_page.html";
@@ -61,6 +63,9 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
+				$scope.message_show = false;
+				$scope.gene_message_show = true;
+				
 				$scope.compound_id = data.data.compound_id;
 				$scope.name = data.data.name;
 				$scope.nick_name = data.data.nicknames;
@@ -84,6 +89,9 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
+				$scope.message_show = true;
+				$scope.gene_message_show = false;
+				
 				$scope.gene_id = data.data.gene_id;
 				$scope.gene_name = data.data.gene_name;
 				$scope.definition = data.data.definition;
