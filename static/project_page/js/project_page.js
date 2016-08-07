@@ -6,11 +6,13 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	$scope.isChosen = false;//默认未选中
 	$scope.device_img_src = 'img/logo_design.png';//主体图
 	$scope.addr = "";
+	$scope.chain_addr = "";
 	$scope.length = 0;
 	
 	//反转分支的显示状态
 	$scope.toggle_device = function(index){
 		$scope.addr = $scope.project_info[index].name;
+		$scope.chain_addr = "";
 		$scope.getDevices(index, $scope.project_info[index].id);
 		$scope.project_info[index].isDeviceShowed = !$scope.project_info[index].isDeviceShowed;
 	}
@@ -69,9 +71,10 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	}
 	
 	//点击分支事件，反转isChosen状态，改为选中；同步中间基因链的图
-	$scope.device_clicked = function(device_id,project_id,len) {
+	$scope.device_clicked = function(device_id,device_name,project_id,len) {
 		$scope.isChosen = true;
 		$scope.length = len;
+		$scope.chain_addr = device_name;
 		sessionStorage.setItem('chain_id',JSON.stringify(device_id));
 		sessionStorage.setItem('project_id',JSON.stringify(project_id));
         var login_token = JSON.parse(sessionStorage.getItem('login'));
@@ -113,6 +116,10 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
   	
   	$scope.jumpToSystem = function(){
   		window.location.href = "../system_page/system_page.html";
+  	}
+  	
+  	$scope.jumpToGene = function(){
+  		window.location.href = "../gene_page/gene_page.html";
   	}
   	
   	//显示新建分支窗口

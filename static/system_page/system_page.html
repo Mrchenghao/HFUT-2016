@@ -51,6 +51,32 @@
 					<md-button class="md-raised" ng-click="runCompoundTags()">Run</md-button>
 					<md-button class="md-raised" ng-click="removeAllCompoundTags()">Remove All</md-button>
 					<md-chips ng-model="compound_tags"></md-chips>
+					<span flex></span>
+                    <div class="md-toolbar-item docs-tools layout-row" layout="row">
+                    	<md-button class="md-raised md-accent ai-gr" aria-label="Gene" ng-click="jumpToGene()">Gene Relationship</md-button>
+				      	<md-button class="md-raised md-accent ai-sr" aria-label="System" ng-click="jumpToSystem()">System</md-button>
+				       	<md-menu md-position-mode="target-right target" >
+				          	<md-button aria-label="menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+				            	<md-icon md-menu-origin md-svg-icon="img/account.svg"></md-icon>
+				          	</md-button>
+				          	<md-menu-content width="2">
+				            	<md-menu-item>
+				              		<md-button ng-click="showChangePasswordDialog($event)">
+				                  		<div layout="row" flex>
+				                    		<p flex>Change Password</p>
+				                  		</div>
+				              		</md-button>
+				            	</md-menu-item>
+				            	<md-menu-item>
+				              		<md-button ng-click="showLogOutDialog($event)">
+				                  		<div layout="row" flex>
+				                    		<p flex>LogOut</p>
+				                  		</div>
+				              		</md-button>
+				            	</md-menu-item>
+				          	</md-menu-content>
+				        </md-menu>
+                    </div>
 				</div>
 			</div>
   		</md-toolbar>
