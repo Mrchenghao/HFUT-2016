@@ -1,4 +1,5 @@
 function draw(data){
+    $('#div_force').empty();
     var width = $('#wrap').width(),
         height = $('#wrap').height(),
         color = d3.scale.category20(),
