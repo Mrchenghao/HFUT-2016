@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="gene-app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1">
+	<title>BioDesigner|Gene</title>
+	
+	<link rel="stylesheet" href="../public/angular-material/angular-material.css">
+    <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/docs.css">
+    <link rel="stylesheet" href="css/gene_page.css">
+	
+	<!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="img/logo_black_small.png">
+</head>
+<body class="docs-body layout-row" layout="row" ng-controller="geneController">
+	<div id="edit-sidebar"  layout="row">
+		<!-- side bar -->
+	  	<md-sidenav md-component-id="left" tabindex="-1" class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print md-closed ng-isolate-scope md-locked-open" md-is-locked-open="$mdMedia('gt-sm')">
+	 		<header class="nav-header">
+		      	<a ng-href="#" class="docs-logo">
+		        	<img src="img/logo_white_mini.png">
+		        	<h1 class="docs-logotype md-heading">BioDesigner</h1>
+		      	</a>
+		    </header>
+            <md-list layout="row" layout-wrap layout-margin layout-align="center">
+                <md-input-container class="ai-edit-search">
+                    <label>Search</label>
+                    <input type="text" ng-model="key_word">
+                </md-input-container>
+                <md-button class="md-icon-button btn-search">
+                	<md-icon md-svg-src="img/search.svg" aria-label="search"></md-icon>
+                </md-button>
+            </md-list>
+            <div>
+		    	<!--<div ng-repeat="compound in compound_info">
+		    		<md-button class="md-icon-button" ng-click="addCompoundTags(compound)">
+	                	<md-icon md-svg-src="img/plus.svg" aria-label="add"></md-icon>
+	                </md-button>
+					<span ng-click="getCompoundInfo(compound.id)">{{compound.name}}</span>
+					<md-divider></md-divider>
+				</div>-->
+	      	</div>
+	  	</md-sidenav>
+	</div>
+	<!-- 主窗口 -->
+  	<div id="edit-container" class="layout-column flex" layout="column" tabindex="-1" role="main">
+  		<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+			<div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1">
+				<div layout="row" flex class="fill-height layout-row flex">
+					<md-button class="md-raised">Random</md-button>
+				</div>
+				<span flex></span>
+                <div class="md-toolbar-item docs-tools layout-row" layout="row">
+                	<md-button class="md-raised md-accent ai-gr" aria-label="Gene" ng-click="jumpToGene()">Gene Relationship</md-button>
+			      	<md-button class="md-raised md-accent ai-sr" aria-label="System" ng-click="jumpToSystem()">System</md-button>
+			       	<md-menu md-position-mode="target-right target" >
+			          	<md-button aria-label="menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+			            	<md-icon md-menu-origin md-svg-icon="img/account.svg"></md-icon>
+			          	</md-button>
+			          	<md-menu-content width="2">
+			            	<md-menu-item>
+			              		<md-button ng-click="showChangePasswordDialog($event)">
+			                  		<div layout="row" flex>
+			                    		<p flex>Change Password</p>
+			                  		</div>
+			              		</md-button>
+			            	</md-menu-item>
+			            	<md-menu-item>
+			              		<md-button ng-click="showLogOutDialog($event)">
+			                  		<div layout="row" flex>
+			                    		<p flex>LogOut</p>
+			                  		</div>
+			              		</md-button>
+			            	</md-menu-item>
+			          	</md-menu-content>
+			        </md-menu>
+                </div>
+			</div>
+  		</md-toolbar>
+  		<md-content class="layout-row flex" layout="row">
+			<div class="layout-column flex" layout="column" flex="80">
+				
+           </div>
+  		</md-content>
+  	</div>
+
+    <script src="../public/analytics/analytics.js"></script>
+    <script src="../public/jquery/dist/jquery.js"></script>
+	<script src="../public/bootstrap/dist/js/bootstrap.js"></script>
+  	<script src="../public/angular/angular.js"></script>
+  	<script src="../public/angular-animate/angular-animate.js"></script>
+  	<script src="../public/angular-route/angular-route.js"></script>
+  	<script src="../public/angular-aria/angular-aria.js"></script>
+  	<script src="../public/angular-messages/angular-messages.js"></script>
+  	<script src="../public/angular-material/angular-material.js"></script>
+  	<script src="../public/d3/d3.min.js"></script>
+    <script src="js/gene_page.js"></script>
+</body>
+</html>
