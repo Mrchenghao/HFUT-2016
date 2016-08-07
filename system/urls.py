@@ -7,6 +7,4 @@ urlpatterns = [
     url(r'^getCompound$', views.getCompound),
     url(r'^getGene$', views.getGene),
     url(r'^getRelatedCompound$', views.getRelatedCompound),
-    # url(r'^getARecommend$', views.getARecommend),
-    # url(r'^getMRecommend$', views.getMRecommend),
 ]

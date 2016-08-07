@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^home/', include('projectManage.urls')),
     url(r'^design/', include('design.urls')),
     url(r'^system/', include('system.urls')),
+    url(r'^geneRelationship/', include('geneRelationship.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

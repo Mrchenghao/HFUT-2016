@@ -5,6 +5,7 @@ from accounts.models import *
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,myError
+from search_relation import search_relation, search_genes
 import json
 import string
 
@@ -96,10 +97,11 @@ def getRelatedGene(request):
 			raise myError('Please Log In.')
 		gene_name = data['gene_name']
 		realated_gene_list = []
-		realated_genes = search_realated_genes(gene_name)
+		realated_genes = search_relation(gene_name)
+		print realated_genes
 		result = {
 			'successful': True,
-			'data': graph_result,
+			'data': realated_genes,
 			'error': {
 				'id': '',
 				'msg': '',
