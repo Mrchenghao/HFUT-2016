@@ -16,7 +16,6 @@ span {
 }
 #edit-sidebar .ai-search-item {
 	color:#111;
-	/*width:100%;*/
 }
 #edit-sidebar .ai-search-item .ai-search-item-btn {
 	display:block;
@@ -24,6 +23,6 @@ span {
 	line-height: 1.3em;
 	font-size: 1.4em;
 }
-#edit-container .ai-compound-info,.ai-gene-info {
+#edit-container .ai-message-info,.ai-gene-message-info {
 	overflow: auto;
 }

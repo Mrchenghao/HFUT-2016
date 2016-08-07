@@ -50,7 +50,7 @@
 				<div layout="row" flex class="fill-height layout-row flex">
 					<md-button class="md-raised" ng-click="runCompoundTags()">Run</md-button>
 					<md-button class="md-raised" ng-click="removeAllCompoundTags()">Remove All</md-button>
-					<md-chips ng-model="c.name" ng-repeat="c in compound_tags"></md-chips>
+					<md-chips ng-model="compound_tags"></md-chips>
 					<span flex></span>
                     <div class="md-toolbar-item docs-tools layout-row" layout="row">
                     	<md-button class="md-raised md-accent ai-gr" aria-label="Project" ng-click="jumpToProject()">Project</md-button>
@@ -85,7 +85,7 @@
 			<div id="my-svg" class="layout-column flex" layout="column" flex="80">
 				
            	</div>
-			<md-card ng-hide="message_show" layout="column" flex="20" tabindex="-1" class="md-whiteframe-z2" layout-padding>
+			<md-card class="ai-message-info" ng-hide="message_show" layout="column" flex="20" tabindex="-1" class="md-whiteframe-z2" layout-padding>
 				<md-card-title-text>
 					<h2>Message</h2>
 				</md-card-title-text>
@@ -108,7 +108,7 @@
 					<h4>formula: {{formula}}</h4>
 				</md-card-title-text>
 			</md-card>
-			<md-card ng-hide="gene_message_show" layout="column" flex="20" tabindex="-1" class="md-whiteframe-z2" layout-padding>
+			<md-card class="ai-gene-message-info" ng-hide="gene_message_show" layout="column" flex="20" tabindex="-1" class="md-whiteframe-z2" layout-padding>
 				<md-card-title-text>
 					<h2>Gene Message</h2>
 				</md-card-title-text>

@@ -93,7 +93,7 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 				$scope.gene_message_show = false;
 				
 				$scope.gene_id = data.data.gene_id;
-				$scope.gene_name = data.data.gene_name;
+				$scope.gene_name = data.data.name;
 				$scope.definition = data.data.definition;
 				$scope.organism_short = data.data.organism_short;
 				$scope.organism = data.data.organism;
