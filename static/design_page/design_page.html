@@ -94,7 +94,9 @@
                             <span>{{gene.name}}</span>
                         </div>
 				    </div>
-                    <div id='clipboard' flex = '20' ng-sortable="deleteConfig" class="md-whiteframe-z2">
+                    <div id="clipboard" flex="20" ng-sortable="deleteConfig">
+                    	<div ng-repeat="gene in delete_gene" class='recommend_item'>
+                        </div>
                     </div>
 			    </div>
             </div>

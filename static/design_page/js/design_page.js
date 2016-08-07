@@ -4,6 +4,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
     $scope.chain_new = [];
+    $scope.delete_gene = [];
     $scope.recommend_info = [];
     $scope.float_right = false;
     $scope.float_left = true;
@@ -195,6 +196,7 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
             });
         },
         onRemove: function(evt) {
+            console.log('aaa');
             console.log(evt);
             var login_token = JSON.parse(sessionStorage.getItem('login'));
             var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
@@ -287,10 +289,6 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
 		},
         sort:false,
 		animation: 150,
-        onRemove: function (evt) {
-            console.log(evt);
-            console.log(evt.newIndex);
-        },
         handle:'.handle'
 	};
 
@@ -307,10 +305,10 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
     $scope.deleteConfig = {
         group: {
             name:'delete',
-            pull:true,
+            pull:false,
             put:['d_gene'],
         },
-        sort:false,
+        sort:true,
         animation: 150,
     };
 

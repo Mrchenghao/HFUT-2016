@@ -82,7 +82,7 @@ function draw(dataset){
                 .on("click", function(d, i){
                     var $scope = angular.element('#my_body').scope();
                     $scope.getGeneInfo(d.id);
-                    scope.$apply();
+                    $scope.$apply();
                 })
                 .on("dblclick",function(d,i){
                     d.fixed = false;
