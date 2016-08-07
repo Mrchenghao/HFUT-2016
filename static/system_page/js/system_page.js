@@ -13,6 +13,10 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
   		window.location.href = "../gene_page/gene_page.html";
   	}
 	
+	$scope.jumpToProject = function(){
+  		window.location.href = "../project_page/project_page.html";
+  	}
+	
 	$scope.getCompoundResult = function(key_word){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {

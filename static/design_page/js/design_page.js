@@ -16,6 +16,10 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
   		window.location.href = "../gene_page/gene_page.html";
   	}
 	
+	$scope.jumpToProject = function(){
+  		window.location.href = "../project_page/project_page.html";
+  	}
+	
     //拖动配置(user)
 	$scope.putConfig = {
 		group: {

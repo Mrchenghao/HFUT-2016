@@ -10,6 +10,10 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
   		window.location.href = "../gene_page/gene_page.html";
   	}
 	
+	$scope.jumpToProject = function(){
+  		window.location.href = "../project_page/project_page.html";
+  	}
+	
 	//显示登出窗口
   	$scope.showLogOutDialog = function(ev){
   		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
