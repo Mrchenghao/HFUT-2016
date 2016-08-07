@@ -5,37 +5,6 @@ function draw(dataset){
             var w = 800;
             var h = 600;
             var rad = 10;
-            //alert(dataset);
-        //     var dataset = {
-        //     nodes: [
-        //         { name: "Adam" , id: ""},
-        //         { name: "Bob" , id: ""},
-        //         { name: "Carrie" , id: ""},
-        //         { name: "Donovan" , id: ""},
-        //         { name: "Edward" , id: ""},
-        //         { name: "Felicity" , id: ""},
-        //         { name: "George" , id: ""},
-        //         { name: "Hannah" , id: ""},
-        //         { name: "Iris" , id: ""},
-        //         { name: "Jerry", id: "" }
-        //     ],
-        //     edges: [
-        //         { source: 0, target: 1 , relation: "a"},
-        //         { source: 0, target: 2 , relation: "b"},
-        //         { source: 0, target: 3 , relation: "c"},
-        //         { source: 0, target: 4 , relation: "d"},
-        //         { source: 1, target: 5 , relation: "e"},
-        //         { source: 2, target: 5 , relation: "f"},
-        //         { source: 2, target: 5 , relation: "g"},
-        //         { source: 3, target: 4 , relation: "h"},
-        //         { source: 5, target: 8 , relation: "i"},
-        //         { source: 5, target: 9 , relation: "g"},
-        //         { source: 6, target: 7 , relation: "k"},
-        //         { source: 7, target: 8 , relation: "l"},
-        //         { source: 8, target: 9 , relation: "m"}
-        //     ]
-        // };
-        //
             //Initialize a default force layout, using the nodes and edges in   dataset
             var force = d3.layout.force()
                                 .nodes(dataset.nodes)
@@ -113,7 +82,7 @@ function draw(dataset){
                 .on("click", function(d, i){
                     $('div#message-area ul#message').addClass('hide');
                     $('div#message-area ul#gene-message').removeClass('hide');
-                    getGeneMessage(d.id);
+                    $scope.getGeneInfo(d.id);
                 })
                 .on("dblclick",function(d,i){
                     d.fixed = false;
@@ -140,21 +109,4 @@ function draw(dataset){
             });
         }
         drawGem(dataset);
-        //test
-        /*
-            d3.json("test.json", function(error, dataset){
-                //if (error) return console.warn(error);
-                //alert("heel");
-                drawGem(dataset);
-            });
-*/
-        //function getSearchResult(input){
-        //   $.ajax({
-        //      url:'' + input,
-        //      type:'GET',
-        //      success:function(result){
-        //          insertSearchResult(result);
-        //      }
-        //   });
-        //}
 }
