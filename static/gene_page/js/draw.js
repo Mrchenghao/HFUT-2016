@@ -7,7 +7,7 @@ function draw(data){
     var x,y,s;
     var zoom = d3.behavior.zoom()
                           .translate([0, 0])    //  move distance
-                          .scaleExtent([1, 4])  //  scale range
+                          .scaleExtent([0.5, 6])  //  scale range
                           .scale(1)             //  scale times
                           .on("zoom", zoomed);
     function zoomed() {
@@ -16,6 +16,10 @@ function draw(data){
         s=d3.event.scale;           //  scale times in time
         recommend_network.attr("transform", "translate(" + d3.event.translate + ") scale(" + d3.event.scale + ")");
     }
+    var tooltip = d3.select("body")		//	add related text shhow bar
+					.append("div")
+					.attr("class","tooltip")
+					.style("opacity",0.0);
     var svg = d3.select('#div_force')
                 .append('svg')
                 .attr('width', width)
@@ -36,11 +40,24 @@ function draw(data){
                      .charge([-550])
                      .start();
     var svgEdge = recommend_network.selectAll('line')
-                           .data(links)
-                           .enter()
-                           .append('line')
-                           .style('stroke', '#ccc')
-                           .style('stroke-width', 5);
+                            .data(links)
+                            .enter()
+                            .append('line')
+                            .style('stroke', '#ccc')
+                            .style('stroke-width', 5)
+                            .on("mouseover", function(d){
+								tooltip.html(d["target"].relations)
+									   .style("left", (d3.event.pageX) + "px")
+									   .style("top", (d3.event.pageY + 20) + "px")
+									   .style("opacity",1.0);
+								})
+						    .on("mousemove",function(d){			//	mouse move in and show tooltip bar
+								tooltip.style("left", (d3.event.pageX) + "px")
+									   .style("top", (d3.event.pageY + 20) + "px");
+								})
+						    .on("mouseout",function(d){			//	mouse move out and tooltip bar's opacity is zero
+								tooltip.style("opacity",0.0);
+								});				
     var svgNode = recommend_network.selectAll('circle')
                                     .data(nodes)
                                     .enter()
@@ -48,7 +65,20 @@ function draw(data){
                                     .append('circle')
                                     .attr("xlink:href","#page-2")
                                     .attr("class","pageload-link")
-                                    .attr('r',15)
+                                    .attr('r',function(d){
+										console.log(d);
+										cr=14;
+										if (d.cr=="1") {
+											cr = 18;
+										}
+										else if(d.cr == "2"){
+											cr = 14;
+										}
+										else{
+											cr = 10;
+										}
+											return cr;
+										})
                                     .style("fill",function(d,i){
                                         return color(i);
                                     })
@@ -75,15 +105,15 @@ function draw(data){
                                 return d.name;
                            })
     force.on('tick', function(){
-        //更新连线坐标
+        //	renew edge location
         svgEdge.attr("x1",function(d){ return d.source.x; })
                  .attr("y1",function(d){ return d.source.y; })
                  .attr("x2",function(d){ return d.target.x; })
                  .attr("y2",function(d){ return d.target.y; });
-        //更新节点坐标
+        //	renew node location
         svgNode.attr("cx",function(d){ return d.x; })
                  .attr("cy",function(d){ return d.y; });
-        //更新文字坐标
+        //	renew text location
         svgText.attr("x", function(d){ return d.x; })
                  .attr("y", function(d){ return d.y; });
         });

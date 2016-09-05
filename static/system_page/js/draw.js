@@ -36,7 +36,7 @@ function draw(dataset){
                 .style("stroke", "#ccc")
                 .style("stroke-width", 1)
                 .on("mouseover", function(d){
-                    tooltip.html(d.related)
+                    tooltip.html(d["target"].relations)
                            .style("left", (d3.event.pageX) + "px")
                            .style("top", (d3.event.pageY + 20) + "px")
                            .style("opacity",1.0);         
