@@ -66,19 +66,9 @@ function draw(data){
                                     .attr("xlink:href","#page-2")
                                     .attr("class","pageload-link")
                                     .attr('r',function(d){
-										console.log(d);
-										cr=14;
-										if (d.cr=="1") {
-											cr = 18;
-										}
-										else if(d.cr == "2"){
-											cr = 14;
-										}
-										else{
-											cr = 10;
-										}
-											return cr;
-										})
+                                        cr= 24 - 4 * (d.depth - 1);  
+										return cr;
+									})
                                     .style("fill",function(d,i){
                                         return color(i);
                                     })
