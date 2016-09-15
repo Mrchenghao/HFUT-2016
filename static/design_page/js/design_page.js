@@ -467,27 +467,6 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
   	};
 
   	$scope.init();
-
-  	//添加功能标签按钮事件方法
-  	$scope.showAddFunctionTagsDialog = function(ev){
-  		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-  		$mdDialog.show({
-  			controller:AddFunctionTagsCtrl,
-  			templateUrl:'html/new_function_tags.tmp.html',
-  			parent:angular.element(document.body),
-  			targetEvent:ev,
-  			clickOutsideToClose:true,
-  			fullscreen:useFullScreen,
-  			locals:{$http:$http, $mdToast:$mdToast}
-  		}).then(function(answer){
-  		}, function(){
-  		});
-  		$scope.$watch(function(){
-  			return $mdMedia('xs') || $mdMedia('sm');
-  		}, function(wantsFullScreen){
-  			$scope.customFullscreen = (wantsFullScreen === true);
-  		});
-  	}
   	
   	//显示登出窗口
   	$scope.showLogOutDialog = function(ev){
@@ -535,21 +514,6 @@ editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $h
   		});
   	}
 });
-
-function AddFunctionTagsCtrl($scope, $mdDialog) {
-
-  	$scope.hide = function() {
-	    $mdDialog.hide();
-  	};
-
-  	$scope.cancel = function() {
-	    $mdDialog.cancel();
-  	};
-
-  	$scope.add_function_tags = function(){
-
-  	};
-}
 
 function LogOutCtrl($scope, $mdDialog, $http){
 	
