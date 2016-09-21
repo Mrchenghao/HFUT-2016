@@ -1,6 +1,6 @@
 var lr = angular.module('login-register',['ngMaterial','ngMessages']);
 
-lr.controller("loginCtrl",function($scope,$http){
+lr.controller("loginCtrl",function($scope,$http,$mdToast){
 	
 	$scope.login = function(username,password){
 		var opt = {
@@ -45,8 +45,8 @@ lr.controller("loginCtrl",function($scope,$http){
 		$http(opt).success(function(data){
 			if (data.successful) {
 				showToast($mdToast,"Register SUCCESSED!");
-			} else{
-				showToast($mdToast,data.error.msg);
+			} else {
+				showToast($mdToast,"Something strange,please TRY AGAIN!");
 			}
 		});
 		
