@@ -66,7 +66,7 @@ function draw(data){
                                     .attr("xlink:href","#page-2")
                                     .attr("class","pageload-link")
                                     .attr('r',function(d){
-                                        cr= 24 - 4 * (d.depth - 1);  
+                                        cr = 24 - 4 * (d.depth - 1);  
 										return cr;
 									})
                                     .style("fill",function(d,i){
@@ -82,6 +82,8 @@ function draw(data){
                                         d3.select(this).style('fill', color(i))
                                     })
                                     .on("click", function(d){
+                                    	sessionStorage.setItem("gene_id",d.id);
+                                    	window.location.href = "../page2/page2.html";
                                         return d.name;
                                     });
     var svgText = recommend_network.selectAll('text')

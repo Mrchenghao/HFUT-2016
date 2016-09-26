@@ -192,7 +192,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
 	
 	//显示登出窗口
   	$scope.showLogOutDialog = function(ev){
-  		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
   		$mdDialog.show({
   			controller:LogOutCtrl,
   			templateUrl:'html/logout.tmp.html',
@@ -215,7 +215,7 @@ bio_pro.controller('proController', function($scope, $http, $location, $mdSidena
   	
   	//显示修改密码窗口
   	$scope.showChangePasswordDialog = function(ev){
-  		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
   		$mdDialog.show({
   			controller:ChangePasswordCtrl,
   			templateUrl:'html/change_password.tmp.html',
