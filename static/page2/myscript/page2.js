@@ -2,6 +2,7 @@ var page2 = angular.module('page2-app',[]);
 
 page2.controller('page2Controller',function($scope, $http){
 	
+	//数据定义
 	$scope.gene_name = "";
 	$scope.gene_introduction_text = "";
 	$scope.production_text = "";
@@ -12,13 +13,14 @@ page2.controller('page2Controller',function($scope, $http){
 	$scope.keyword2 = [];
 	$scope.keyword3 = [];
 	
+	//网页初始化
 	$scope.init = function(){
-		var gene_id = sessionStorage.getItem("gene_id");
+		var gene_name = sessionStorage.getItem("gene_name");
 		var opt = {
 			url: '/geneRelationship/searchGenes',
 			method: 'POST',
 			data: {
-				gene_id: gene_id,
+				gene_name: gene_name,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
