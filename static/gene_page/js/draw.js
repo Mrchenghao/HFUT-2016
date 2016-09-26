@@ -122,6 +122,9 @@ function draw(data){
 		                .on("click", function(d) { 
 		                	childControl(nodes, d); 
 		                	redraw(d); 
+		                })
+		                .on("contextmenu", function(d){
+		                	jumpTo(d);
 		                });
 
 		enterNodes.append("circle");
@@ -209,5 +212,10 @@ function draw(data){
 			}
 		}
 	}	//	func childControl(nodes, d) end
+
+	function jumpTo(d){
+		gene =d;
+		window.location.href='/gene_infor.html';
+	}
 
 }
