@@ -299,6 +299,103 @@ def getMRecommend(request):
     finally:
         return HttpResponse(json.dumps(result), content_type='application/json')
 
+def getBeforeRecommend(request):
+    try:
+        data = json.loads(request.body)
+        try:
+            token = Token.objects.filter(token=data['token']).first()
+            user = token.user
+        except:
+            raise myError('Please Log In.')
+        part_id = str(data['part_id'])
+        recommend_list = getBeforeMarkovRecommend(part_id)
+        print recommend_list
+        if not recommend_list:
+            result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': '',
+            }
+        }
+        else:
+            result = {
+                'successful': True,
+                'data': recommend_list,
+                'error': {
+                    'id': '',
+                    'msg': '',
+                }
+            }
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.value,
+            }
+        }
+    except Exception, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.args,
+            }
+        }
+    finally:
+        return HttpResponse(json.dumps(result), content_type='application/json')
+
+def getBettwenRecommend(request):
+    try:
+        data = json.loads(request.body)
+        try:
+            token = Token.objects.filter(token=data['token']).first()
+            user = token.user
+        except:
+            raise myError('Please Log In.')
+        part_id_one = str(data['part_id_one'])
+        print part_id_one
+        part_id_two = str(data['part_id_two'])
+        print part_id_two
+        recommend_list = getBetweenMarkovRecommend(part_id_one, part_id_two)
+        print recommend_list
+        if not recommend_list:
+            result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': '',
+            }
+        }
+        else:
+            result = {
+                'successful': True,
+                'data': recommend_list,
+                'error': {
+                    'id': '',
+                    'msg': '',
+                }
+            }
+    except myError, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.value,
+            }
+        }
+    except Exception, e:
+        result = {
+            'successful': False,
+            'error': {
+                'id': '',
+                'msg': e.args,
+            }
+        }
+    finally:
+        return HttpResponse(json.dumps(result), content_type='application/json')
+
 def getResultImage(request):
     try:
         data = json.loads(request.body)

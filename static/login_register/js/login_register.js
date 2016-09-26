@@ -1,6 +1,6 @@
 var lr = angular.module('login-register',['ngMaterial','ngMessages']);
 
-lr.controller("loginCtrl",function($scope,$http){
+lr.controller("loginCtrl",function($scope,$http,$mdToast){
 	
 	$scope.login = function(username,password){
 		var opt = {
@@ -17,7 +17,7 @@ lr.controller("loginCtrl",function($scope,$http){
 				sessionStorage.setItem('login',JSON.stringify(data.data.token));
 				window.location.href = "../project_page/project_page.html";
 			} else{
-				showToast($mdToast,"Something strange,please TRY AGAIN!");
+				showToast($mdToast,data.error.msg);
 			}
 		});
 	};

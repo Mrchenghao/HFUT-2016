@@ -5,7 +5,7 @@ from accounts.models import *
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,myError
-from search_relation import search_relation, search_genes
+from search_relation import search_relation, search_genes, search_papers
 import json
 import string
 import random
@@ -59,6 +59,8 @@ def randomGene(request):
 			}
 		}
 	finally:
+		with open('data.json', 'wb') as out_put:
+			out_put.write(json.dumps(result))
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
 def searchGenes(request):
@@ -147,10 +149,50 @@ def getRelatedGene(request):
 		gene_name = data['gene_name']
 		realated_gene_list = []
 		realated_genes = search_relation(gene_name)
+		if realated_genes['children'] > 20:
+			realated_genes['children'] = realated_genes['children'][:20]
 		print realated_genes
 		result = {
 			'successful': True,
 			'data': realated_genes,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
+
+def getRelatedPaper(request):
+	try:
+		data = json.loads(request.body)
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
+		gene_name = data['gene_name']
+		realated_paper_list = search_papers(gene_name)
+		print realated_paper_list
+		result = {
+			'successful': True,
+			'data': realated_paper_list,
 			'error': {
 				'id': '',
 				'msg': '',

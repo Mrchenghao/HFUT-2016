@@ -7,6 +7,7 @@
 
 from django.shortcuts import render
 from models import *
+from geneRelationship.models import Gene
 from accounts.models import *
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
