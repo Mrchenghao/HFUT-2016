@@ -45,8 +45,8 @@ lr.controller("loginCtrl",function($scope,$http,$mdToast){
 		$http(opt).success(function(data){
 			if (data.successful) {
 				showToast($mdToast,"Register SUCCESSED!");
-			} else{
-				showToast($mdToast,data.error.msg);
+			} else {
+				showToast($mdToast,"Something strange,please TRY AGAIN!");
 			}
 		});
 		

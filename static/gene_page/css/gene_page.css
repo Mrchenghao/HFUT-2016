@@ -23,3 +23,19 @@ span {
 	line-height: 1.3em;
 	font-size: 1.4em;
 }
+/* for loading part of gene_page */
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 12px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
