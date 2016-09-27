@@ -1,4 +1,4 @@
-var bio_pro = angular.module('projectApp', ['ngAnimate']);
+var bio_pro = angular.module('projectApp', ['ngMaterial','ngAnimate']);
 
 bio_pro.controller('projectController', function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
 	$scope.project_info = [];//项目列表
