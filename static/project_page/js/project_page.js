@@ -118,7 +118,7 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
             target:'./html/new_project.html',
             effect:'swell',
         });
-        e.preventDefault();
+        // e.preventDefault();
         
 		$http.get('/home/getTracks').success(function(data){
 			if (data.successful) {
