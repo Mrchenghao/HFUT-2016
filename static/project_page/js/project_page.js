@@ -143,9 +143,8 @@ bio_pro.controller('projectController', function($scope, newProFac, $http, $loca
 	$scope.showNewProjectDialog = function() {
 		Custombox.open({
             target:'./html/new_project.html',
-            effect:'swell',
-        });
-        e.preventDefault();
+            effect:'fadein',
+       	});
         
 		$http.get('/home/getTracks').success(function(data){
 			if (data.successful) {
@@ -153,6 +152,20 @@ bio_pro.controller('projectController', function($scope, newProFac, $http, $loca
 				console.log($scope.tracks);
 			}
 		});
+	}
+	
+	$scope.changePasswordDialog = function(){
+		Custombox.open({
+            target:'./html/change_password.html',
+            effect:'fadein',
+       	});
+	}
+	
+	$scope.logoutDialog = function(){
+		Custombox.open({
+            target:'./html/logout.html',
+            effect:'fadein',
+       	});
 	}
   	
   	$scope.jumpToDesign = function(){
