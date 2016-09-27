@@ -64,7 +64,7 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <span class="input-group-btn">
-                                    <button class="col-xs-2 btn btn-primary" id="newProject">
+                                    <button class="col-xs-2 btn btn-primary" ng-click="showNewProjectDialog()">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </button>
                                     <button class="col-xs-2 btn btn-danger pull-right" ng-click="toggle_edit()">
@@ -76,7 +76,7 @@
                         <li ng-repeat="project in project_info">
                             <a>
                                 {{project.name}}
-                                <span class="fa arrow" ng-hide="!project.devices.length"></span>
+                                <span class="fa arrow" ng-hide="project.devices.length == 0"></span>
                             </a>
                             <div ng-hide="!isEdit">
                                 <button class="btn btn-default" aria-label="show-new-device">
