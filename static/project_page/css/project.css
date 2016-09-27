@@ -1,0 +1,10 @@
+#right-side-bar{
+	right:0px;
+	padding-right:0;
+}
+@media(min-width:768px) {
+	#right-side-bar{
+		right:-15px;
+		padding-right:0;
+	}
+}
