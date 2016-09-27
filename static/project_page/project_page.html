@@ -1,129 +1,136 @@
 <!DOCTYPE html>
-<html ng-app="bio-app">
+<html lang="en" ng-app="projectApp">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="initial-scale=1">
-	<title>BioDesigner|Project</title>
-	
-	<link rel="stylesheet" href="../public/angular-material/angular-material.css">
-	<link rel="stylesheet" href="css/docs.css">
-	<link rel="stylesheet" href="css/project_page.css">
-	
-	<!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="img/logo_black_small.png">
-</head>
-<body class="docs-body layout-row" layout="row" ng-controller="proController">
-	<!-- 侧边栏 -->
-	<div id="bio-sidebar"  layout="row">
-	  	<md-sidenav md-component-id="left" class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print md-closed ng-isolate-scope md-locked-open" md-is-locked-open="$mdMedia('gt-sm')">
-	 		<header class="nav-header">
-		      	<a href="#" ng-href="/" class="docs-logo">
-		        	<img src="img/logo_white_mini.png">
-		        	<h1 class="docs-logotype md-heading">BioDesigner</h1>
-		      	</a>
-		    </header>
-		    <md-list layout="row" layout-wrap layout-margin layout-align="center">
-		    	<md-list layout="row">
-		    		<md-button ng-click="showNewProjectDialog($event)">
-			        	<label>New Project</label>
-			          	<md-icon md-svg-src="img/plus.svg" aria-label="add-project"></md-icon>
-			        </md-button>
-			        <span flex></span>
-			        <md-button ng-click="toggle_edit()">
-			        	Edit
-			        </md-button>
-		    	</md-list>
-		    	<md-list-item layout="column" class="ai-project-item" ng-repeat="project in project_info">
-					<div class="ai-project-item-btn" layout="row">
-						<span flex ng-click="toggle_device($index)">{{project.name}}</span>
-						<div ng-hide="!isEdit">
-							<md-button class="md-icon-button" ng-click="showNewDeviceDialog($event, project.id)" aria-label="show-new-device">
-								<md-icon md-svg-src="img/plus.svg"></md-icon>
-							</md-button>
-							<md-button class="md-icon-button" ng-click="delete_project($index, project.id)" aria-label="delete-project">
-								<md-icon md-svg-src="img/close.svg"></md-icon>
-							</md-button>
-						</div>
-					</div>
-					<md-list ng-hide="project.isDeviceShowed" class="ai-device-list" layout-padding>
-						<md-list-item class="ai-device-item" ng-repeat="device in project.devices">
-							<div ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)" class="ai-device-item-btn" layout="row">
-								<span flex>{{device.chain_name}}</span>
-							</div>
-							<md-divider></md-divider>
-						</md-list-item>
-					</md-list>
-					<md-divider></md-divider>
-				</md-list-item>
-	      	</md-list>
-	  	</md-sidenav>
-	</div>
-	<!-- 主窗口 -->
-  	<div id="bio-container" class="layout-column flex" layout="column">
-  		<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
-			<div class="md-toolbar-tools">
-				<div layout="row" class="fill-height layout-row flex">
-					<h2 class="md-toolbar-item md-breadcrumb md-headline">
-                      	<span class="md-breadcrumb-page ng-binding">{{addr + ' > ' + chain_addr}}</span>
-                    </h2>
-					<span flex></span>
-                    <div class="md-toolbar-item docs-tools layout-row" layout="row">
-                    	<md-button class="md-raised md-accent ai-gr" aria-label="Gene" ng-click="jumpToGene()">Gene Relationship</md-button>
-				      	<md-button class="md-raised md-accent ai-sr" aria-label="System" ng-click="jumpToSystem()">System</md-button>
-				       	<md-menu md-position-mode="target-right target" >
-				          	<md-button aria-label="menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-				            	<md-icon md-menu-origin md-svg-icon="img/account.svg"></md-icon>
-				          	</md-button>
-				          	<md-menu-content width="2">
-				            	<md-menu-item>
-				              		<md-button ng-click="showChangePasswordDialog($event)">
-				                  		<div layout="row" flex>
-				                    		<p flex>Change Password</p>
-				                  		</div>
-				              		</md-button>
-				            	</md-menu-item>
-				            	<md-menu-item>
-				              		<md-button ng-click="showLogOutDialog($event)">
-				                  		<div layout="row" flex>
-				                    		<p flex>LogOut</p>
-				                  		</div>
-				              		</md-button>
-				            	</md-menu-item>
-				          	</md-menu-content>
-				        </md-menu>
-                    </div>
-				</div>
-			</div>
-  		</md-toolbar>
-  		<md-content class="layout-row flex" layout="row">
-			<div flex="80" class="ai-bio-main">
-				<div class="ai-logo-design">
-					<img ng-src="{{device_img_src}}" alt="logo-design">
-				</div>
-			</div>
-			<div flex="20" class="md-whiteframe-z2 ai-bio-side">
-				<md-card layout="column" flex layout-padding>
-					<md-card-title-text class="ai-device">
-						<h2>Device name</h2>
-					</md-card-title-text>
-					<md-card-title-text class="ai-length">
-						<h4>Length: {{length}}</h4>
-					</md-card-title-text>
-					<md-card-title-text class="ai-design" ng-click="jumpToDesign()">
-						<md-button class="md-raised md-accent">Design</md-button>
-					</md-card-title-text>
-				</md-card>
-			</div>
-  		</md-content>
-  	</div>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BioDesigner|Project</title>
 
-	<script src="../public/analytics/analytics.js"></script>
-  	<script src="../public/angular/angular.js"></script>
-  	<script src="../public/angular-animate/angular-animate.js"></script>
-  	<script src="../public/angular-route/angular-route.js"></script>
-  	<script src="../public/angular-aria/angular-aria.js"></script>
-  	<script src="../public/angular-messages/angular-messages.js"></script>
-  	<script src="../public/angular-material/angular-material.js"></script>
-  	<script src="js/project_page.js"></script>
+    <link href="../public/custombox/dist/custombox.min.css" rel="stylesheet">
+    <link href="../public/bootstrap-select-1.11.2/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../public/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="./css/sb-admin-2.css" rel="stylesheet">
+    <link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../public/angular-material/angular-material.css" rel="stylesheet">
+    <link href="./css/project.css" rel="stylesheet"></head>
+<body ng-controller="projectController">
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">BioDesigner Coral</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <button class="btn btn-success" ng-click="jumpToProject()">Project</button>
+                </li>
+                <li>
+                    <button class="btn btn-warning" ng-click="jumpToGene()">Gene Relationship</button>
+                </li>
+                <li>
+                    <button class="btn btn-danger" ng-click="jumpToSystem()">System</button>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-gear fa-fw"></i>
+                                ChangePassword
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-sign-out fa-fw"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <span class="input-group-btn">
+                                    <button class="col-xs-2 btn btn-primary" id="newProject">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="col-xs-2 btn btn-danger pull-right" ng-click="toggle_edit()">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </li>
+                        <li ng-repeat="project in project_info">
+                            <a>
+                                {{project.name}}
+                                <span class="fa arrow" ng-hide="!project.devices.length"></span>
+                            </a>
+                            <div ng-hide="!isEdit">
+                                <button class="btn btn-default" aria-label="show-new-device">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-danger" aria-label="delete-project">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <ul class="nav nav-second-level">
+                                <li ng-repeat="device in project.devices">
+                                    <a ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">{{device.chain_name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="row col-xs-9 text-center">
+                    <img ng-src="{{device_img_src}}" alt="logo-design"></div>
+                <div class="col-xs-3 pull-right" id="right-side-bar">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h2 class="col-xs-offset-3">Device</h2>
+                            <h4 class="col-xs-offset-3">Length:{{length}}</h4>
+                            <button class="btn btn-success btn-block">Design</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../public/analytics/analytics.js"></script>
+    <script src="../public/angular/angular.js"></script>
+    <script src="../public/angular-animate/angular-animate.js"></script>
+    <script src="../public/angular-route/angular-route.js"></script>
+    <script src="../public/angular-aria/angular-aria.js"></script>
+    <script src="../public/angular-messages/angular-messages.js"></script>
+    <!-- <script src="../public/angular-material/angular-material.js"></script> -->
+    <script src="../public/jquery/dist/jquery.min.js"></script>
+    <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../public/bootstrap-select-1.11.2/dist/js/bootstrap-select.min.js"></script>
+    <script src="../public/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="./js/sb-admin-2.js"></script>
+    <script src="./js/project_page.js"></script>
+    <script src="./js/project_modal.js"></script>
+    <script src="../public/custombox/dist/legacy.min.js"></script>
+    <script src="../public/custombox/dist/custombox.min.js"></script>
 </body>
 </html>
