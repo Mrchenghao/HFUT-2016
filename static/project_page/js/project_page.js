@@ -1,6 +1,29 @@
 var bio_pro = angular.module('projectApp', ['ngMaterial','ngAnimate']);
 
-bio_pro.controller('projectController', function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
+bio_pro.factory('newProFac',function($rootScope){
+	var newProFac = {};
+	newProFac.tracks = [];
+	
+	newProFac.prepForBroadcast = function(t){
+		this.tracks = t;
+		this.broadcastItem();
+	}
+	
+	newProFac.broadcastItem = function(){
+		$rootScope.$broadcast('handleBroadcast');
+	};
+	
+	return newProFac;
+});
+
+bio_pro.controller('newProController', function($scope, newProFac){
+	
+	$scope.$on('handleBroadcast',function(){
+		$scope.tracks = newProFac.tracks;
+	});
+});
+
+bio_pro.controller('projectController', function($scope, newProFac, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
 	$scope.project_info = [];//项目列表
 	$scope.isEdit = false;//默认编辑状态为未编辑
 //	$scope.isChosen = false;//默认未选中
@@ -11,6 +34,10 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 	$scope.new_project_track = "";
 	$scope.new_project_name = "";
 	$scope.tracks = [];
+	
+	$scope.$on('handleBroadcast',function(){
+		$scope.tracks = newProFac.tracks;
+	});
 	
 	//反转分支的显示状态
 	// $scope.toggle_device = function(index){
@@ -113,8 +140,8 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
    //  	$mdSidenav('left').toggle();
   	// };
 
-  	$scope.showNewProjectDialog = function() {
-  		Custombox.open({
+	$scope.showNewProjectDialog = function() {
+		Custombox.open({
             target:'./html/new_project.html',
             effect:'swell',
         });
@@ -126,7 +153,7 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 				console.log($scope.tracks);
 			}
 		});
-  	}
+	}
   	
   	$scope.jumpToDesign = function(){
   		window.location.href = "../design_page/design_page.html";
@@ -164,27 +191,27 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
   	// }
   	
   	// 显示新建项目窗口
-  	// $scope.showNewProjectDialog = function(ev){
-  	// 	var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-  	// 	$mdDialog.show({
-  	// 		controller:NewProjectCtrl,
-  	// 		templateUrl:'html/new_project.tmp.html',
-  	// 		parent:angular.element(document.body),
-  	// 		targetEvent:ev,
-  	// 		clickOutsideToClose:true,
-  	// 		fullscreen:useFullScreen,
-  	// 		locals:{$http:$http, $mdToast:$mdToast}
-  	// 	}).then(function(answer){
-  	// 		$scope.update();
-  	// 	}, function(){
-  	// 		$scope.update();
-  	// 	});
-  	// 	$scope.$watch(function(){
-  	// 		return $mdMedia('xs') || $mdMedia('sm');
-  	// 	}, function(wantsFullScreen){
-  	// 		$scope.customFullscreen = (wantsFullScreen === true);
-  	// 	});
-  	// }
+//	 $scope.showNewProjectDialog = function(ev){
+//	 	var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+//	 	$mdDialog.show({
+//	 		controller:NewProjectCtrl,
+//	 		templateUrl:'html/new_project.html',
+//	 		parent:angular.element(document.body),
+//	 		targetEvent:ev,
+//	 		clickOutsideToClose:true,
+//	 		fullscreen:useFullScreen,
+//	 		locals:{$http:$http, $mdToast:$mdToast}
+//	 	}).then(function(answer){
+//	 		$scope.update();
+//	 	}, function(){
+//	 		$scope.update();
+//	 	});
+//	 	$scope.$watch(function(){
+//	 		return $mdMedia('xs') || $mdMedia('sm');
+//	 	}, function(wantsFullScreen){
+//	 		$scope.customFullscreen = (wantsFullScreen === true);
+//	 	});
+//	 }
 	
 	//删除项目
 	$scope.delete_project = function(index, id){
