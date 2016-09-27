@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,myError
 from search_relation import search_relation, search_genes, search_papers
+from system.gene import get_gene_info
 import json
 import string
 import random
@@ -34,6 +35,9 @@ def randomGene(request):
 				gene['children'] = temp_result['children'][:20]
 			else:
 				gene['children'] = temp_result['children']
+		gene_json = open('gene.json', 'w')
+		gene_json.write(json.dumps(search_result))
+		gene_json.close()
 		result = {
 			'successful': True,
 			'data': search_result,
@@ -109,7 +113,9 @@ def getGeneInfo(request):
 			user = token.user
 		except:
 			raise myError('Please Log In.')
-		gene_id = data['gene_id']
+		gene_name = data['gene_name']
+		gene = Gene.objects.filter(name=gene_name).first()
+		gene_id = gene.gene_id
 		get_result = get_gene_info(gene_id)
 		result = {
 			'successful': get_result[0],

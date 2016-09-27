@@ -31,6 +31,6 @@ def search_papers(gene_name):
 				'paper_title': paper.paper_title,
 				'paper_link': paper.paper_link,
 				'paper_keyword': paper.paper_keyword,
-				'paper_abstract': paper.paper_abstract
+				'paper_abstract': paper.paper_abstract[8:]
 			})
 	return paperList
