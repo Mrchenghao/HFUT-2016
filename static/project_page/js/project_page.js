@@ -19,7 +19,7 @@ bio_pro.factory('newProFac',function($rootScope){
 bio_pro.controller('newProController', function($scope, newProFac){
 	
 	$scope.$on('handleBroadcast',function(){
-		$scope.tracks = newProFac.tracks;
+		newProFac.tracks = $scope.tracks;
 	});
 });
 
