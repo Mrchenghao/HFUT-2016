@@ -150,7 +150,7 @@ function draw(data){
 
 		updateNodes.select("circle")
 				 .attr('r',function(d){
-				 	cr= 24 - 4 * (d.depth - 1);
+				 	cr= 24 - 8 * (d.depth - 1);
 				 	return cr;
 				 })
 				 .style('stroke', function(d, i) { return d._children ? "lightsteelblue" :  "#fff"; })

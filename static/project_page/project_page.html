@@ -74,7 +74,7 @@
                             </div>
                         </li>
                         <li ng-repeat="project in project_info">
-                            <a>
+                            <a ng-click="toggle_device($index)">
                                 <span>{{project.name}}</span>
                                 <div class="btn-edit" ng-hide="!isEdit">
                                     <button class="btn btn-default" aria-label="show-new-device" ng-click="showNewDeviceDialog(project.id)">
@@ -84,9 +84,8 @@
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>
                                 </div>
-                                <span class="fa arrow" ng-hide="project.devices.length == 0"></span>
                             </a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" ng-hide="project.isDeviceShowed">
                                 <li ng-repeat="device in project.devices">
                                     <a ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">{{device.chain_name}}</a>
                                 </li>

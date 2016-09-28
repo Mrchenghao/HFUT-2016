@@ -416,6 +416,7 @@ def getResultImage(request):
         print sequence
         if not sequence:
             filepath = None
+            raise myError('no img.')
         else:
             if sequence.startswith('_'):
                 sequence = sequence[1:]

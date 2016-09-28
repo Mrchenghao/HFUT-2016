@@ -104,7 +104,7 @@ def createNewProject(request):
 		except:
 			raise myError('Please Log In.')
 		project_name = data['project_name']
-		track = Tracks.objects.filter(id=data['track']).first()
+		track = Tracks.objects.filter(track=data['track']).first()
 		# function = Functions.objects.filter(function=data['function']),first()
 		project = Project()
 		project.creator = user
@@ -292,6 +292,8 @@ def createProjectDevice(request):
 		project = Project.objects.filter(id=project_id).first()
 		if user != project.creator:
 			raise myError('Create Failed.')
+		if not data['device_name']:
+			raise myError('Devicee_name can\'t be Null.' )
 		chain = Chain()
 		chain.name = data['device_name']
 		chain.project = project

@@ -26,13 +26,13 @@ def randomGene(request):
 		gene_list = json.loads(gene_file.read())
 		gene_name = random.choice(gene_list)
 		search_result = search_relation(gene_name)
-		if len(search_result['children']) > 20:
-			search_result['children'] = search_result['children'][:20]
+		if len(search_result['children']) > 10:
+			search_result['children'] = search_result['children'][:10]
 		for gene in search_result['children']:
 			gene_name = gene['name']
 			temp_result = search_relation(gene_name)
-			if len(temp_result['children']) > 20:
-				gene['children'] = temp_result['children'][:20]
+			if len(temp_result['children']) > 10:
+				gene['children'] = temp_result['children'][:10]
 			else:
 				gene['children'] = temp_result['children']
 		gene_json = open('gene.json', 'w')
@@ -155,8 +155,8 @@ def getRelatedGene(request):
 		gene_name = data['gene_name']
 		realated_gene_list = []
 		realated_genes = search_relation(gene_name)
-		if realated_genes['children'] > 20:
-			realated_genes['children'] = realated_genes['children'][:20]
+		if realated_genes['children'] > 10:
+			realated_genes['children'] = realated_genes['children'][:10]
 		print realated_genes
 		result = {
 			'successful': True,

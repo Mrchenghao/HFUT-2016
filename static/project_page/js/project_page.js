@@ -3,7 +3,7 @@ var bio_pro = angular.module('projectApp', ['ngMaterial','ngAnimate']);
 bio_pro.controller('projectController', function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
 	$scope.project_info = [];//项目列表
 	$scope.isEdit = false;//默认编辑状态为未编辑
-//	$scope.isChosen = false;//默认未选中
+	$scope.isChosen = false;//默认未选中
 	$scope.device_img_src = './img/logo_design.png';//主体图
 //	$scope.addr = "";
 //	$scope.chain_addr = "";
@@ -20,12 +20,12 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 	$scope.new_device_name = "";
 	
 	//反转分支的显示状态
-	// $scope.toggle_device = function(index){
-	// 	$scope.addr = $scope.project_info[index].name;
-	// 	$scope.chain_addr = "";
-	// 	$scope.getDevices(index, $scope.project_info[index].id);
-	// 	$scope.project_info[index].isDeviceShowed = !$scope.project_info[index].isDeviceShowed;
-	// }
+	$scope.toggle_device = function(index){
+		// $scope.addr = $scope.project_info[index].name;
+		// $scope.chain_addr = "";
+		$scope.getDevices(index, $scope.project_info[index].id);
+		$scope.project_info[index].isDeviceShowed = !$scope.project_info[index].isDeviceShowed;
+	}
 	
 	//更新当前页面内容
 	$scope.update = function(){
@@ -75,14 +75,14 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 			headers: { 'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data) {
-			console.log(data)
+			console.log(data.data)
 			$scope.project_info[index].devices = data.data;
 		});
 	}
 	
 	//点击分支事件，反转isChosen状态，改为选中；同步中间基因链的图
 	$scope.device_clicked = function(device_id,device_name,project_id,len) {
-//		$scope.isChosen = true;
+		$scope.isChosen = true;
 		$scope.length = len;
 //		$scope.chain_addr = device_name;
 		sessionStorage.setItem('chain_id',JSON.stringify(device_id));
@@ -101,6 +101,8 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
         $http(opt).success(function(data) {
             if (data.successful) {
                 $scope.device_img_src = data.data;
+            } else {
+            	$scope.device_img_src = './img/logo_design.png';
             }
         });
 	}
@@ -114,11 +116,6 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 	$scope.delete_device = function(device_id){
 		
 	}
-	
-	//侧边栏方法
-  	// $scope.openLeftMenu = function() {
-   //  	$mdSidenav('left').toggle();
-  	// };
   	//新建项目模态框
 	$scope.showNewProjectDialog = function() {
 		Custombox.open({
@@ -141,33 +138,27 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 	}
 	//确认新建项目
 	$scope.create_project = function(new_project_name, new_project_track){
-	 	if (new_project_track.length == 0 || new_project_name.length == 0) {
-	 		Custombox.close();
-	 		showToast($mdToast, "Project created FAILED");
-	 		return;
-	 	} else{
-			var login_token = JSON.parse(sessionStorage.getItem('login'));
-			var opt = {
-				url: '/home/createNewProject',
-				method: 'POST',
-				data: JSON.stringify({
-					token: login_token,
-					project_name: new_project_name,
-					track: new_project_track,
-				}),
-				headers: {'Content-Type': 'application/json'}
-			};
-			$http(opt).success(function(data){
-				if (data.successful) {
-					Custombox.close();
-					$scope.update();
-					showToast($mdToast, "Project created successfully");
-				} else{
-					Custombox.close();
-					showToast($mdToast, "Project created FAILED");
-				}
-			});
-	 	}
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/home/createNewProject',
+			method: 'POST',
+			data: JSON.stringify({
+				token: login_token,
+				project_name: new_project_name,
+				track: new_project_track,
+			}),
+			headers: {'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if (data.successful) {
+				Custombox.close();
+				$scope.update();
+				showToast($mdToast, "Project created successfully");
+			} else{
+				Custombox.close();
+				showToast($mdToast, "Project created FAILED");
+			}
+		});
 	}
 	//新建分支模态框
 	$scope.showNewDeviceDialog = function(project_id){
@@ -181,6 +172,8 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 	$scope.create_device = function(new_device_name){
    		var login_token = JSON.parse(sessionStorage.getItem('login'));
    		var project_id = JSON.parse(sessionStorage.getItem('project_id'));
+   		var project_index = JSON.parse(sessionStorage.getItem('project_index'));
+   		console.log(project_id);
    		var opt = {
    			url: "/home/createProjectDevice",
    			method: 'POST',
@@ -192,20 +185,14 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
    			headers: {'Content-Type': 'applicaiton/json'}
    		}
    		$http(opt).success(function(data){
-   			if ($scope.new_device_name.length == 0) {
-   				Custombox.close();
-				showToast($mdToast, "Device name null");
-   				return;
-   			} else{
-   				if (data.successful) {
-   					Custombox.close();
-   					$scope.update();
-   					showToast($mdToast, "Device created SUCCESS");
-   				} else {
-   					Custombox.close();
-   					showToast($mdToast, "Device created FAILED");
-   				}
-   			}
+			if (data.successful) {
+				Custombox.close();
+				$scope.update();
+				showToast($mdToast, "Device created SUCCESS");
+			} else {
+				Custombox.close();
+				showToast($mdToast, "Device created FAILED");
+			}
    		})
    	}
 	//修改密码模态框
@@ -574,8 +561,8 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 // }
 
 var last = {
-	bottom: false,
-	top: true,
+	bottom: true,
+	top: false,
 	left: false,
 	right: true
 };
