@@ -10,7 +10,7 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 	$scope.length = 0;
 	$scope.new_project_track = "";
 	$scope.new_project_name = "";
-	$scope.tracks = [];
+	$scope.tracks = [{'track_name':'111'},{'track_name':'111'},{'track_name':'111'},{'track_name':'111'}];
 	
 	//反转分支的显示状态
 	// $scope.toggle_device = function(index){
@@ -129,14 +129,14 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdSi
 	
 	$scope.changePasswordDialog = function(){
 		Custombox.open({
-            target:'./html/change_password.html',
+            target:'#cgPwd',
             effect:'fadein',
        	});
 	}
 	
 	$scope.logoutDialog = function(){
 		Custombox.open({
-            target:'./html/logout.html',
+            target:'#logout',
             effect:'fadein',
        	});
 	}
