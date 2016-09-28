@@ -41,8 +41,7 @@ function draw(data){
 
 	var diagonal = d3.svg.diagonal.radial()		//	foot point generator
 	.projection(function(d) { return [d.y, (d.x / 180 * Math.PI)]; });
-
-	roots = init(graph);		//	init network and just show nodes whose depth is 0 and 1
+	roots = init(data);		//	init network and just show nodes whose depth is 0 and 1
 	redraw(roots);				//	start to show network graph
 
 	function redraw(source){			//redraw network graph
@@ -51,6 +50,8 @@ function draw(data){
 		*/
 		var nodes = tree.nodes(roots);
 		var links = tree.links(nodes);
+		console.log(nodes);
+		console.log(links);
 
 		//	renew axis_y of point
 		nodes.forEach(function(d) { d.y = d.depth * 180; });
@@ -97,6 +98,7 @@ function draw(data){
 		//	handle exit part
 		linkExit.attr("d", function(d) {
        				var o = {x: source.x, y: source.y};
+       				console.log(o);
 			        return diagonal({source: o, target: o});
 			     }).remove();
 

@@ -13,6 +13,7 @@ class User(models.Model):
 		return self.name
 
 	class Meta:
+		managed = False
 		db_table = 'bio_user'
 
 class Token(models.Model):
@@ -25,4 +26,5 @@ class Token(models.Model):
 		return self.token
 
 	class Meta:
+		managed = False
 		db_table = 'bio_usersafety'

@@ -43,9 +43,9 @@
 						        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 								    <div class="panel-body">
 								    	<p>name: &nbsp;<b>{{gene_name}}</b></p>
-								        <p>introduction：&nbsp;<b>{{gene_introduction_text}}</b>
+								        <p>introduction：&nbsp;<b>{{gene_definition}}</b>
 								        </p>
-								        <p>production: &nbsp;<b>{{production_text}}</b></p>
+								        <p>more: &nbsp;<b><a href={{gene_url}}>{{gene_url}}</a></b></p>
 								    </div>
 								</div>
 							</div>	                        
@@ -67,30 +67,33 @@
 
 				<div class="content_wrapper">
 					<div class="tab_content">
-						<a href=".">paper-links</a>
+						<b>paper_link:</b>
+						<a href={{paper_link1}}>{{paper_title1}}</a>
 						<h3> 
 							<b>keywords:</b>
-							<b ng-repeat="keyword in keyword1">{{keyword}}</b>
+							<b>{{keyword1}}</b>
 						</h3>
 						<b>abstract:</b>
 						<p>{{abstract_text1}}</p>
 					</div>
 
 					<div class="tab_content">
-						<a href=".">paper-links</a>
+						<b>paper_link:</b> 
+						<a href={{paper_link2}}>{{paper_title2}}</a>
 						<h3> 
 							<b>keywords:</b>
-							<b ng-repeat="keyword in keyword2">{{keyword}}</b>
+							<b>{{keyword2}}</b>
 						</h3>
 						<b>abstract:</b>
 						<p>{{abstract_text2}}</p>
 					</div>
 
 					<div class="tab_content">
-						<a href=".">paper-links</a>
+						<b>paper_link:</b> 
+						<a href={{paper_link3}}>{{paper_title3}}</a>
 						<h3> 
 							<b>keywords:</b>
-							<b ng-repeat="keyword in keyword3">{{keyword}}</b>
+							<b>{{keyword3}}</b>
 						</h3>
 						<b>abstract:</b>
 						<p>{{abstract_text3}}</p>

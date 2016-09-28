@@ -17,7 +17,7 @@ lr.controller("loginCtrl",function($scope,$http,$mdToast){
 				sessionStorage.setItem('login',JSON.stringify(data.data.token));
 				window.location.href = "../project_page/project_page.html";
 			} else{
-				showToast($mdToast,"Something strange,please TRY AGAIN!");
+				showToast($mdToast,data.error.msg);
 			}
 		});
 	};

@@ -75,17 +75,17 @@
                         </li>
                         <li ng-repeat="project in project_info">
                             <a>
-                                {{project.name}}
+                                <span>{{project.name}}</span>
+                                <div class="btn-edit" ng-hide="!isEdit">
+                                    <button class="btn btn-default" aria-label="show-new-device" ng-click="showNewDeviceDialog(project.id)">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-danger" aria-label="delete-project">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                                 <span class="fa arrow" ng-hide="project.devices.length == 0"></span>
                             </a>
-                            <div ng-hide="!isEdit">
-                                <button class="btn btn-default" aria-label="show-new-device">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>
-                                <button class="btn btn-danger" aria-label="delete-project">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                            </div>
                             <ul class="nav nav-second-level">
                                 <li ng-repeat="device in project.devices">
                                     <a ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">{{device.chain_name}}</a>
@@ -132,7 +132,7 @@
 					<div class="form-group">
 						<label for="track" class="col-xs-2 control-label">Track</label>
 						<div class="col-xs-10">
-							<select id="track" class="selectpicker" data-live-search="true" title="Please select a lunch ...">
+							<select id="track" class="form-control" title="Please select a track ..." ng-model="new_project_track">
 								<option ng-repeat="track in tracks">{{track.track_name}}</option>
 							</select>
 						</div>
@@ -141,7 +141,29 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" onclick="Custombox.close();">Cancel</button>
-				<button type="button" class="btn btn-primary">Confirm</button>
+				<button type="button" class="btn btn-primary" ng-click="create_project(new_project_name, new_project_track)">Confirm</button>
+			</div>
+		</div>
+		<!--new device modal-->
+        <div id="newDev" class="modal-demo">
+			<button type="button" class="close" onclick="Custombox.close();">
+				<span>×</span>
+				<span class="sr-only">Close</span>
+			</button>
+			<h4 class="title">New Device</h4>
+			<div class="text">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="device" class="col-xs-2 control-label">Device</label>
+						<div class="col-xs-10">
+							<input type="text" class="form-control" placeholder="device name" ng-model="new_device_name"/>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" onclick="Custombox.close();">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="create_device(new_device_name)">Confirm</button>
 			</div>
 		</div>
 		<!--log out modal-->
@@ -156,7 +178,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" onclick="Custombox.close();">Cancel</button>
-				<button type="button" class="btn btn-primary">Confirm</button>
+				<button type="button" class="btn btn-primary" ng-click="log_out()">Confirm</button>
 			</div>
 		</div>
 		<!--change password modal-->
@@ -190,7 +212,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" onclick="Custombox.close();">Cancel</button>
-				<button type="button" class="btn btn-primary">Confirm</button>
+				<button type="button" class="btn btn-primary" ng-click="change_password(old_password,new_password,re_password)">Confirm</button>
 			</div>
 		</div>
     </div>

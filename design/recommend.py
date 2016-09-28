@@ -6,6 +6,8 @@ implement recommend for parts
 
 from projectManage.models import Parts, Teams, Team_Parts
 from operator import itemgetter
+from bettwen_markov1 import *
+from before_markov1 import *
 import json
 import os.path
 import pickle
@@ -132,7 +134,7 @@ def toFrozenset(data):
         result.append(temp)
     return result
 
-def getBetweenMarkovRecommend(part_id):
+def getBetweenMarkovRecommend(part_id_one, part_id_two):
     """
     get recommendations with Markov algorithm
 
@@ -142,7 +144,38 @@ def getBetweenMarkovRecommend(part_id):
     @rytpe: dict
     """
     chains = list()
-    predictChains = predict(1, 5, part_id, loadA())
+    predictChains = bettwen_predict(1, 5, part_id_one, part_id_two, loadB())
+    print predictChains
+    if not predictChains:
+        return chains
+    for predictChain in predictChains:
+        chain = list()
+        for part in predictChain:
+            infos = getPartNameAndType(part)
+            if not infos[0]:
+                break
+            item = {
+                'part_id':part,
+                'part_name': infos[0],
+                'part_type' : infos[1]
+            }
+            chain.append(item)
+        chains.append(chain)
+    recommend_list = chains
+    return recommend_list
+
+def getBeforeMarkovRecommend(part_id):
+    """
+    get recommendations with Markov algorithm
+
+    @param part_id: part id
+    @type part_id: str
+    @return : recommendations
+    @rytpe: dict
+    """
+    chains = list()
+    predictChains = before_predict(4, 5, part_id, loadC())
+    print predictChains
     if not predictChains:
         return chains
     for predictChain in predictChains:
@@ -194,6 +227,16 @@ def loadA():
     tranFile = open(BASE+'/../tran.json', 'r')
     A = json.loads(tranFile.read())
     return A
+
+def loadB():
+    tranFile = open(BASE+'/../bettwen_matrix_0.json', 'r')
+    B = json.loads(tranFile.read())
+    return B
+
+def loadC():
+    tranFile = open(BASE+'/../before_matrix_0.json', 'r')
+    C = json.loads(tranFile.read())
+    return C
 
 def getPartNameAndType(part_id):
     try:

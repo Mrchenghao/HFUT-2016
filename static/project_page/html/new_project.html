@@ -19,7 +19,7 @@
 						<label for="track" class="col-xs-2 control-label">Track</label>
 						<div class="col-xs-5">
 							<select id="track" class="selectpicker" data-live-search="true" title="Please select a lunch ...">
-								<option ng-repeat="track in tracks">{{track.name}}</option>
+								<option ng-repeat="track in tracks">{{track.track_name}}</option>
 							</select>
 						</div>
 					</div>
@@ -35,4 +35,5 @@
 
 <script>
 	$('.selectpicker').selectpicker();
+	console.log(tracks);
 </script>

@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from projectManage.models import *
+from geneRelationship.models import Gene
 from system.fasta_reader import parse_fasta_str
 from elasticsearch import Elasticsearch
 import traceback
