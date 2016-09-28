@@ -33,4 +33,29 @@ class Paper_Gene(models.Model):
         return self.paper_id
 
     class Meta:
+        managed = False
         db_table = 'bio_paper_gene'
+
+class One_KeySentence(models.Model):
+    gene_name_one = models.CharField(max_length=64)
+    gene_name_two = models.CharField(max_length=64)
+    paper = models.ForeignKey(Paper_Gene)
+    sentence = models.TextField()
+
+    def __unicode__(self):
+        return self.gene_name_one
+
+    class Meta:
+        db_table = 'bio_one_keysentence'
+
+class Three_KeySentence(models.Model):
+    gene_name_one = models.CharField(max_length=64)
+    gene_name_two = models.CharField(max_length=64)
+    paper = models.ForeignKey(Paper_Gene)
+    sentence = models.TextField()
+
+    def __unicode__(self):
+        return self.gene_name_one
+
+    class Meta:
+        db_table = 'bio_three_keysentence'

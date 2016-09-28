@@ -75,17 +75,17 @@
                         </li>
                         <li ng-repeat="project in project_info">
                             <a>
-                                {{project.name}}
+                                <span>{{project.name}}</span>
+                                <div class="btn-edit" ng-hide="!isEdit">
+                                    <button class="btn btn-default" aria-label="show-new-device">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-danger" aria-label="delete-project">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                                 <span class="fa arrow" ng-hide="project.devices.length == 0"></span>
                             </a>
-                            <div ng-hide="!isEdit">
-                                <button class="btn btn-default" aria-label="show-new-device">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>
-                                <button class="btn btn-danger" aria-label="delete-project">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                            </div>
                             <ul class="nav nav-second-level">
                                 <li ng-repeat="device in project.devices">
                                     <a ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">{{device.chain_name}}</a>
@@ -114,7 +114,38 @@
                 </div>
             </div>
         </div>
+        <!--new project modal-->
+        <div id="newPro" class="modal-demo">
+			<button type="button" class="close" onclick="Custombox.close();">
+				<span>×</span>
+				<span class="sr-only">Close</span>
+			</button>
+			<h4 class="title">New Project</h4>
+			<div class="text">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="project" class="col-xs-2 control-label">Project</label>
+						<div class="col-xs-10">
+							<input type="text" class="form-control" placeholder="project name" ng-model="new_project_name"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="track" class="col-xs-2 control-label">Track</label>
+						<div class="col-xs-10">
+							<select id="track" class="form-control" title="Please select a lunch ...">
+								<option ng-repeat="track in tracks">{{track.track_name}}</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" onclick="Custombox.close();">Cancel</button>
+				<button type="button" class="btn btn-primary">Confirm</button>
+			</div>
+		</div>
     </div>
+    
 
     <script src="../public/analytics/analytics.js"></script>
     <script src="../public/angular/angular.js"></script>
@@ -129,7 +160,6 @@
     <script src="../public/metisMenu/dist/metisMenu.min.js"></script>
     <script src="./js/sb-admin-2.js"></script>
     <script src="./js/project_page.js"></script>
-    <script src="./js/project_modal.js"></script>
     <script src="../public/custombox/dist/legacy.min.js"></script>
     <script src="../public/custombox/dist/custombox.min.js"></script>
 </body>

@@ -1,29 +1,6 @@
 var bio_pro = angular.module('projectApp', ['ngMaterial','ngAnimate']);
 
-bio_pro.factory('newProFac',function($rootScope){
-	var newProFac = {};
-	newProFac.tracks = [];
-	
-	newProFac.prepForBroadcast = function(t){
-		this.tracks = t;
-		this.broadcastItem();
-	}
-	
-	newProFac.broadcastItem = function(){
-		$rootScope.$broadcast('handleBroadcast');
-	};
-	
-	return newProFac;
-});
-
-bio_pro.controller('newProController', function($scope, newProFac){
-	
-	$scope.$on('handleBroadcast',function(){
-		newProFac.tracks = $scope.tracks;
-	});
-});
-
-bio_pro.controller('projectController', function($scope, newProFac, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
+bio_pro.controller('projectController', function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
 	$scope.project_info = [];//项目列表
 	$scope.isEdit = false;//默认编辑状态为未编辑
 //	$scope.isChosen = false;//默认未选中
@@ -34,11 +11,7 @@ bio_pro.controller('projectController', function($scope, newProFac, $http, $loca
 	$scope.new_project_track = "";
 	$scope.new_project_name = "";
 	$scope.tracks = [];
-	
-	$scope.$on('handleBroadcast',function(){
-		$scope.tracks = newProFac.tracks;
-	});
-	
+
 	//反转分支的显示状态
 	// $scope.toggle_device = function(index){
 	// 	$scope.addr = $scope.project_info[index].name;
@@ -139,16 +112,22 @@ bio_pro.controller('projectController', function($scope, newProFac, $http, $loca
   	// $scope.openLeftMenu = function() {
    //  	$mdSidenav('left').toggle();
   	// };
-
 	$scope.showNewProjectDialog = function() {
 		Custombox.open({
-            target:'./html/new_project.html',
+            target:'#newPro',
             effect:'fadein',
        	});
-        
+       	$('.selectpicker').selectpicker();
 		$http.get('/home/getTracks').success(function(data){
 			if (data.successful) {
-				$scope.tracks = data.data;
+				var tracks = data.data;
+				$scope.tracks = [];
+				for (var i = 0;i < tracks.length;i++) {
+					$scope.tracks.push({
+						track_name:tracks[i].track_name,
+						track_id:tracks[i].track_id,
+					});
+				}
 				console.log($scope.tracks);
 			}
 		});
