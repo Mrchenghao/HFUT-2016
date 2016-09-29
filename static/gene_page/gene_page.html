@@ -1,99 +1,158 @@
 <!DOCTYPE html>
-<html ng-app="gene-app">
+<html lang="en" ng-app="geneApp">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="initial-scale=1">
-	<title>BioDesigner|Gene</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BioDesigner|Gene</title>
 	
-	<link rel="stylesheet" href="../public/angular-material/angular-material.css">
-    <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="css/docs.css">
-    <link rel="stylesheet" href="css/gene_page.css">
-    <link rel="stylesheet" href="css/tooltip.css">
-	
-	<!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="img/logo_black_small.png">
-</head>
-<body class="docs-body layout-row" layout="row" ng-controller="geneController">
-	<div id="edit-sidebar"  layout="row">
-		<!-- side bar -->
-	  	<md-sidenav md-component-id="left" tabindex="-1" class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print md-closed ng-isolate-scope md-locked-open" md-is-locked-open="$mdMedia('gt-sm')">
-	 		<header class="nav-header">
-		      	<a ng-href="#" class="docs-logo">
-		        	<img src="img/logo_white_mini.png">
-		        	<h1 class="docs-logotype md-heading">BioDesigner</h1>
-		      	</a>
-		    </header>
-            <md-list layout="row" layout-wrap layout-margin layout-align="center">
-                <md-input-container class="ai-edit-search">
-                    <label>Search</label>
-                    <input type="text" ng-model="key_word" ng-keypress="gene_info_by_board($event,key_word)">
-                </md-input-container>
-                <md-button class="md-icon-button btn-search" ng-click="getGeneInfo(key_word)">
-                	<md-icon md-svg-src="img/search.svg" aria-label="search"></md-icon>
-                </md-button>
-            </md-list>
-            <md-list>
-		    	<md-list-item ng-repeat="gene in gene_info">
-					<span ng-click="visualGene(gene.name)">{{gene.name}}</span>
-					<md-divider></md-divider>
-				</md-list-item>
-	      	</md-list>
-	  	</md-sidenav>
-	</div>
-	<!-- 主窗口 -->
-  	<div id="edit-container" class="layout-column flex" layout="column" tabindex="-1" role="main">
-  		<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
-			<div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1">
-				<div layout="row" flex class="fill-height layout-row flex">
-					<md-button class="md-raised" ng-click="getRandomGene()">Random</md-button>
-				</div>
-				<span flex></span>
-                <div class="md-toolbar-item docs-tools layout-row" layout="row">
-                	<md-button class="md-raised md-accent ai-gr" aria-label="Project" ng-click="jumpToProject()">Project</md-button>
-                	<md-button class="md-raised md-accent ai-gr" aria-label="Gene" ng-click="jumpToGene()">Gene Relationship</md-button>
-			      	<md-button class="md-raised md-accent ai-sr" aria-label="System" ng-click="jumpToSystem()">System</md-button>
-			       	<md-menu md-position-mode="target-right target" >
-			          	<md-button aria-label="menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-			            	<md-icon md-menu-origin md-svg-icon="img/account.svg"></md-icon>
-			          	</md-button>
-			          	<md-menu-content width="2">
-			            	<md-menu-item>
-			              		<md-button ng-click="showChangePasswordDialog($event)">
-			                  		<div layout="row" flex>
-			                    		<p flex>Change Password</p>
-			                  		</div>
-			              		</md-button>
-			            	</md-menu-item>
-			            	<md-menu-item>
-			              		<md-button ng-click="showLogOutDialog($event)">
-			                  		<div layout="row" flex>
-			                    		<p flex>LogOut</p>
-			                  		</div>
-			              		</md-button>
-			            	</md-menu-item>
-			          	</md-menu-content>
-			        </md-menu>
+	<link href="../public/custombox/dist/custombox.min.css" rel="stylesheet">
+    <link href="../public/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../public/angular-material/angular-material.css" rel="stylesheet">
+    <link href="./css/gene.css" rel="stylesheet"></head>
+    <link href="./css/sb-admin-2.css" rel="stylesheet">
+<body ng-controller="geneController">
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">BioDesigner Coral</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <button class="btn btn-primary" ng-click="getRandomGene()">Random</button>
+                </li>
+                <li>
+                    <button class="btn btn-success" ng-click="jumpToProject()">Project</button>
+                </li>
+                <li>
+                    <button class="btn btn-warning" ng-click="jumpToGene()">Gene Relationship</button>
+                </li>
+                <li>
+                    <button class="btn btn-danger" ng-click="jumpToSystem()">System</button>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#" ng-click="changePasswordDialog()">
+                                <i class="fa fa-gear fa-fw"></i>
+                                ChangePassword
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" ng-click="logoutDialog()">
+                                <i class="fa fa-sign-out fa-fw"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="gene_info_by_board($event,key_word)">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" ng-click="getGeneInfo(key_word)">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </li>
+                        <!-- search result -->
+                        <li ng-repeat="gene in gene_info">
+                            <a ng-click="visualGene(gene.name)">
+                                <span>{{gene.name}}</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-			</div>
-  		</md-toolbar>
-  		<md-content id='wrap' class="layout-row flex" layout="row">
-			<div class='div_graph'></div>
-  		</md-content>
-  	</div>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <div class="row">
 
+            </div>
+        </div>
+    </div>
+    <!--log out modal-->
+    <div id="logout" class="modal-demo">
+		<button type="button" class="close" onclick="Custombox.close();">
+			<span>×</span>
+			<span class="sr-only">Close</span>
+		</button>
+		<h4 class="title">Log Out</h4>
+		<div class="text">
+			<h3>Are You Sure?</h3>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="Custombox.close();">Cancel</button>
+			<button type="button" class="btn btn-primary" ng-click="log_out()">Confirm</button>
+		</div>
+	</div>
+	<!--change password modal-->
+    <div id="cgPwd" class="modal-demo">
+		<button type="button" class="close" onclick="Custombox.close();">
+			<span>×</span>
+			<span class="sr-only">Close</span>
+		</button>
+		<h4 class="title">Change Password</h4>
+		<div class="text">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="old password" class="col-sm-2 control-label">Old Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" placeholder="old password" ng-model="old_password"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="new password" class="col-sm-2 control-label">New Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="col-sm-10 form-control" placeholder="new password" ng-model="new_password"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="confirm password" class="col-sm-2 control-label">Confirm Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="col-sm-10 form-control" placeholder="confirm password" ng-model="re_password"/>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" onclick="Custombox.close();">Cancel</button>
+			<button type="button" class="btn btn-primary" ng-click="change_password(old_password,new_password,re_password)">Confirm</button>
+		</div>
+	</div>
+
+ 	<script src="../public/custombox/dist/legacy.min.js"></script>
+    <script src="../public/custombox/dist/custombox.min.js"></script> 
     <script src="../public/analytics/analytics.js"></script>
-    <script src="../public/jquery/dist/jquery.js"></script>
-	<script src="../public/bootstrap/dist/js/bootstrap.js"></script>
-  	<script src="../public/angular/angular.js"></script>
-  	<script src="../public/angular-animate/angular-animate.js"></script>
-  	<script src="../public/angular-route/angular-route.js"></script>
-  	<script src="../public/angular-aria/angular-aria.js"></script>
-  	<script src="../public/angular-messages/angular-messages.js"></script>
-  	<script src="../public/angular-material/angular-material.js"></script>
-  	<script src="../page2/plugin_Accordion/js/d3.min.js"></script>
-  	<script src="js/draw.js"></script>
-    <script src="js/gene_page.js"></script>
-    
+    <script src="../public/angular/angular.js"></script>
+    <script src="../public/angular-animate/angular-animate.js"></script>
+    <script src="../public/angular-route/angular-route.js"></script>
+    <script src="../public/angular-aria/angular-aria.js"></script>
+    <script src="../public/angular-messages/angular-messages.js"></script>
+    <script src="../public/angular-material/angular-material.js"></script>
+    <script src="../public/jquery/dist/jquery.min.js"></script>
+    <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../public/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="./js/sb-admin-2.js"></script>
+    <script src="./js/gene_page.js"></script>
+    <script src="./js/draw.js"></script>
 </body>
 </html>
