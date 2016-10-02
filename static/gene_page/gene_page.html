@@ -29,13 +29,10 @@
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <button class="btn btn-primary" ng-click="getRandomGene()">Random</button>
+                    <button class="btn btn-danger" ng-click="jumpToProject()">Project</button>
                 </li>
                 <li>
-                    <button class="btn btn-success" ng-click="jumpToProject()">Project</button>
-                </li>
-                <li>
-                    <button class="btn btn-warning" ng-click="jumpToGene()">Gene Relationship</button>
+                    <button class="btn btn-success" ng-click="jumpToGene()">Gene Relationship</button>
                 </li>
                 <li>
                     <button class="btn btn-danger" ng-click="jumpToSystem()">System</button>
@@ -60,19 +57,18 @@
                     </ul>
                 </li>
             </ul>
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="gene_info_by_board($event,key_word)">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button" ng-click="getGeneInfo(key_word)">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </li>
+            <form class="navbar-form navbar-left">
+            	<input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="gene_info_by_board($event,key_word)">
+                <button class="btn btn-default" type="button" ng-click="getGeneInfo(key_word)">
+                    <i class="fa fa-search"></i>
+                </button>
+                <button class="btn btn-primary" ng-click="getRandomGene()">Random</button>
+            </form>
+        </nav>
+        <div class="container-fluid">
+        	<div class="row">
+        		<div class="col-md-2 sidebar">
+        			<ul class="nav" id="side-menu">
                         <!-- search result -->
                         <li ng-repeat="gene in gene_info">
                             <a ng-click="visualGene(gene.name)">
@@ -80,13 +76,11 @@
                             </a>
                         </li>
                     </ul>
-                </div>
-            </div>
-        </nav>
-        <div id="page-wrapper">
-            <div class="row">
-
-            </div>
+        		</div>
+        		<div class="col-md-10 col-md-offset-2">
+        			<!--gene graph-->
+        		</div>
+        	</div>
         </div>
     </div>
     <!--log out modal-->
