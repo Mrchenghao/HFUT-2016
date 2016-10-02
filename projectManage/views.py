@@ -104,6 +104,8 @@ def createNewProject(request):
 		except:
 			raise myError('Please Log In.')
 		project_name = data['project_name']
+		if not project_name:
+			raise myError('Project_name can\'t be null.' )
 		track = Tracks.objects.filter(track=data['track']).first()
 		# function = Functions.objects.filter(function=data['function']),first()
 		project = Project()
