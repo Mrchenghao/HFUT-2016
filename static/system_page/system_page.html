@@ -28,7 +28,7 @@
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
-            	<li>
+            	<!--<li>
             		<md-chips ng-model="compound_tags">
 						<md-chip-template>
 					        <span>
@@ -36,13 +36,7 @@
 					        </span>
 				      	</md-chip-template>
 					</md-chips>
-            	</li>
-                <li>
-                    <button class="btn btn-success" ng-click="runCompoundTags()">Run</button>
-                </li>
-                <li>
-                    <button class="btn btn-success" ng-click="removeAllCompoundTags()">Remove All</button>
-                </li>
+            	</li>-->
                 <li>
                     <button class="btn btn-danger" ng-click="jumpToProject()">Project</button>
                 </li>
@@ -72,34 +66,16 @@
                     </ul>
                 </li>
             </ul>
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="compound_by_keyboard($event,key_word)">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button" ng-click="getCompoundResult(key_word)">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <!-- search result -->
-                        <li ng-repeat="compound in compound_info">
-                        	<button class="btn btn-default" ng-click="addCompoundTags(compound)">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </button>
-                            <a ng-click="getCompoundInfo(compound.id)">
-                                <span ng-click="getCompoundInfo(compound.id)">{{compound.name}}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <form class="navbar-form navbar-left">
+            	<input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="compound_by_keyboard($event,key_word)">
+            	<button class="btn btn-default" type="button" ng-click="getCompoundResult(key_word)">
+	                <i class="fa fa-search"></i>
+	            </button>
+	            <button class="btn btn-success" ng-click="runCompoundTags()">Run</button>
+	            <button class="btn btn-danger" ng-click="removeAllCompoundTags()">Remove All</button>
+            </form>
         </nav>
-        <div id="page-wrapper">
+        <!--<div id="page-wrapper">
             <div class="row">
                 <div class="row col-xs-9">
                 
@@ -132,6 +108,28 @@
                     </div>
                 </div>
             </div>
+        </div>-->
+        <div class="container-fluid">
+        	<div class="row">
+        		<div class="col-md-2 sidebar">
+        			<ul class="nav" id="side-menu">
+	        			<li ng-repeat="compound in compound_info">
+		                    <a ng-click="getCompoundInfo(compound.id)">
+		                        <button class="btn btn-default" ng-click="addCompoundTags(compound)">
+			                        <i class="fa fa-plus" aria-hidden="true"></i>
+			                    </button>
+			                    <span ng-click="getCompoundInfo(compound.id)">{{compound.name}}</span>
+		                    </a>
+		           		</li>
+        			</ul>
+        		</div>
+        		<div class="col-md-8 col-md-offset-2">
+        			
+        		</div>
+        		<div class="col-md-2">
+        			
+        		</div>
+        	</div>
         </div>
     </div>
     
