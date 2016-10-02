@@ -1,9 +1,24 @@
-#right-side-bar{
+.right-side-bar{
+	position: static;
 	right:0px;
 	padding-right:0;
 }
+.sidebar{
+	position: fixed;
+	top: 0px;
+	bottom: 0;
+	display: block;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: #f8f8f8;
+}
+.nav-sidebar{
+	margin-right: -21px;
+	margin-bottom: 20px;
+	margin-left: -20px;
+}
 @media(min-width:768px) {
-	#right-side-bar{
+	.right-side-bar{
 		right:-15px;
 		padding-right:0;
 	}
