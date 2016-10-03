@@ -1,0 +1,33 @@
+<script type="text/ng-template" id="list.html">
+    <ul dnd-list="list">
+        <li ng-repeat="item in list"
+            dnd-draggable="item"
+            dnd-effect-allowed="copyMove"
+            dnd-moved="list.splice($index, 1)"
+            dnd-selected="models.selected = item"
+            ng-class="{selected: models.selected === item}"
+            ng-include="'item.html'">
+        </li>
+    </ul>
+</script>
+
+<script type="text/ng-template" id="item.html">
+    <div>Item {{item.id}}</div>
+</script>
+
+<div>
+    <div ng-repeat="(zone, list) in models.dropzones">
+        <div>
+            <!-- The dropzone also uses the list template -->
+            <h3>Dropzone {{zone}}</h3>
+            <div ng-include="'list.html'"></div>
+        </div>
+    </div>
+    <div class="trashcan">
+        <!-- If you use [] as referenced list, the dropped elements will be lost -->
+        <h3>Trashcan</h3>
+        <ul dnd-list="[]">
+            <li><img src="img/trashcan.jpg"></li>
+        </ul>
+    </div>
+</div>
