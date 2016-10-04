@@ -88,7 +88,10 @@ function draw(data){
 				})
 				.on("mouseout",function(d){
 					tooltip.style("opacity",0.0);
-				});
+				})
+				.on("click",function(d){
+					jumpToRD(d);
+				})
 			      		      
 
 		//	handle update part
@@ -220,5 +223,10 @@ function draw(data){
 		sessionStorage.setItem("gene_name",d.name);
 		window.location.href='../page2/page2.html';
 	}
-
+	
+	function jumpToRD(d){
+		sessionStorage.setItem("source_name",d.source.name);
+		sessionStorage.setItem("target_name",d.target.name);
+		window.location.href='../relationship_detail/relationship_detail.html';
+	}
 }

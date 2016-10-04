@@ -3,8 +3,8 @@ var bio_pro = angular.module('relationshipDetailApp', ['ngMaterial','ngAnimate']
 bio_pro.controller('relationshipDetailController', function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
 	
 	$scope.relate_detail_info = [];
-	$scope.name1 = "";
-	$scope.name2 = "";
+	$scope.source_name = "";
+	$scope.target_name = "";
 	$scope.num = 0;
 	
 	//修改密码模态框
@@ -86,16 +86,16 @@ bio_pro.controller('relationshipDetailController', function($scope, $http, $loca
   	}
 	
 	$scope.init = function(){
-		var name1 = sessionStorage.getItem("name1");
-		var name2 = sessionStorage.getItem("name2");
+		var source_name = sessionStorage.getItem("source_name");
+		var target_name = sessionStorage.getItem("target_name");
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
 			url: '/geneRelationship/getGeneInfo',
 			method: 'POST',
 			data: {
 				token: login_token,
-				name1: name1,
-				name2: name2,
+				source_name: source_name,
+				target_name: target_name,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
