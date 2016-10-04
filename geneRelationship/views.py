@@ -231,8 +231,8 @@ def getOneSentence(request):
 			user = token.user
 		except:
 			raise myError('Please Log In.')
-		gene_name_one = data['gene_name_one']
-		gene_name_two = data['gene_name_two']
+		gene_name_one = data['source_name']
+		gene_name_two = data['target_name']
 		sentenceList = search_one_sentence(gene_name_one,gene_name_two)
 		result = {
 			'successful': True,
@@ -269,8 +269,8 @@ def getThreeSentences(request):
 			user = token.user
 		except:
 			raise myError('Please Log In.')
-		gene_name_one = data['gene_name_one']
-		gene_name_two = data['gene_name_two']
+		gene_name_one = data['source_name']
+		gene_name_two = data['target_name']
 		sentenceList = search_three_sentence(gene_name_one,gene_name_two)
 		result = {
 			'successful': True,

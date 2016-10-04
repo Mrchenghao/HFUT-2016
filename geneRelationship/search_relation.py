@@ -38,15 +38,18 @@ def search_papers(gene_name):
 def search_one_sentence(gene_name_one, gene_name_two):
 	one_keysentences = One_KeySentence.objects.filter(gene_name_one=gene_name_one, gene_name_two=gene_name_two)
 	sentenceList = []
+	sList = []
 	for sentence in one_keysentences:
-		sentenceList.append({
-			'sentence': sentence.sentence,
-			'paper_id': sentence.paper.paper_id,
-			'paper_title': sentence.paper.paper_title,
-			'paper_link': sentence.paper.paper_link,
-			'paper_keyword': sentence.paper.paper_keyword,
-			'paper_abstract': sentence.paper.paper_abstract[8:]
-			})
+		if sentence.sentence not in sList:
+			sList.append(sentence.sentence) 
+			sentenceList.append({
+				'sentence': sentence.sentence,
+				'paper_id': sentence.paper.paper_id,
+				'paper_title': sentence.paper.paper_title,
+				'paper_link': sentence.paper.paper_link,
+				'paper_keyword': sentence.paper.paper_keyword,
+				'paper_abstract': sentence.paper.paper_abstract[8:]
+				})
 	return sentenceList
 
 def search_three_sentence(gene_name_one, gene_name_two):

@@ -74,40 +74,6 @@
 	            <button class="btn btn-danger" ng-click="removeAllCompoundTags()">Remove All</button>
             </form>
         </nav>
-        <!--<div id="page-wrapper">
-            <div class="row">
-                <div class="row col-xs-9">
-                
-                </div>
-                <div class="col-xs-3 pull-right" id="right-side-bar">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Message</h3>
-                        </div>
-                        <div class="panel-body">
-                            <h3>Compound Id:{{compound_id}}</h3>
-                            <h3>Name:{{name}}</h3>
-                            <h3>Nick Names:{{nick_name}}</h3>
-                            <h3>Mol Weight:{{mol_weight}}</h3>
-                            <h3>Exact Mass:{{exact_mass}}</h3>
-                            <h3>Formula:{{formula}}</h3>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Gene Message</h3>
-                        </div>
-                        <div class="panel-body">
-                            <h3>Gene Id:{{gene_id}}</h3>
-                            <h3>Name:{{gene_name}}</h3>
-                            <h3>Definition:{{definition}}</h3>
-                            <h3>Organism Short:{{organism_short}}</h3>
-                            <h3>Organism:{{organism}}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
         <div class="container-fluid">
         	<div class="row">
         		<div class="col-md-2 sidebar">
@@ -126,7 +92,31 @@
         			
         		</div>
         		<div class="col-md-2">
-        			
+        			<div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Message</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4>Compound Id:{{compound_id}}</h4>
+                            <h4>Name:{{name}}</h4>
+                            <h4>Nick Names:{{nick_name}}</h4>
+                            <h4>Mol Weight:{{mol_weight}}</h4>
+                            <h4>Exact Mass:{{exact_mass}}</h4>
+                            <h4>Formula:{{formula}}</h4>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Gene Message</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4>Gene Id:{{gene_id}}</h4>
+                            <h4>Name:{{gene_name}}</h4>
+                            <h4>Definition:{{definition}}</h4>
+                            <h4>Organism Short:{{organism_short}}</h4>
+                            <h4>Organism:{{organism}}</h4>
+                        </div>
+                    </div>
         		</div>
         	</div>
         </div>
