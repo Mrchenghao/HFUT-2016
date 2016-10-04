@@ -5,7 +5,7 @@ from accounts.models import *
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from utils.functionTools.generalFunction import noneIfEmptyString,noneIfNoKey,myError
-from search_relation import search_relation, search_genes, search_papers
+from search_relation import search_relation, search_genes, search_papers, search_one_sentence, search_three_sentence
 from system.gene import get_gene_info
 import json
 import string
@@ -233,10 +233,48 @@ def getOneSentence(request):
 			raise myError('Please Log In.')
 		gene_name_one = data['gene_name_one']
 		gene_name_two = data['gene_name_two']
-		
+		sentenceList = search_one_sentence(gene_name_one,gene_name_two)
 		result = {
 			'successful': True,
-			'data': realated_paper_list,
+			'data': sentenceList,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')
+
+def getThreeSentences(request):
+	try:
+		data = json.loads(request.body)
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
+		gene_name_one = data['gene_name_one']
+		gene_name_two = data['gene_name_two']
+		sentenceList = search_three_sentence(gene_name_one,gene_name_two)
+		result = {
+			'successful': True,
+			'data': sentenceList,
 			'error': {
 				'id': '',
 				'msg': '',
