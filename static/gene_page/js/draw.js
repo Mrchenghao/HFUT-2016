@@ -31,9 +31,6 @@ function draw(data){
 				.append('svg')
 				.attr('width', width)
 				.attr('height', height)
-				.style({
-					'border':'1px solid #000'
-				})
 				.call(zoom);
 
 	var tree_network = svg.append('g')			//	network graph svg
