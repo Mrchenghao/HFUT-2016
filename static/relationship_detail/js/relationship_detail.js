@@ -103,8 +103,18 @@ bio_pro.controller('relationshipDetailController', function($scope, $http, $loca
 			if(data.successful){
 				$scope.source_name = source_name;
 				$scope.target_name = target_name;
-				$scope.relate_detail_info = data.data;
-				console.log($scope.relate_detail_info);
+				data.data.forEach(function(r, index) {
+					$scope.relate_detail_info.push({
+						index: index,
+						paper: r.paper,
+						sentence: r.sentence,
+						paper_id: r.paper_id,
+						paper_title: r.paper_title,
+						paper_link: r.paper_link,
+						paper_keyword: r.paper_keyword,
+						paper_abstract: r.paper_abstract,
+					})
+				});
 				$scope.num = data.data.length;
 			}
 		});
