@@ -222,3 +222,41 @@ def getRelatedPaper(request):
 		}
 	finally:
 		return HttpResponse(json.dumps(result), content_type='application/json')
+
+def getOneSentence(request):
+	try:
+		data = json.loads(request.body)
+		try:
+			token = Token.objects.filter(token=data['token']).first()
+			user = token.user
+		except:
+			raise myError('Please Log In.')
+		gene_name_one = data['gene_name_one']
+		gene_name_two = data['gene_name_two']
+		
+		result = {
+			'successful': True,
+			'data': realated_paper_list,
+			'error': {
+				'id': '',
+				'msg': '',
+			},
+		}
+	except myError, e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '3',
+				'msg': e.value,
+			}
+		}
+	except Exception,e:
+		result = {
+			'successful': False,
+			'error': {
+				'id': '1024',
+				'msg': e.args
+			}
+		}
+	finally:
+		return HttpResponse(json.dumps(result), content_type='application/json')

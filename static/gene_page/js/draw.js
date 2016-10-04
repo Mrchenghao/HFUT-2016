@@ -1,7 +1,7 @@
 function draw(data){
     $('.div_graph').empty();
     var width = $('.wrap').width(),
-        height = $('.wrap').height(),
+        height = 600,
         diameter = 140;
 		angle = 360;
 		color = d3.scale.category20(),

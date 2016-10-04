@@ -94,8 +94,8 @@ bio_pro.controller('relationshipDetailController', function($scope, $http, $loca
 			method: 'POST',
 			data: {
 				token: login_token,
-				name1: name1,
-				name2: name2,
+				gene_name_one: name1,
+				gene_name_two: name2,
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
