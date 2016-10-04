@@ -2,6 +2,11 @@ var bio_pro = angular.module('relationshipDetailApp', ['ngMaterial','ngAnimate']
 
 bio_pro.controller('relationshipDetailController', function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
 	
+	$scope.relate_detail_info = [];
+	$scope.name1 = "";
+	$scope.name2 = "";
+	$scope.num = 0;
+	
 	//修改密码模态框
 	$scope.changePasswordDialog = function(){
 		Custombox.open({
@@ -78,12 +83,36 @@ bio_pro.controller('relationshipDetailController', function($scope, $http, $loca
 	
 	$scope.jumpToProject = function(){
   		window.location.href = "../project_page/project_page.html";
-  }
+  	}
+	
+	$scope.init = function(){
+		var name1 = sessionStorage.getItem("name1");
+		var name2 = sessionStorage.getItem("name2");
+		var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var opt = {
+			url: '/geneRelationship/getGeneInfo',
+			method: 'POST',
+			data: {
+				token: login_token,
+				name1: name1,
+				name2: name2,
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
+				$scope.relate_detail_info = data.data;
+				$scope.num = data.data.length;
+			}
+		});
+	}
+	
+	$scope.init();
 });
 
 var last = {
-	bottom: false,
-	top: true,
+	bottom: true,
+	top: false,
 	left: false,
 	right: true
 };
