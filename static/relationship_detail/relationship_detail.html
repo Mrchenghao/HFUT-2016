@@ -64,7 +64,7 @@
 	                    </div>
 	                    <div class="panel-body">
 	                        <h3>Relation</h3>
-	                        <h4>{{source_name}}~{{target_name}}</h4>
+	                        <h4>{{source_name}}&&{{target_name}}</h4>
 	                        <hr/>
 	                        <h3>Papers</h3>
 	                        <h4>total:{{num}}</h4>
@@ -78,12 +78,15 @@
                     <div class="panel panel-default" ng-repeat="r in relate_detail_info">
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{r.name}}</a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{r.paper_title}}</a>
                             </h4>
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="panel-body" ng-repeat="key in r.abstract">
-                            	{{key.name}}
+                            <div class="panel-body">
+                            	{{r.sentence}}
+                            </div>
+                            <div class="panel-body">
+                                <a ng-href="{{r.paper_link}}">see the whole paper ^_^</a>
                             </div>
                         </div>
                     </div>

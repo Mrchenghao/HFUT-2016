@@ -90,7 +90,7 @@ bio_pro.controller('relationshipDetailController', function($scope, $http, $loca
 		var target_name = sessionStorage.getItem("target_name");
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
-			url: '/geneRelationship/getGeneInfo',
+			url: '/geneRelationship/getOneSentence',
 			method: 'POST',
 			data: {
 				token: login_token,
@@ -101,7 +101,10 @@ bio_pro.controller('relationshipDetailController', function($scope, $http, $loca
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
+				$scope.source_name = source_name;
+				$scope.target_name = target_name;
 				$scope.relate_detail_info = data.data;
+				console.log($scope.relate_detail_info);
 				$scope.num = data.data.length;
 			}
 		});
