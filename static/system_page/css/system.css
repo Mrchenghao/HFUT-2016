@@ -50,3 +50,7 @@
 .btn-edit{
     float: right;
 }
+.ms{
+	word-wrap:break-word;
+	word-break:break-all;
+}
