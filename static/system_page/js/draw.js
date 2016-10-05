@@ -121,7 +121,7 @@ function draw(dataset){
                     d.y = d.y + rad + text_dy > h ? h - rad - text_dy : d.y ;
                 });
                 edges.attr("x1", function(d) { return d.source.x; })
-                    .attr("y1", function(d) { return d.source.y; })
+                	.attr("y1", function(d) { return d.source.y; })
                     .attr("x2", function(d) { return d.target.x; })
                     .attr("y2", function(d) { return d.target.y; });
                 nodes.attr("cx", function(d) { return d.x; })

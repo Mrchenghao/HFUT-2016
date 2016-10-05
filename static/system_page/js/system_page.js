@@ -4,8 +4,8 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 	
 	$scope.compound_info = [];//侧边栏数据
 	$scope.compound_tags = [];//导航栏数据
-//	$scope.message_show = false;//默认侧边栏信息显示
-//	$scope.gene_message_show = true;//基因信息不显示
+	$scope.message_show = false;//默认侧边栏信息显示
+	$scope.gene_message_show = true;//基因信息不显示
 	
 	$scope.jumpToSystem = function(){
   		window.location.href = "../system_page/system_page.html";
@@ -167,8 +167,9 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 	}
 	
 	$scope.addCompoundTags = function(compound){
-		if($scope.compound_tags.indexOf(compound) == -1)
+		if($scope.compound_tags.indexOf(compound) == -1){
 			$scope.compound_tags.push(compound);
+		}
 	}
 	
 	$scope.removeAllCompoundTags = function(){
