@@ -1,4 +1,4 @@
-var system = angular.module('systemApp',['ngMaterial','ngAnimate']);
+var system = angular.module('systemApp',['ngMaterial','ngAnimate','ngTagsInput']);
 
 system.controller('systemController',function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast){
 	
