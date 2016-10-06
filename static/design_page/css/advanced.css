@@ -65,7 +65,7 @@
 /***************************** Element type specific styles *****************************/
 
 .advancedDemo .dropzone .itemlist {
-    min-height: 120px !important;
+    /*min-height: 120px !important;*/
 }
 
 .itemlist > li {
