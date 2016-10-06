@@ -41,7 +41,6 @@ class One_KeySentence(models.Model):
     gene_name_two = models.CharField(max_length=64)
     paper = models.ForeignKey(Paper_Gene)
     sentence = models.TextField()
-    paper_class = models.IntegerField(default=None)
 
     def __unicode__(self):
         return self.gene_name_one
