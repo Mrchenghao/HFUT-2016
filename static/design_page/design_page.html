@@ -74,7 +74,8 @@
                             dnd-effect-allowed="copyMove"
                             dnd-selected="list.selected = item"
                             ng-class="{selected: list.selected === item}">
-                            	Item {{item.id}}
+                            	<img ng-src="{{item.img}}" alt="gene_img">
+								{{item.name}}
                         </li>
                     </ul>
         		</div>
@@ -176,6 +177,5 @@
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./js/design_page.js"></script>
     <script src="./js/angular-drag-and-drop-lists.js"></script>
-    <!--<script src="./js/dragDemo.js"></script>-->
 </body>
 </html>
