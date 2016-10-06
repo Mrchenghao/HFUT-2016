@@ -1,6 +1,6 @@
 function draw(data){		
-		var width = 640;
-		var height = 330; 
+		var width = 250;
+		var height = 250; 
 		var color = d3.scale.category20();
 		var tree = d3.layout.tree();
 
