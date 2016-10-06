@@ -221,7 +221,7 @@ function draw(data){
 
 	function jumpTo(d){
 		sessionStorage.setItem("gene_name",d.name);
-		window.location.href='../page2/page2.html';
+		window.location.href='../gene_info/gene_info.html';
 	}
 	
 	function jumpToRD(d){
