@@ -1,4 +1,4 @@
-var system = angular.module('systemApp',['ngMaterial','ngAnimate']);
+var system = angular.module('systemApp',['ngMaterial','ngAnimate','ngTagsInput']);
 
 system.controller('systemController',function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast){
 	
@@ -6,6 +6,13 @@ system.controller('systemController',function($scope, $http, $location, $mdSiden
 	$scope.compound_tags = [];//导航栏数据
 	$scope.message_show = false;//默认侧边栏信息显示
 	$scope.gene_message_show = true;//基因信息不显示
+	
+    $scope.tags = [
+	    { text: 'just' },
+	    { text: 'some' },
+	    { text: 'cool' },
+	    { text: 'tags' }
+	];
 	
 	$scope.jumpToSystem = function(){
   		window.location.href = "../system_page/system_page.html";

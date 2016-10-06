@@ -8,10 +8,12 @@
 
     <link href="../public/custombox/dist/custombox.min.css" rel="stylesheet"> 
     <link href="../public/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/sb-admin-2.css" rel="stylesheet">
-    <link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../public/angular-material/angular-material.css" rel="stylesheet">
-    <link href="./css/system.css" rel="stylesheet"></head>
+    <link href="../public/ng-tags-input.min/ng-tags-input.min.css" rel="stylesheet">
+    <link href="./css/sb-admin-2.css" rel="stylesheet">   
+    <link href="./css/system.css" rel="stylesheet">
+	<link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
 <body>
     <div id="wrapper" ng-controller="systemController">
         <!-- Navigation -->
@@ -27,15 +29,6 @@
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
-            	<!--<li>
-            		<md-chips ng-model="compound_tags">
-						<md-chip-template>
-					        <span>
-					          	<strong>{{$chip.name}}</strong>
-					        </span>
-				      	</md-chip-template>
-					</md-chips>
-            	</li>-->
                 <li>
                     <button class="btn btn-danger" ng-click="jumpToProject()">Project</button>
                 </li>
@@ -72,6 +65,7 @@
 	            </button>
 	            <button class="btn btn-success" ng-click="runCompoundTags()">Run</button>
 	            <button class="btn btn-danger" ng-click="removeAllCompoundTags()">Remove All</button>
+	            <!--<tags-input ng-model="tags"></tags-input>-->
             </form>
         </nav>
         <div class="container-fluid">
@@ -185,7 +179,7 @@
     <script src="../public/angular-messages/angular-messages.js"></script>
     <script src="../public/angular-material/angular-material.js"></script>
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../public/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="../public/ng-tags-input.min/ng-tags-input.min.js"></script>
     <script src="./js/sb-admin-2.js"></script>
     <script src="../public/d3/d3.min.js"></script>
     <script src="./js/system_page.js"></script>
