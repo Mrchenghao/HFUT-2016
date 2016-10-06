@@ -127,7 +127,6 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
 		$http(opt).success(function(data){
 			if(data.successful){
 				draw(data.data);
-				console.log('hahaha');
 			}
 		});
 	}

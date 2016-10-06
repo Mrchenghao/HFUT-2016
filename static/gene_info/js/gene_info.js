@@ -127,6 +127,21 @@ gi.controller('geneInfoController',function($scope, $http){
 				});
 			}
 		});
+		
+		var opt = {
+			url: '/geneRelationship/getRelatedGene',
+			method: 'POST',
+			data: {
+				token: login_token,
+				gene_name: gene_name,
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+		$http(opt).success(function(data){
+			if(data.successful){
+				draw(data.data);
+			}
+		});
 	}
 	
 	$scope.init();
