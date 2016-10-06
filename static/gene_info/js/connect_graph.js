@@ -1,5 +1,5 @@
 function draw(data){		
-		var width = 260;
+		var width = 280;
 		var height = 250; 
 		var color = d3.scale.category20();
 		var tree = d3.layout.tree();
