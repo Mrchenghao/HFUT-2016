@@ -12,9 +12,9 @@ editPro.controller('designController', function($scope, $http, $mdToast) {
     $scope.float_right = false;
     $scope.float_left = true;
     
-    var watch = $scope.$watch($scope.chain_info, function(newValue, oldValue, scope){
-    	console.log(scope.newValue);
-    	console.log(scope.oldValue);
+    var watch = $scope.$watch('search_info', function(newValue, oldValue, scope){
+    	console.log(newValue);
+    	console.log(oldValue);
     });
     
     $scope.updateMiddleChain = function(newValue, oldValue){
