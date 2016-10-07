@@ -3,7 +3,7 @@ var editPro = angular.module('designApp', ['ngMaterial','ngAnimate','dndLists'])
 editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $http, $mdDialog, $mdToast) {
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
-    $scope.chain_new = [];
+//  $scope.chain_new = [];
     $scope.delete_gene = [];
     $scope.recommend_info = [];
     $scope.float_right = false;

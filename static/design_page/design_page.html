@@ -68,8 +68,8 @@
         <div class="container-fluid">
         	<div class="row">
         		<div class="col-md-2 sidebar">
-        			<ul class="nav nav-sidebar" dnd-list="list.A">
-                        <li ng-repeat="item in list.A"
+        			<ul class="nav nav-sidebar" dnd-list="search_info">
+                        <li ng-repeat="item in search_info"
                             dnd-draggable="item"
                             dnd-effect-allowed="copyMove"
                             dnd-selected="list.selected = item"
@@ -80,12 +80,12 @@
                     </ul>
         		</div>
         		<div class="col-md-8 col-md-offset-2 main">
-        			<ul class="row col-md-9 itemlist" dnd-list="list.B">
+        			<ul class="row col-md-9 itemlist" dnd-list="chain_info">
                         <li class="col-md-2"
-                        	ng-repeat="item in list.B"
+                        	ng-repeat="item in chain_info"
 	                        dnd-draggable="item"
 	                        dnd-effect-allowed="copyMove"
-	                        dnd-moved="list.B.splice($index, 1)"
+	                        dnd-moved="chain_info.splice($index, 1)"
 	                        dnd-selected="list.selected = item"
 	                        ng-class="{selected: list.selected === item}">
                             	Item {{item.id}}
