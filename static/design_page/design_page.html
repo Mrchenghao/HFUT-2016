@@ -59,7 +59,7 @@
                 </li>
             </ul>
 			<form class="navbar-form navbar-left">
-            	<input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="search_by_keyboard(key_word)">
+            	<input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="search_by_keyboard($event,key_word)">
             	<button class="btn btn-default" type="button" ng-click="getSearchResult(key_word)">
                     <i class="fa fa-search"></i>
                 </button>
@@ -79,8 +79,8 @@
                         </li>
                     </ul>
         		</div>
-        		<div class="col-md-8 col-md-offset-2 main">
-        			<ul class="row col-md-9 itemlist" dnd-list="chain_info">
+        		<div class="col-md-8 col-md-offset-2">
+        			<ul class="itemlist" dnd-list="chain_info">
                         <li class="col-md-2"
                         	ng-repeat="item in chain_info"
 	                        dnd-draggable="item"
@@ -88,9 +88,18 @@
 	                        dnd-moved="chain_info.splice($index, 1)"
 	                        dnd-selected="list.selected = item"
 	                        ng-class="{selected: list.selected === item}">
-                            	Item {{item.id}}
+	                        	<img ng-src="{{item.img}}" alt="gene_img">
+                            	{{item.name}}
                         </li>
                     </ul>
+                    <div class="row col-md-12 bottombar">
+                    	<div class="col-md-8">
+                    		ads
+                    	</div>
+                    	<div class="col-md-4">
+                    		<img src="./img/trashcan.jpg" style="height: 33.3%;width: 33.3%;"/>
+                    	</div>
+                    </div>
         		</div>
         		<div class="col-md-2">
         			<div class="panel panel-default">

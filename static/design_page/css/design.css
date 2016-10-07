@@ -50,3 +50,13 @@
 .btn-edit{
     float: right;
 }
+.bottombar{
+	padding: 0;
+	position: fixed;
+	top: 68%;
+	bottom: 0;
+	display: block;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: #f8f8f8;
+}

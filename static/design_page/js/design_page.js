@@ -1,32 +1,103 @@
 var editPro = angular.module('designApp', ['ngMaterial','ngAnimate','dndLists']);
 
-editPro.controller('designController', function($scope, $mdSidenav, $mdMedia, $http, $mdDialog, $mdToast) {
-	$scope.search_info = [];//搜索结果
-	$scope.chain_info = [];//用户编辑的基因链
+editPro.controller('designController', function($scope, $http, $mdToast) {
+	$scope.search_info = [{img: '../img/DNA.png',name: '123'},{img: '../img/Device.png',name: '6666'}];//搜索结果
+	$scope.chain_info = [{img: '../img/DNA.png',name: '123'},{img: '../img/DNA.png',name: '123'},{img: '../img/DNA.png',name: '123'},
+	{img: '../img/DNA.png',name: '123'},{img: '../img/DNA.png',name: '123'},
+	{img: '../img/DNA.png',name: '123'},{img: '../img/DNA.png',name: '123'}];//用户编辑的基因链
+	
 //  $scope.chain_new = [];
     $scope.delete_gene = [];
     $scope.recommend_info = [];
     $scope.float_right = false;
     $scope.float_left = true;
     
-    $scope.list = {
-        "A": $scope.search_info,
-        "B": [
-            {
-                "type": "item",
-                "id": 7
-            },
-            {
-                "type": "item",
-                "id": "8"
-            },
-            {
-                "type": "item",
-                "id": 16
-            }
-        ]
-    }
+    var watch = $scope.$watch($scope.chain_info, function(newValue, oldValue, scope){
+    	console.log(scope.newValue);
+    	console.log(scope.oldValue);
+    });
     
+    $scope.updateMiddleChain = function(newValue, oldValue){
+    	var login_token = JSON.parse(sessionStorage.getItem('login'));
+		var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
+		var project_id = JSON.parse(sessionStorage.getItem('project_id'));
+		var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
+        $scope.getMrkvChain(part_id);
+
+        for (var i = 0;i < $scope.chain_info.length;i++) {
+            if ((Math.floor(i / 5) + 1) % 2 == 0) {
+            	//偶数行
+                $scope.chain_info[i].float_right = true;
+                $scope.chain_info[i].float_left = false;
+                if ((i + 1) % 5 == 0) {
+                    //头
+                    $scope.chain_info[i].rb = true;
+                    $scope.chain_info[i].lt = false;
+                    $scope.chain_info[i].lb = false;
+                    $scope.chain_info[i].rt = false;
+                    $scope.chain_info[i].line = false;
+                } else if (i % 5 == 0) {
+                    //尾
+                    $scope.chain_info[i].rb = false;
+                    $scope.chain_info[i].lt = true;
+                    $scope.chain_info[i].lb = false;
+                    $scope.chain_info[i].rt = false;
+                    $scope.chain_info[i].line = false;
+                } else {
+                    //中间
+                    $scope.chain_info[i].rb = false;
+                    $scope.chain_info[i].lt = false;
+                    $scope.chain_info[i].lb = false;
+                    $scope.chain_info[i].rt = false;
+                    $scope.chain_info[i].line = true;
+                }
+            } else {
+                $scope.chain_info[i].float_right = false;
+                $scope.chain_info[i].float_left = true;
+                if ((i + 1) % 5 == 0) {
+                    //尾
+                    $scope.chain_info[i].rb = false;
+                    $scope.chain_info[i].lt = false;
+                    $scope.chain_info[i].lb = true;
+                    $scope.chain_info[i].rt = false;
+                    $scope.chain_info[i].line = false;
+                } else if (i % 5 == 0) {
+                    //头
+                    $scope.chain_info[i].rb = false;
+                    $scope.chain_info[i].lt = false;
+                    $scope.chain_info[i].lb = false;
+                    $scope.chain_info[i].rt = true;
+                    $scope.chain_info[i].line = false;
+                } else {
+                    //中间
+                    $scope.chain_info[i].rb = false;
+                    $scope.chain_info[i].lt = false;
+                    $scope.chain_info[i].lb = false;
+                    $scope.chain_info[i].rt = false;
+                    $scope.chain_info[i].line = true;
+                }
+            }
+        }
+
+		var opt = {
+			url: '/design/updateChain',
+			method: 'POST',
+			data: {
+				token: login_token,
+				project_id: project_id,
+				chain_id: chain_id,
+				chain_info: evt.models,
+			},
+			headers: { 'Content-Type': 'application/json'}
+		};
+
+		$http(opt).success(function(data) {
+			if (data.successful) {
+				showToast($mdToast,"save SUCCESS!");
+			}
+		});
+    }
+ 	
     $scope.jumpToSystem = function(){
   		window.location.href = "../system_page/system_page.html";
   	}

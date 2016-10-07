@@ -101,6 +101,7 @@ gi.controller('geneInfoController',function($scope, $http){
 			if(data.successful){
 				$scope.gene_name = gene_name;
 				$scope.gene_definition = data.data.definition;
+				$scope.gene_organism = data.data.organism;
 				$scope.gene_url = data.data.gene_url;
 			}
 		});
@@ -117,6 +118,8 @@ gi.controller('geneInfoController',function($scope, $http){
 		$http(opt).success(function(data){
 			if(data.successful){
 				data.data.forEach(function(r, index) {
+					if(!r.paper_keyword.length)
+						r.paper_keyword = 'None';
 					$scope.gene_info.push({
 						index: index,
 						paper_title: r.paper_title,
