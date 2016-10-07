@@ -68,7 +68,7 @@
         <div class="container-fluid">
         	<div class="row">
         		<div class="col-md-2 sidebar">
-        			<ul class="nav nav-sidebar" dnd-list="list.A">
+        			<ul class="nav nav-sidebar" dnd-list="search_info">
                         <li ng-repeat="item in search_info"
                             dnd-draggable="item"
                             dnd-effect-allowed="copyMove"
@@ -79,18 +79,27 @@
                         </li>
                     </ul>
         		</div>
-        		<div class="col-md-8 col-md-offset-2 main">
-        			<ul class="row col-md-9 itemlist" dnd-list="list.B">
+        		<div class="col-md-8 col-md-offset-2">
+        			<ul class="itemlist" dnd-list="chain_info">
                         <li class="col-md-2"
-                        	ng-repeat="item in list.B"
+                        	ng-repeat="item in chain_info"
 	                        dnd-draggable="item"
 	                        dnd-effect-allowed="copyMove"
-	                        dnd-moved="list.B.splice($index, 1)"
+	                        dnd-moved="chain_info.splice($index, 1)"
 	                        dnd-selected="list.selected = item"
 	                        ng-class="{selected: list.selected === item}">
-                            	Item {{item.id}}
+	                        	<img ng-src="{{item.img}}" alt="gene_img">
+                            	{{item.name}}
                         </li>
                     </ul>
+                    <div class="row col-md-12 bottombar">
+                    	<div class="col-md-8">
+                    		ads
+                    	</div>
+                    	<div class="col-md-4">
+                    		<img src="./img/trashcan.jpg" style="height: 33.3%;width: 33.3%;"/>
+                    	</div>
+                    </div>
         		</div>
         		<div class="col-md-2">
         			<div class="panel panel-default">
