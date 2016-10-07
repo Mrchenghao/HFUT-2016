@@ -27,6 +27,7 @@ def getGeneIDList():
     return geneIdList
 
 def getGene(gid):
+    i = 1
     gene = Gene.objects.filter(gene_id=gid).first()
     if not gene:
         baseUrl = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&rettype=fasta&id='
@@ -47,8 +48,10 @@ def getGene(gid):
             new_gene_obj.ntseq = gene_dict[gn]
             new_gene_obj.ntseq_length = len(gene_dict[gn])
             try:
+                print 'i: %s' % i
                 new_gene_obj.save()
                 return new_gene_obj
+                i = i + 1
             except:
                 pass
 
