@@ -59,7 +59,7 @@
                 </li>
             </ul>
 			<form class="navbar-form navbar-left">
-            	<input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="search_by_keyboard(key_word)">
+            	<input type="text" class="form-control" placeholder="Search..." ng-model="key_word" ng-keypress="search_by_keyboard($event,key_word)">
             	<button class="btn btn-default" type="button" ng-click="getSearchResult(key_word)">
                     <i class="fa fa-search"></i>
                 </button>
@@ -69,7 +69,7 @@
         	<div class="row">
         		<div class="col-md-2 sidebar">
         			<ul class="nav nav-sidebar" dnd-list="list.A">
-                        <li ng-repeat="item in list.A"
+                        <li ng-repeat="item in search_info"
                             dnd-draggable="item"
                             dnd-effect-allowed="copyMove"
                             dnd-selected="list.selected = item"
