@@ -3,20 +3,17 @@
 	right:0px;
 	padding-right:0;
 }
-.sidebar{
+.mySidebar{
 	padding: 0;
-	position: fixed;
-	top: 0px;
-	bottom: 0;
-	display: block;
+	float: left;
 	overflow-x: hidden;
 	overflow-y: auto;
 	background-color: #f8f8f8;
 }
-.nav-sidebar{
-	margin-right: -21px;
+myNavSidebar{
+	/*margin-right: -21px;
 	margin-bottom: 20px;
-	margin-left: -20px;
+	margin-left: -20px;*/
 }
 @media(min-width:768px) {
 	.right-side-bar{
@@ -51,12 +48,13 @@
     float: right;
 }
 .bottombar{
+	width: 100%;
 	padding: 0;
-	position: fixed;
-	top: 68%;
-	bottom: 0;
-	display: block;
 	overflow-x: hidden;
-	overflow-y: auto;
+	overflow-y: scroll;
 	background-color: #f8f8f8;
+	float:left;
+}
+.bottombar div{
+	padding: 0;
 }
