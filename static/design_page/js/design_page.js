@@ -467,7 +467,7 @@ editPro.controller('designController', function($scope, $http) {
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
-				var recommend_result = data.data.recommend_list_front;
+				var recommend_result = data.data;
                 console.log(recommend_result)
                 $scope.recommend_info = [];
 				for (var i = 0;i < recommend_result.length;i++) 
