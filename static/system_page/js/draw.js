@@ -105,8 +105,7 @@ function draw(dataset){
                 */
                 .on("click", function(d, i){
                     var $scope = angular.element('#wrapper').scope();
-                    var tag = d.id.charCodeAt(0);
-                    console.log(tag);
+                    var tag = d.id.charAt(0);
                     if (tag == "C") {
                     	$scope.getCompoundInfo(d.id);
                     } else{
