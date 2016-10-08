@@ -10,6 +10,24 @@ editPro.controller('designController', function($scope, $http) {
     $scope.float_right = false;
     $scope.float_left = true;
     
+    $scope.recommend_f = function(){
+    	sessionStorage.setItem("front", true);
+    	sessionStorage.setItem("middle", false);
+    	sessionStorage.setItem("back", false);
+    };
+	
+	$scope.recommend_m = function(){
+    	sessionStorage.setItem("front", false);
+    	sessionStorage.setItem("middle", true);
+    	sessionStorage.setItem("back", false);
+    };
+    
+    $scope.recommend_b = function(){
+    	sessionStorage.setItem("front", false);
+    	sessionStorage.setItem("middle", false);
+    	sessionStorage.setItem("back", true);
+    };
+    
     $scope.$watchCollection("chain_info", function(newVal, oldVal, scope){
     	var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
