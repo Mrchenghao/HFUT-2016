@@ -93,15 +93,23 @@
 						</li>
                 	</ul>
                     <div class="bottombar">
-                    	<div id="recommend" class="col-md-8" ng-sortable="recommendConfig">
+                    	<div id="recommend" ng-sortable="recommendConfig">
+                    		<div class="btn-group recBtn">
+							  	<label for="rf">Front</label>
+							  	<input type="radio" name="recommendType" id="rf" value="Front" />
+							  	<label for="rm">Middle</label>
+							  	<input type="radio" name="recommendType" id="rm" value="Middle" />
+							  	<label for="rb">Back</label>
+							  	<input type="radio" name="recommendType" id="rb" value="Back" />
+							</div>
 	                       	<div ng-repeat="gene in recommend_info" class='recommend_item'>
 	                            <img ng-src="{{gene.img}}" alt="gene_img">
 	                            <span>{{gene.name}}</span>
 	                        </div>
                     	</div>
-                    	<div id="clipboard" class="col-md-4" ng-sortable="deleteConfig">
+                    	<div id="clipboard" ng-sortable="deleteConfig">
                     		<div ng-repeat="gene in delete_gene" class='recommend_item'></div>
-                    		<img src="./img/trashcan.jpg" style="height: 33.3%;width: 33.3%;"/>
+                    		<img src="./img/trashcan.jpg"/>
                     	</div>
                     </div>
         		</div>

@@ -22,13 +22,20 @@
 }
 #recommend{
     overflow :auto;
+    float: left;
 }
 #clipboard{
-    border-left:double #ff0000;
-    background:url('../img/ljt.JPG') no-repeat;
+	height: 100%;
+	float: right;
+    /*background:url('../img/ljt.JPG') no-repeat;
     background-size:100%;
-    background-position: center;
+    background-position: center;*/
 }
+
+#clipboard img{
+	height: 100%;
+}
+
 .pull_left{
     float:left;
 }
