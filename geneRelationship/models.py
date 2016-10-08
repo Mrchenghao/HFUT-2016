@@ -59,3 +59,15 @@ class Three_KeySentence(models.Model):
 
     class Meta:
         db_table = 'bio_three_keysentence'
+
+class Gene_Disease(models.Model):
+    gene_name = models.CharField(max_length=64)
+    disease_name = models.CharField(max_length=64)
+    disease_class = models.CharField(max_length=64)
+    paper_id = models.IntegerField()
+
+    def __unicode__(self):
+        return self.gene_name
+
+    class Meta:
+        db_table = 'bio_gene_disease'

@@ -12,22 +12,18 @@ def getGeneList():
     readFile.close()
     return geneNameList
 
-def selectGene(gene_name):
+def selectGene(gene_list):
     selectFile = open('disease.json', 'r')
     for f in selectFile:
         select = json.loads(f)
     selectList = []
     for s in select:
-        print s
-        if s['gene'] == gene_name:
+        if s['gene'] in gene_list:
             selectList.append(s)
     return selectList
 
 if __name__ == '__main__':
     resultFile = open('resultDisease.json', 'a')
     geneList = getGeneList()
-    selectLists = []
-    for gene_name in geneList:
-       selectList = selectGene(gene_name)
-       selectLists.extend(selectList)
-    resultFile.write(json.dumps(selectLists))
+    selectList = selectGene(geneList)
+    resultFile.write(json.dumps(selectList))

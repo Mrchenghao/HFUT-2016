@@ -144,7 +144,7 @@ def getBetweenMarkovRecommend(part_id_one, part_id_two):
     @rytpe: dict
     """
     chains = list()
-    predictChains = bettwen_predict(1, 5, part_id_one, part_id_two, loadB())
+    predictChains = bettwen_predict(4, 5, part_id_one, part_id_two, loadB())
     print predictChains
     if not predictChains:
         return chains
