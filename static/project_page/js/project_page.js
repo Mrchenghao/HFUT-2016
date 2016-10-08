@@ -313,8 +313,7 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdTo
 	}
 	
 	// 页面初始化
-	$scope.init();
-  	
+	$scope.init();	
 });
 
 var last = {
