@@ -80,15 +80,15 @@
         		</div>
         		<div class="col-md-8 midArea row">
                 	<ul id="dashboard" class="row mainDash" ng-sortable="putConfig">
-                		<li ng-repeat="gene in chain_info" ng-class="{'pull_right':gene.float_right,
-																	'pull_left':gene.float_left,
-																	'line':gene.line,
-																	'lt':gene.lt,
-																	'rt':gene.rt,
-																	'lb':gene.lb,
-																	'rb':gene.rb}">
+                		<li ng-repeat="gene in chain_info" ng-click="getGeneInfo(gene.name)" ng-class="{'pull_right':gene.float_right,
+																										'pull_left':gene.float_left,
+																										'line':gene.line,
+																										'lt':gene.lt,
+																										'rt':gene.rt,
+																										'lb':gene.lb,
+																										'rb':gene.rb}">
 							<img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
-		                    <img ng-src="{{gene.img}}" alt="gene_img" ng-click="getGeneInfo(gene.name)">
+		                    <img ng-src="{{gene.img}}" alt="gene_img">
 							<span>{{gene.name}}</span>
 						</li>
                 	</ul>
