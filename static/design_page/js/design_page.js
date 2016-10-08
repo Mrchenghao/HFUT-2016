@@ -375,27 +375,33 @@ editPro.controller('designController', function($scope, $http) {
                 $scope.recommend_info.back = [];
                 
                 data.data.recommend_list_front.forEach(function(r){
-                	$scope.recommend_info.front.push({
-						img: '../img/' + r.part_type + '.png',
-						name: r.part_name,
-						part_id: r.part_id,
-					});
+                	r.forEach(function(x){
+                		$scope.recommend_info.front.push({
+							img: '../img/' + x.part_type + '.png',
+							name: x.part_name,
+							part_id: x.part_id,
+						});
+                	});
             	});
             	
             	data.data.recommend_list_middle.forEach(function(r){
-                	$scope.recommend_info.middle.push({
-						img: '../img/' + r.part_type + '.png',
-						name: r.part_name,
-						part_id: r.part_id,
-					});
+                	r.forEach(function(x){
+                		$scope.recommend_info.middle.push({
+							img: '../img/' + x.part_type + '.png',
+							name: x.part_name,
+							part_id: x.part_id,
+						});
+                	});
             	});
             	
             	data.data.recommend_list_back.forEach(function(r){
-                	$scope.recommend_info.back.push({
-						img: '../img/' + r.part_type + '.png',
-						name: r.part_name,
-						part_id: r.part_id,
-					});
+                	r.forEach(function(x){
+                		$scope.recommend_info.back.push({
+							img: '../img/' + x.part_type + '.png',
+							name: x.part_name,
+							part_id: x.part_id,
+						});
+                	});
             	});
 			}
 		});
