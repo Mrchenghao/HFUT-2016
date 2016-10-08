@@ -65,3 +65,15 @@ def search_three_sentence(gene_name_one, gene_name_two):
 			'paper_abstract': sentence.paper.paper_abstract[8:]
 			})
 	return sentenceList
+
+def search_related_disease(gene_name):
+	base_url = 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=Pubmed&dopt=Abstract&list_uids='
+	gene_diseases = Gene_Disease.objects.filter(gene_name=gene_name)
+	diseaseList = []
+	for gene_disease in gene_diseases:
+		diseaseList.append({
+			'disease_name': gene_disease.disease_name,
+			'disease_class': gene_disease.disease_class,
+			'paper_url': base_url + str(gene_disease.paper_id)
+			})
+	return diseaseList
