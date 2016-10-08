@@ -3,30 +3,13 @@ var editPro = angular.module('designApp', ['ng-sortable']);
 editPro.controller('designController', function($scope, $http) {
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
-	
-//  $scope.chain_new = [];
     $scope.delete_gene = [];
-    $scope.recommend_info = [];
+    $scope.recommend_info = {
+    	front: [],
+    	back: [],
+    };
     $scope.float_right = false;
     $scope.float_left = true;
-    
-    $scope.recommend_f = function(){
-    	sessionStorage.setItem("front", true);
-    	sessionStorage.setItem("middle", false);
-    	sessionStorage.setItem("back", false);
-    };
-	
-	$scope.recommend_m = function(){
-    	sessionStorage.setItem("front", false);
-    	sessionStorage.setItem("middle", true);
-    	sessionStorage.setItem("back", false);
-    };
-    
-    $scope.recommend_b = function(){
-    	sessionStorage.setItem("front", false);
-    	sessionStorage.setItem("middle", false);
-    	sessionStorage.setItem("back", true);
-    };
     
     $scope.$watchCollection("chain_info", function(newVal, oldVal, scope){
     	var login_token = JSON.parse(sessionStorage.getItem('login'));
@@ -233,109 +216,6 @@ editPro.controller('designController', function($scope, $http) {
    			}
    		});
    	}
-    //拖动配置(user)
-//	$scope.putConfig = {
-//		group: {
-//			name:'d_gene',
-//          pull:true,
-//          put:['s_gene','r_gene'],
-//		},
-//		animation: 150,
-//		onUpdate: function(evt) {
-//			var login_token = JSON.parse(sessionStorage.getItem('login'));
-//			var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
-//			var project_id = JSON.parse(sessionStorage.getItem('project_id'));
-//			var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
-//          $scope.getMrkvChain(part_id);
-//
-// 
-//          }
-//
-//			var opt = {
-//				url: '/design/updateChain',
-//				method: 'POST',
-//				data: {
-//					token: login_token,
-//					project_id: project_id,
-//					chain_id: chain_id,
-//					chain_info: evt.models,
-//				},
-//				headers: { 'Content-Type': 'application/json'}
-//			};
-//
-//			$http(opt).success(function(data) {
-//  			if (data.successful) {
-//  				showToast($mdToast,"save SUCCESS!");
-//  			}
-//  		});
-//		},
-//      onAdd: function(evt) {
-//          console.log($scope.chain_info);
-//          var login_token = JSON.parse(sessionStorage.getItem('login'));
-//          var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
-//          var project_id = JSON.parse(sessionStorage.getItem('project_id'));
-//          var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
-//          $scope.getMrkvChain(part_id);
-//
-//          
-//          console.log(evt)
-//          $scope.chain_new.push({
-//              img: evt.model.img,
-//              name: evt.model.name,
-//              part_id: evt.model.part_id,
-//          });
-//
-//
-//          var opt = {
-//              url: '/design/updateChain',
-//              method: 'POST',
-//              data: {
-//                  token: login_token,
-//                  project_id: project_id,
-//                  chain_id: chain_id,
-//                  chain_info: $scope.chain_new,
-//              },
-//              headers: { 'Content-Type': 'application/json'}
-//          };
-//
-//          $http(opt).success(function(data) {
-//              if (data.successful) {
-//                  showToast($mdToast,"save SUCCESS!");
-//              }
-//          });
-//      },
-//      onRemove: function(evt) {
-//          console.log('aaa');
-//          console.log(evt);
-//          var login_token = JSON.parse(sessionStorage.getItem('login'));
-//          var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
-//          var project_id = JSON.parse(sessionStorage.getItem('project_id'));
-//          
-//          var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
-//          $scope.getMrkvChain(part_id);
-//
-//          $scope.chain_info.splice(evt.oldIndex,1);
-//          $scope.chain_new = $scope.chain_info.concat();
-//          
-//          var opt = {
-//              url: '/design/updateChain',
-//              method: 'POST',
-//              data: {
-//                  token: login_token,
-//                  project_id: project_id,
-//                  chain_id: chain_id,
-//                  chain_info: $scope.chain_info,
-//              },
-//              headers: { 'Content-Type': 'application/json'}
-//          };
-//
-//          $http(opt).success(function(data) {
-//              if (data.successful) {
-//                  showToast($mdToast,"save SUCCESS!");
-//              }
-//          });
-//      },
-//	};
 	//页面初始化
 	$scope.init = function(){
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
@@ -355,7 +235,6 @@ editPro.controller('designController', function($scope, $http) {
 			if (data.successful) {
 				$scope.chain_result = data.data;
 				for (var i = 0;i < $scope.chain_result.length;i++) {
-//              	$scope.chain_new = $scope.chain_result.concat()
 					$scope.chain_info.push({
 						img: '../img/' + $scope.chain_result[i].part_type + '.png',
 						name: $scope.chain_result[i].part_name,
@@ -466,8 +345,8 @@ editPro.controller('designController', function($scope, $http) {
 		$http(opt).success(function(data){
 			if(data.successful){
 				var recommend_result = data.data;
-                console.log(recommend_result)
-                $scope.recommend_info = [];
+                $scope.recommend_info.front = [];
+                $scope.recommend_info.back = [];
 				for (var i = 0;i < recommend_result.length;i++) 
 					for (var j = 0;j < recommend_result[i].length;j++){
 						$scope.recommend_info.push({
