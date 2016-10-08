@@ -1,10 +1,7 @@
 var editPro = angular.module('designApp', ['ng-sortable']);
 
 editPro.controller('designController', function($scope, $http) {
-	$scope.search_info = [
-		{img: '../img/DNA.png',name: 'A'},
-		{img: '../img/Device.png',name: 'B'},
-	];//搜索结果
+	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [
 //		{img: '../img/DNA.png',name: '1'},
 //		{img: '../img/DNA.png',name: '2'},
