@@ -54,3 +54,10 @@
 	word-wrap:break-word;
 	word-break:break-all;
 }
+
+.compound_tags{
+ 	width: 300px;
+ 	height: 35px;
+ 	overflow: auto;
+ 	overflow-y: scroll;
+}
