@@ -91,6 +91,7 @@ angularObj.controller('designController', function($scope, $http) {
     $scope.computeBackground = function(){
   	    for (var i = 0;i < $scope.chain_info.length;i++) {
             if ((Math.floor(i / 5) + 1) % 2 == 0) {
+            	//偶数行
                 $scope.chain_info[i].float_right = true;
                 $scope.chain_info[i].float_left = false;
                 if ((i + 1) % 5 == 0) {
@@ -116,6 +117,7 @@ angularObj.controller('designController', function($scope, $http) {
                     $scope.chain_info[i].line = true;
                 }
             } else {
+            	//奇数行
                 $scope.chain_info[i].float_right = false;
                 $scope.chain_info[i].float_left = true;
                 if ((i + 1) % 5 == 0) {
