@@ -7,9 +7,32 @@ editPro.controller('designController', function($scope, $http) {
     $scope.recommend_info = {
     	front: [],
     	back: [],
+    	middle: [],
     };
     $scope.float_right = false;
     $scope.float_left = true;
+    
+    $scope.sf = true;//默认展示后面的基因
+    $scope.sm = false;//中间的markv
+    $scope.sb = false;//后面的markv
+    
+    $scope.show_front = function(){
+    	$scope.sf = true;
+	    $scope.sm = false;
+	    $scope.sb = false;
+    };
+    
+    $scope.show_middle = function(){
+    	$scope.sf = false;
+	    $scope.sm = true;
+	    $scope.sb = false;
+    };
+    
+    $scope.show_back = function(){
+    	$scope.sf = false;
+	    $scope.sm = false;
+	    $scope.sb = true;
+    };
     
     $scope.$watchCollection("chain_info", function(newVal, oldVal, scope){
     	var login_token = JSON.parse(sessionStorage.getItem('login'));
@@ -346,17 +369,34 @@ editPro.controller('designController', function($scope, $http) {
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
-				var recommend_result = data.data;
+				
                 $scope.recommend_info.front = [];
+                $scope.recommend_info.middle = [];
                 $scope.recommend_info.back = [];
-				for (var i = 0;i < recommend_result.length;i++) 
-					for (var j = 0;j < recommend_result[i].length;j++){
-						$scope.recommend_info.push({
-							img: '../img/' + recommend_result[i][j].part_type + '.png',
-							name: recommend_result[i][j].part_name,
-							part_id: recommend_result[i][j].part_id,
-						});
-					}
+                
+                data.data.recommend_list_front.forEach(function(r){
+                	$scope.recommend_info.front.push({
+						img: '../img/' + r.part_type + '.png',
+						name: r.part_name,
+						part_id: r.part_id,
+					});
+            	});
+            	
+            	data.data.recommend_list_middle.forEach(function(r){
+                	$scope.recommend_info.middle.push({
+						img: '../img/' + r.part_type + '.png',
+						name: r.part_name,
+						part_id: r.part_id,
+					});
+            	});
+            	
+            	data.data.recommend_list_back.forEach(function(r){
+                	$scope.recommend_info.back.push({
+						img: '../img/' + r.part_type + '.png',
+						name: r.part_name,
+						part_id: r.part_id,
+					});
+            	});
 			}
 		});
   	};
