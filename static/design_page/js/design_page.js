@@ -373,7 +373,6 @@ editPro.controller('designController', function($scope, $http) {
                 $scope.recommend_info.front = [];
                 $scope.recommend_info.middle = [];
                 $scope.recommend_info.back = [];
-                
                 data.data.recommend_list_front.forEach(function(r){
                 	$scope.recommend_info.front.push({
 						img: '../img/' + r.part_type + '.png',
@@ -391,6 +390,7 @@ editPro.controller('designController', function($scope, $http) {
             	});
             	
             	data.data.recommend_list_back.forEach(function(r){
+            		console.log(r);
                 	$scope.recommend_info.back.push({
 						img: '../img/' + r.part_type + '.png',
 						name: r.part_name,
