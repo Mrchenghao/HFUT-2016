@@ -105,6 +105,7 @@ function draw(dataset){
                 */
                 .on("click", function(d, i){
                     var $scope = angular.element('#wrapper').scope();
+                    console.log(d);
                     $scope.getGeneInfo(d.id);
                     $scope.$apply();
                 })

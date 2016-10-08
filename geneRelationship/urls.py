@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^getRelatedPaper$', views.getRelatedPaper),
     url(r'^getOneSentence$', views.getOneSentence),
     url(r'^getThreeSentences$', views.getThreeSentences),
+    url(r'^getRelatedDisease$', views.getRelatedDisease),
 ]
