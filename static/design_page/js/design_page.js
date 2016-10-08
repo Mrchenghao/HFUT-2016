@@ -1,45 +1,8 @@
 var editPro = angular.module('designApp', ['ng-sortable']);
 
 editPro.controller('designController', function($scope, $http) {
-	$scope.search_info = [
-		{img: '../img/DNA.png',name: 'A'},
-		{img: '../img/Device.png',name: 'B'},
-	];//搜索结果
-	$scope.chain_info = [
-//		{img: '../img/DNA.png',name: '1'},
-//		{img: '../img/DNA.png',name: '2'},
-//		{img: '../img/DNA.png',name: '3'},
-//		{img: '../img/DNA.png',name: '4'},
-//		{img: '../img/DNA.png',name: '5'},
-//		{img: '../img/DNA.png',name: '6'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-//		{img: '../img/DNA.png',name: '7'},
-	];//用户编辑的基因链
+	$scope.search_info = [];//搜索结果
+	$scope.chain_info = [];//用户编辑的基因链
 	
 //  $scope.chain_new = [];
     $scope.delete_gene = [];
