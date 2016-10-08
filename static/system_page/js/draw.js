@@ -107,9 +107,9 @@ function draw(dataset){
                     var $scope = angular.element('#wrapper').scope();
                     var tag = d.id.charCodeAt(0);
                     if (tag == "C") {
-                    	$scope.getGeneInfo(d.id);
-                    } else{
                     	$scope.getCompoundInfo(d.id);
+                    } else{
+                    	$scope.getGeneInfo(d.id);
                     }
                     $scope.$apply();
                 })
