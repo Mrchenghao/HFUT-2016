@@ -29,6 +29,9 @@
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
+            	<li class="compound_tags">
+            		<tags-input ng-model="compound_tags1"></tags-input>
+            	</li>
                 <li>
                     <button class="btn btn-danger" ng-click="jumpToProject()">Project</button>
                 </li>
@@ -65,7 +68,6 @@
 	            </button>
 	            <button class="btn btn-success" ng-click="runCompoundTags()">Run</button>
 	            <button class="btn btn-danger" ng-click="removeAllCompoundTags()">Remove All</button>
-	            <tags-input ng-model="compound_tags1"></tags-input>
             </form>
         </nav>
         <div class="container-fluid">
