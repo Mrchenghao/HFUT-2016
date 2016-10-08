@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # markov algorithm
-# Python3版本，与参赛的Python2版本有根本改变
+
 import copy
 
 

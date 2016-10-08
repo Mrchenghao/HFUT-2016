@@ -9,6 +9,20 @@
     text-align: center;
 }
 
+.rmdBtn{
+    position: fixed;
+    height: 25px;
+    background: #f8f8f8;
+}
+
+.recommendMain{
+    margin-top: 25px;
+    padding: 0;
+}
+
+.recommendMain li{
+    list-style-type:none;
+}
 
 #dashboard div span{
     display:block;
@@ -22,18 +36,16 @@
 }
 #recommend{
     overflow :auto;
-    float: left;
 }
 #clipboard{
-	height: 100%;
-	float: right;
-    /*background:url('../img/ljt.JPG') no-repeat;
-    background-size:100%;
-    background-position: center;*/
+    background: url('../img/trashcan.jpg');
+    background-size: 100%;
+	height: 270px;
 }
 
 #clipboard img{
 	height: 100%;
+    width: 100%;
 }
 
 .pull_left{
@@ -92,4 +104,9 @@
 
 #info_card{
     overflow :auto;
+}
+
+.selectGeneInfo{
+    max-height: 380px;
+    overflow: auto;
 }

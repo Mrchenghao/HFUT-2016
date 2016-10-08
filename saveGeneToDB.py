@@ -16,21 +16,24 @@ def saveGene():
         getGene(geneID)
 
 def getGeneIDList():
+    i = 0
     readFile = open('newGene.json', 'r')
     for n in readFile:
         js = json.loads(n)
     geneIdList = []
     while js:
+        i += 1
         gene = js.pop(0)
         geneIdList.append(gene['gene_id'])
     readFile.close()
+    print 'count: %s \n' % i
     return geneIdList
 
 def getGene(gid):
-    i = 1
     gene = Gene.objects.filter(gene_id=gid).first()
     if not gene:
         baseUrl = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&rettype=fasta&id='
+        print 'geneid: %s \n' % gid
         req = urllib2.Request(baseUrl + gid)
         response = urllib2.urlopen(req)
         resStr = response.read()
@@ -48,10 +51,8 @@ def getGene(gid):
             new_gene_obj.ntseq = gene_dict[gn]
             new_gene_obj.ntseq_length = len(gene_dict[gn])
             try:
-                print 'i: %s' % i
                 new_gene_obj.save()
                 return new_gene_obj
-                i = i + 1
             except:
                 pass
 
@@ -81,6 +82,7 @@ def retrive_gene_detain(gid):
         return detail_info
     except:
         traceback.print_exc()
+        print 'gid: %s \n' % gid
         return None
 
 if __name__ == '__main__':
