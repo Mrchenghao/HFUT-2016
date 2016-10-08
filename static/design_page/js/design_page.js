@@ -38,8 +38,8 @@ editPro.controller('designController', function($scope, $http) {
     	var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
 		var project_id = JSON.parse(sessionStorage.getItem('project_id'));
-		var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
-		var part_id_before = $scope.chain_info[$scope.chain_info.length - 2].part_id;
+		var part_id = $scope.chain_info[newVal.length - 1].part_id;
+		var part_id_before = $scope.chain_info[newVal.length - 2].part_id;
         $scope.getMrkvChain(part_id_before, part_id);
     	$scope.computeBackground();
     	var opt = {
