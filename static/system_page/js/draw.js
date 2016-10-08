@@ -105,7 +105,12 @@ function draw(dataset){
                 */
                 .on("click", function(d, i){
                     var $scope = angular.element('#wrapper').scope();
-                    $scope.getGeneInfo(d.id);
+                    var tag = d.id.charCodeAt(0);
+                    if (tag == "C") {
+                    	$scope.getGeneInfo(d.id);
+                    } else{
+                    	$scope.getCompoundInfo(d.id);
+                    }
                     $scope.$apply();
                 })
                 .on("dblclick",function(d,i){
