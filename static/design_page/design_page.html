@@ -93,8 +93,8 @@
 						</li>
                 	</ul>
                     <div class="bottombar">
-                    	<div id="recommend" ng-sortable="recommendConfig">
-                    		<div class="btn-group recBtn">
+                    	<div id="recommend">
+                    		<div class="rmdBtn">
 							  	<label for="rf">Front</label>
 							  	<input type="radio" name="recommendType" id="rf" value="Front" />
 							  	<label for="rm">Middle</label>
@@ -102,14 +102,12 @@
 							  	<label for="rb">Back</label>
 							  	<input type="radio" name="recommendType" id="rb" value="Back" />
 							</div>
-	                       	<div ng-repeat="gene in recommend_info" class='recommend_item'>
-	                            <img ng-src="{{gene.img}}" alt="gene_img">
-	                            <span>{{gene.name}}</span>
-	                        </div>
-                    	</div>
-                    	<div id="clipboard" ng-sortable="deleteConfig">
-                    		<div ng-repeat="gene in delete_gene" class='recommend_item'></div>
-                    		<img src="./img/trashcan.jpg"/>
+                            <ul class="recommendMain" ng-sortable="recommendConfig">
+                                <li ng-repeat="gene in recommend_info" class='recommend_item'>
+                                    <img ng-src="{{gene.img}}" alt="gene_img">
+                                    <span>{{gene.name}}</span>
+                                </li>
+                            </ul>
                     	</div>
                     </div>
         		</div>
@@ -118,7 +116,7 @@
 	                    <div class="panel-heading">
 	                        <h3 class="panel-title">Information</h3>
 	                    </div>
-	                    <div class="panel-body">
+	                    <div class="panel-body selectGeneInfo">
 	                        <h3>Part Name</h3>
 	                        <h4>Type: {{part_type}}</h4>
 	                        <h4>Part Nick Name: {{part_nick_name}}</h4>
@@ -126,11 +124,14 @@
 	                        <h4>Description: {{description}}</h4>
 	                        <h4>Score: {{score}}</h4>
 	                        <h4>Papers:</h4>
-							<ol ng-repeat="p in papers">
+							<ul ng-repeat="p in papers">
 								<li><a ng-href="{{p.url}}">{{p.name}}</a></li>
-							</ol>
+							</ul>
 	                    </div>
 	                </div>
+                    <div id="clipboard" ng-sortable="deleteConfig">
+                        <div ng-repeat="gene in delete_gene" class='recommend_item'></div>
+                    </div>
         		</div>
         	</div>
         </div>

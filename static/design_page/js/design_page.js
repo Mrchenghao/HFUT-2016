@@ -33,7 +33,8 @@ editPro.controller('designController', function($scope, $http) {
 		var chain_id = JSON.parse(sessionStorage.getItem('chain_id'));
 		var project_id = JSON.parse(sessionStorage.getItem('project_id'));
 		var part_id = $scope.chain_info[$scope.chain_info.length - 1].part_id;
-        $scope.getMrkvChain(part_id);
+		var part_id_before = $scope.chain_info[$scope.chain_info.length - 2].part_id;
+        $scope.getMrkvChain(part_id_before, part_id);
     	$scope.computeBackground();
     	var opt = {
 			url: '/design/updateChain',
@@ -452,20 +453,21 @@ editPro.controller('designController', function($scope, $http) {
   	};
   	
   	//获得马尔科夫链
-  	$scope.getMrkvChain = function(part_id){
+  	$scope.getMrkvChain = function(part_id_before, part_id){
   		var login_token = JSON.parse(sessionStorage.getItem('login'));
   		var opt = {
 			url: '/design/getMRecommend',
 			method: 'POST',
 			data: {
 				token: login_token,
+				part_id_before: part_id_before,
 				part_id: part_id
 			},
 			headers: { 'Content-Type': 'application/json'}
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
-				var recommend_result = data.data;
+				var recommend_result = data.data.recommend_list_front;
                 console.log(recommend_result)
                 $scope.recommend_info = [];
 				for (var i = 0;i < recommend_result.length;i++) 
