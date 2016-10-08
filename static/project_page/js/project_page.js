@@ -1,6 +1,6 @@
 var bio_pro = angular.module('projectApp', ['ngMaterial','ngAnimate']);
 
-bio_pro.controller('projectController', function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
+bio_pro.controller('projectController', function($scope, $http, $location, $mdToast) {
 	$scope.project_info = [];//项目列表
 	$scope.isEdit = false;//默认编辑状态为未编辑
 	$scope.isChosen = false;//默认未选中
