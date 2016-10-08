@@ -1,10 +1,6 @@
-.info{
-    display:inline-block;
-}
 #dashboard{
     list-style: none;
     overflow :auto;
-    float: left;
 }
 #dashboard div{
     cursor: move;
@@ -21,10 +17,6 @@
 #dashboard div img{
     margin-top: 10%;
 }
-
-#dashboard div md-divider{
-    display: none;
-}
 .search_item{
     cursor: move;
 }
@@ -38,11 +30,6 @@
     background-size:100%;
     background-position: center;
 }
-
-#clipboard div{
-    // display:none;
-}
-
 .pull_left{
     float:left;
 }
