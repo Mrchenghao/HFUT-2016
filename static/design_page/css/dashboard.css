@@ -4,6 +4,7 @@
 #dashboard{
     list-style: none;
     overflow :auto;
+    float: left;
 }
 #dashboard div{
     cursor: move;
@@ -39,7 +40,7 @@
 }
 
 #clipboard div{
-    display:none;
+    // display:none;
 }
 
 .pull_left{

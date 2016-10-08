@@ -13,6 +13,8 @@
     <link href="./css/design.css" rel="stylesheet">
     <link href="./css/advanced.css" rel="stylesheet"/>
     <link href="./css/dashboard.css" rel="stylesheet"/>
+    <link href="./css/drag_drop.css" rel="stylesheet"/>
+    <link href="./css/drag.css" rel="stylesheet"/>
 </head>
 <body ng-controller="designController">
     <div id="wrapper">
@@ -67,36 +69,38 @@
      	</nav>
         <div class="container-fluid">
         	<div class="row">
-        		<div class="col-md-2 sidebar">
-        			<ul class="nav nav-sidebar" dnd-list="search_info">
-                        <li ng-repeat="item in search_info"
-                            dnd-draggable="item"
-                            dnd-effect-allowed="copyMove"
-                            dnd-selected="list.selected = item"
-                            ng-class="{selected: list.selected === item}">
-                            	<img ng-src="{{item.img}}" alt="gene_img">
-								{{item.name}}
-                        </li>
+        		<div class="col-md-2 mySidebar">
+                    <ul class="myNavSidebar" ng-sortable="pullConfig">
+                    	<li ng-repeat="gene in search_info">
+		                    <img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
+		                    <img ng-src="{{gene.img}}" alt="gene_img">
+							<span>{{gene.name}}</span>
+						</li>
                     </ul>
         		</div>
-        		<div class="col-md-8 col-md-offset-2">
-        			<ul class="itemlist" dnd-list="chain_info">
-                        <li class="col-md-2"
-                        	ng-repeat="item in chain_info"
-	                        dnd-draggable="item"
-	                        dnd-effect-allowed="copyMove"
-	                        dnd-moved="chain_info.splice($index, 1)"
-	                        dnd-selected="list.selected = item"
-	                        ng-class="{selected: list.selected === item}">
-	                        	<img ng-src="{{item.img}}" alt="gene_img">
-                            	{{item.name}}
-                        </li>
-                    </ul>
-                    <div class="row col-md-12 bottombar">
-                    	<div class="col-md-8">
-                    		ads
+        		<div class="col-md-8 midArea row">
+                	<ul id="dashboard" class="row mainDash" ng-sortable="putConfig">
+                		<li ng-repeat="gene in chain_info" ng-class="{'pull_right':gene.float_right,
+																	'pull_left':gene.float_left,
+																	'line':gene.line,
+																	'lt':gene.lt,
+																	'rt':gene.rt,
+																	'lb':gene.lb,
+																	'rb':gene.rb}">
+							<img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
+		                    <img ng-src="{{gene.img}}" alt="gene_img" ng-click="getGeneInfo(gene.name)">
+							<span>{{gene.name}}</span>
+						</li>
+                	</ul>
+                    <div class="bottombar">
+                    	<div id="recommend" class="col-md-8" ng-sortable="recommendConfig">
+	                       	<div ng-repeat="gene in recommend_info" class='recommend_item'>
+	                            <img ng-src="{{gene.img}}" alt="gene_img">
+	                            <span>{{gene.name}}</span>
+	                        </div>
                     	</div>
-                    	<div class="col-md-4">
+                    	<div id="clipboard" class="col-md-4" ng-sortable="deleteConfig">
+                    		<div ng-repeat="gene in delete_gene" class='recommend_item'></div>
                     		<img src="./img/trashcan.jpg" style="height: 33.3%;width: 33.3%;"/>
                     	</div>
                     </div>
@@ -184,7 +188,12 @@
     <script src="../public/angular-material/angular-material.js"></script>
     <script src="../public/jquery/dist/jquery.min.js"></script>
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./js/design_page.js"></script>
-    <script src="./js/angular-drag-and-drop-lists.js"></script>
+    
+    <!--<script src="./js/angular-drag-and-drop-lists.js"></script>-->
+    <script src="../public/angular-sortable/Sortable.js"></script>
+  	<script src="../public/angular-sortable/ng-sortable.js"></script>
+  	<script src="./js/layout.js"></script>
+  	<!--<script src="./js/drage_demo.js"></script>-->
+  	<script src="./js/design_page.js"></script>
 </body>
 </html>
