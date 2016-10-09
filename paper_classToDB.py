@@ -12,10 +12,13 @@ def savePaperClassToDB():
 	s = json.load(readFile)
 	paper_classes = s['rows']
 	for paper_class in paper_classes:
-		paper_id = paper_class[2][3:-4]
-		gene_id = paper_calss[1]
-		paper_gene = Paper_Gene.filter(paper_id=paper_id and gene_id=gene_id).first()
-		if paper_gene:
-			paper_gene.paper_class = paper_class[3]
-			paper_gene.save()
+		try:
+			paper_id = paper_class[2][3:-4]
+			gene_id = paper_calss[1]
+			paper_gene = Paper_Gene.filter(paper_id=paper_id and gene_id=gene_id).first()
+			if paper_gene:
+				paper_gene.paper_class = paper_class[3]
+				paper_gene.save()
+		except:
+			print traceback.print_exc()
 		

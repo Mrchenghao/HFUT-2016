@@ -61,22 +61,18 @@
 		<div class="container-fluid">
 			<div class="row bi">
 				<div class="col-md-8 col-md-offset-2">
-					<div class="col-md-6 panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="col-md-6 panel-group" role="tablist" aria-multiselectable="true">
 						<div class="panel panel-default">
-							<div class="panel-heading" role="tab" id="headingOne">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#BI" aria-expanded="true" aria-controls="BI">Basic Info</a>
-								</h4>
-							</div>
-							<div id="BI" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-								<div class="panel-body">
-									<p>name: {{gene_name}}</p>
-							        <p>definition：{{gene_definition}}</p>
-							        <p>organism: {{gene_organism}}</p>
-							        <p><a href="{{gene_url}}">more ^_^</a></p>
-								</div>
-							</div>
-						</div>
+	                        <div class="panel-heading">
+	                            <h3 class="panel-title">Basic Info</h3>
+	                        </div>
+	                        <div class="panel-body">
+	                            <p>name: {{gene_name}}</p>
+						        <p>definition：{{gene_definition}}</p>
+						        <p>organism: {{gene_organism}}</p>
+						        <p><a href="{{gene_url}}">more ^_^</a></p>
+	                        </div>
+	                    </div>
 					</div>
 					<div class="col-md-6">
 						<div class="network">
@@ -92,18 +88,18 @@
 						<div class="panel panel-default" ng-repeat="g in gene_info">
 	                        <div class="panel-heading" role="tab" id="headingOne">
 	                            <h4 class="panel-title">
-	                                <a data-toggle="collapse" data-parent="#accordion" href="#{{g.index}}" aria-expanded="true" aria-controls="{{g.index}}">TYPE {{g.index}}</a>
+	                                <a data-toggle="collapse" data-parent="#accordion" href="#father{{g.index}}" aria-expanded="true" aria-controls="father{{g.index}}">TYPE {{g.index}}</a>
 	                            </h4>
 	                        </div>
-	                        <div id="{{g.index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	                        <div id="father{{g.index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 	                        	<div class="panel-body">
 	                        		<div class="panel panel-default" ng-repeat="x in g.paper">
 				                        <div class="panel-heading" role="tab" id="headingOne">
 				                            <h4 class="panel-title">
-				                                <a data-toggle="collapse" data-parent="#accordion" href="#{{x.index1}}" aria-expanded="true" aria-controls="{{x.index1}}">{{x.paper_title}}</a>
+				                                <a data-toggle="collapse" data-parent="#accordion" href="#{{x.id}}" aria-expanded="true" aria-controls="{{x.id}}">{{x.paper_title}}</a>
 				                            </h4>
 				                        </div>
-				                        <div id="{{x.index1}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				                        <div id="{{x.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 				                        	<div class="panel-body">
 				                        		<div class="panel-body">
 				                            		<p>paper link: <a ng-href="{{x.paper_link}}">{{x.paper_title}}</a></p>
