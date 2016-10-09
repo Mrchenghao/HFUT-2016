@@ -196,7 +196,22 @@ def getRelatedPaper(request):
 		except:
 			raise myError('Please Log In.')
 		gene_name = data['gene_name']
-		realated_paper_list = search_papers(gene_name)
+		# realated_paper_list = search_papers(gene_name)
+		realated_paper_list = [[{'id': 12345, 'paper_id': '123', 'paper_title':"123", 
+								'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
+								{'id': 23456, 'paper_id': '123', 'paper_title':"hahah", 
+								'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
+								{'id': 34567, 'paper_id': '123', 'paper_title':"hahah", 
+								'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
+								{'id': 45678, 'paper_id': '123', 'paper_title':"hahah", 
+								'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},], 
+								[{'id': 56789, 'paper_id': '123', 'paper_title':"hahah", 
+								'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
+								{'id': 67890, 'paper_id': '123', 'paper_title':"hahah", 
+								'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
+								{'id': 78901, 'paper_id': '123', 'paper_title':"hahah", 
+								'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},]
+								]
 		print realated_paper_list
 		result = {
 			'successful': True,
