@@ -92,19 +92,32 @@
 						<div class="panel panel-default" ng-repeat="g in gene_info">
 	                        <div class="panel-heading" role="tab" id="headingOne">
 	                            <h4 class="panel-title">
-	                                <a data-toggle="collapse" data-parent="#accordion" href="#{{g.index}}" aria-expanded="true" aria-controls="{{g.index}}">{{g.paper_title}}</a>
+	                                <a data-toggle="collapse" data-parent="#accordion" href="#{{g.index}}" aria-expanded="true" aria-controls="{{g.index}}">TYPE {{g.index}}</a>
 	                            </h4>
 	                        </div>
 	                        <div id="{{g.index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-	                            <div class="panel-body">
-	                            	<p>paper link: <a ng-href="{{g.paper_link}}">{{g.paper_title}}</a></p>
-	                            </div>
-	                            <div class="panel-body">
-	                                <p>keywords: {{g.paper_keyword}}</p>
-	                            </div>
-	                            <div class="panel-body">
-	                                <p>abstract: {{g.paper_abstract}}</p>
-	                            </div>
+	                        	<div class="panel-body">
+	                        		<div class="panel panel-default" ng-repeat="x in g.paper">
+				                        <div class="panel-heading" role="tab" id="headingOne">
+				                            <h4 class="panel-title">
+				                                <a data-toggle="collapse" data-parent="#accordion" href="#{{x.index1}}" aria-expanded="true" aria-controls="{{x.index1}}">{{x.paper_title}}</a>
+				                            </h4>
+				                        </div>
+				                        <div id="{{x.index1}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				                        	<div class="panel-body">
+				                        		<div class="panel-body">
+				                            		<p>paper link: <a ng-href="{{x.paper_link}}">{{x.paper_title}}</a></p>
+					                            </div>
+					                            <div class="panel-body">
+					                                <p>keywords: {{x.paper_keyword}}</p>
+					                            </div>
+					                            <div class="panel-body">
+					                                <p>abstract: {{x.paper_abstract}}</p>
+					                            </div>
+				                        	</div>
+				                        </div>
+				                    </div>
+	                        	</div>
 	                        </div>
 	                    </div>
 					</div>

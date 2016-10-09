@@ -118,15 +118,20 @@ gi.controller('geneInfoController',function($scope, $http){
 		$http(opt).success(function(data){
 			if(data.successful){
 				data.data.forEach(function(r, index) {
-					if(!r.paper_keyword.length)
-						r.paper_keyword = 'None';
-					$scope.gene_info.push({
-						index: index,
-						paper_title: r.paper_title,
-						paper_link: r.paper_link,
-						paper_keyword: r.paper_keyword,
-						paper_abstract: r.paper_abstract,
-					})
+					r.forEach(function(x, index1){
+						if(!r.paper_keyword.length)
+							r.paper_keyword = 'None';
+						$scope.gene_info.push({
+							index: index,
+							paper: {
+								index1: index1,
+								paper_title: x.paper_title,
+								paper_link: x.paper_link,
+								paper_keyword: x.paper_keyword,
+								paper_abstract: x.paper_abstract,
+							},
+						});
+					});
 				});
 			}
 		});
