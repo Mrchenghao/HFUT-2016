@@ -28,6 +28,7 @@ class Paper_Gene(models.Model):
     paper_abstract = models.TextField()
     paper_link = models.CharField(max_length=255)
     gene = models.ForeignKey(Gene)
+    paper_class = models.IntegerField(default=-1)
 
     def __unicode__(self):
         return self.paper_id
