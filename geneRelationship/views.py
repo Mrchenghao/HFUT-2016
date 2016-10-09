@@ -27,11 +27,13 @@ def randomGene(request):
 		gene_name = random.choice(gene_list)
 		search_result = search_relation(gene_name)
 		if len(search_result['children']) > 10:
-			search_result['children'] = search_result['children'][:10]
+			search_result['children'].sort(key=lambda d:float(d['relations']), reverse=True)
+		search_result['children'] = search_result['children'][:10]
 		for gene in search_result['children']:
 			gene_name = gene['name']
 			temp_result = search_relation(gene_name)
 			if len(temp_result['children']) > 10:
+				temp_result['children'].sort(key=lambda d:float(d['relations']), reverse=True)
 				gene['children'] = temp_result['children'][:10]
 			else:
 				gene['children'] = temp_result['children']
@@ -156,8 +158,8 @@ def getRelatedGene(request):
 		realated_gene_list = []
 		realated_genes = search_relation(gene_name)
 		if realated_genes['children'] > 10:
-			realated_genes['children'] = realated_genes['children'][:10]
-		print realated_genes
+			realated_genes['children'].sort(key=lambda d:float(d['relations']), reverse=True)
+		realated_genes['children'] = realated_genes['children'][:10]
 		result = {
 			'successful': True,
 			'data': realated_genes,

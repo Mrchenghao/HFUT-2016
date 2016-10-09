@@ -121,15 +121,10 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdTo
 		};
 		$http(opt).success(function(data){
 			if (data.successful) {
-				// $scope.project_info.forEach(function(p){
-				// 	if(p.id == project_id){
-				// 		p.devices.splice(index,1);
-				// 		break;
-				// 	}
-				// });
-				showToast($mdToast, "Project deleted successfully");
+				$scope.update();
+				showToast($mdToast, "Device deleted successfully");
 			} else{
-				showToast($mdToast, "Project deleted FAILED");
+				showToast($mdToast, "Device deleted FAILED");
 			}
 		});
 	}
