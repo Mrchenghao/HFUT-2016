@@ -8,17 +8,18 @@ import traceback
 import json
 
 def savePaperClassToDB():
-	readFile = file('paper_class.json')
+	readFile = file('julei.json')
 	s = json.load(readFile)
 	paper_classes = s['rows']
 	for paper_class in paper_classes:
 		try:
-			paper_id = paper_class[2][3:-4]
-			gene_id = paper_calss[1]
-			paper_gene = Paper_Gene.filter(paper_id=paper_id and gene_id=gene_id).first()
+			paper_id = str(paper_class[2][3:-4])
+			gene_id = str(paper_class[1])
+			paper_gene = Paper_Gene.objects.filter(paper_id=paper_id, gene_id=gene_id).first()
 			if paper_gene:
 				paper_gene.paper_class = paper_class[3]
 				paper_gene.save()
 		except:
-			print traceback.print_exc()
-		
+			traceback.print_exc()
+if __name__ == '__main__':
+	savePaperClassToDB()
