@@ -131,7 +131,7 @@ gi.controller('geneInfoController',function($scope, $http){
 		$http(opt).success(function(data){
 			if(data.successful){
 				data.data.forEach(function(r, index) {
-					r.forEach(function(x) {
+					r.forEach(function(x, index1) {
 						if(!x.paper_keyword.length)
 							x.paper_keyword = 'None';
 					})
