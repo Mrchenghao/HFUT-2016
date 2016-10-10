@@ -1,6 +1,6 @@
 function draw(data){		
-		var width = 300;
-		var height = 250; 
+		var width = 640;
+		var height = 330; 
 		var color = d3.scale.category20();
 		var tree = d3.layout.tree();
 
@@ -40,7 +40,10 @@ function draw(data){
 						         return color(i);
 						     })
 						     .style('stroke', '#fff')
-						     .style('stroke-width', 3);
+						     .style('stroke-width', 3)
+						     .on("click", function(d) { 
+						     	jumpTo(d); 
+					        });
 			
 			var svgText = connect_network.selectAll('text')
 							 .data(nodes)
@@ -67,6 +70,10 @@ function draw(data){
 			    //更新文字坐标
 			    svgText.attr("x", function(d){ return d.x; })
 	        			 .attr("y", function(d){ return d.y; });
-
 			});
+
+			function jumpTo(d){
+				sessionStorage.setItem("gene_name",d.name);
+				window.location.href='./gene_info.html';
+			}
 }
