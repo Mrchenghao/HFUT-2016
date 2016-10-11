@@ -56,8 +56,7 @@ editPro.controller('designController', function($scope, $http, $location, $mdToa
 
 		$http(opt).success(function(data) {
 			if (data.successful) {
-				showToast($mdToast,"save SUCCESS!");
-				console.log("success");
+//				showToast($mdToast,"save SUCCESS!");
 				$scope.delete_gene = [];
 			}
 		});
