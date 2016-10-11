@@ -1,10 +1,10 @@
 # -*- coding:utf-8 -*-
 import os,django
-os.environ["DJANGO_SETTINGS_MODULE"] = "BioDesignVer.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "../../BioDesignVer.settings"
 django.setup()
-from geneRelationship.models import *
+from /../../geneRelationship.models import *
 from itertools import combinations
-from geneRelationship.models import Gene
+from /../../geneRelationship.models import Gene
 from fasta_reader import parse_fasta_str
 import traceback
 import urllib2
@@ -22,10 +22,15 @@ def getGeneIDList():
     for n in readFile:
         js = json.loads(n)
     geneIdList = []
-    while js:
+    i = 0
+    while i < 1000:
         gene = js.pop(0)
         geneIdList.append(gene['gene_id'])
+        i = i + 1
     readFile.close()
+    writeFile = open('residue_gene.json', 'w')
+    writeFile.write(json.dumps(js))
+    writeFile.close()
     return geneIdList
 
 def getGene(gid):
