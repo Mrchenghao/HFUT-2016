@@ -71,7 +71,7 @@
         	<div class="row">
         		<div class="col-md-2 mySidebar">
                     <ul class="myNavSidebar" ng-sortable="pullConfig">
-                    	<li ng-repeat="gene in search_info">
+                    	<li ng-repeat="gene in search_info" ng-click="getGeneInfo(gene.name)">
 		                    <img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
 		                    <img ng-src="{{gene.img}}" alt="gene_img">
 							<span>{{gene.name}}</span>
@@ -100,18 +100,18 @@
 							  	<label for="rm">Middle</label>
 							  	<input type="radio" name="recommendType" id="rm" ng-click="show_middle()"/>
 							  	<label for="rb">Back</label>
-							  	<input type="radio" name="recommendType" id="rb" ng-click="show_back()"/>
+							  	<input type="radio" name="recommendType" id="rb" ng-click="show_back()" checked="checked"/>
 							</div>
                             <ul class="recommendMain" ng-sortable="recommendConfig">
-                                <li ng-hide="!sf" ng-repeat="gene in recommend_info.front" class='recommend_item'>
+                                <li ng-hide="!sf" ng-repeat="gene in recommend_info.front" class='recommend_item' ng-click="getGeneInfo(gene.name)">
                                     <img ng-src="{{gene.img}}" alt="gene_img">
                                     <span>{{gene.name}}</span>
                                 </li>
-                                <li ng-hide="!sm" ng-repeat="gene in recommend_info.middle" class='recommend_item'>
+                                <li ng-hide="!sm" ng-repeat="gene in recommend_info.middle" class='recommend_item' ng-click="getGeneInfo(gene.name)">
                                     <img ng-src="{{gene.img}}" alt="gene_img">
                                     <span>{{gene.name}}</span>
                                 </li>
-                                <li ng-hide="!sb" ng-repeat="gene in recommend_info.back" class='recommend_item'>
+                                <li ng-hide="!sb" ng-repeat="gene in recommend_info.back" class='recommend_item' ng-click="getGeneInfo(gene.name)">
                                     <img ng-src="{{gene.img}}" alt="gene_img">
                                     <span>{{gene.name}}</span>
                                 </li>

@@ -1,6 +1,6 @@
 var editPro = angular.module('designApp', ['ng-sortable']);
 
-editPro.controller('designController', function($scope, $http) {
+editPro.controller('designController', function($scope, $http, $location, $mdToast) {
 	$scope.search_info = [];//搜索结果
 	$scope.chain_info = [];//用户编辑的基因链
     $scope.delete_gene = [];
@@ -56,7 +56,7 @@ editPro.controller('designController', function($scope, $http) {
 
 		$http(opt).success(function(data) {
 			if (data.successful) {
-//				showToast($mdToast,"save SUCCESS!");
+				showToast($mdToast,"save SUCCESS!");
 				console.log("success");
 				$scope.delete_gene = [];
 			}

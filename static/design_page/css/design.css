@@ -10,11 +10,6 @@
 	overflow-y: auto;
 	background-color: #f8f8f8;
 }
-myNavSidebar{
-	/*margin-right: -21px;
-	margin-bottom: 20px;
-	margin-left: -20px;*/
-}
 @media(min-width:768px) {
 	.right-side-bar{
 		right:-15px;
@@ -57,4 +52,7 @@ myNavSidebar{
 }
 .bottombar div{
 	padding: 0;
+}
+ul > li{
+	list-style-type: none;
 }
