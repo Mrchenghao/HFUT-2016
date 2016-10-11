@@ -22,7 +22,7 @@ def randomGene(request):
 			user = token.user
 		except:
 			raise myError('Please Log In.')
-		gene_file = open('gene_name.json', 'r')
+		gene_file = open('data\gene_name.json', 'r')
 		gene_list = json.loads(gene_file.read())
 		gene_name = random.choice(gene_list)
 		search_result = search_relation(gene_name)
@@ -37,9 +37,6 @@ def randomGene(request):
 				gene['children'] = temp_result['children'][:10]
 			else:
 				gene['children'] = temp_result['children']
-		gene_json = open('gene.json', 'w')
-		gene_json.write(json.dumps(search_result))
-		gene_json.close()
 		result = {
 			'successful': True,
 			'data': search_result,
@@ -200,21 +197,6 @@ def getRelatedPaper(request):
 			raise myError('Please Log In.')
 		gene_name = data['gene_name']
 		related_paper_list = search_papers(gene_name)
-		# realated_paper_list = [[{'id': 12345, 'paper_id': '123', 'paper_title':"123", 
-		# 						'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
-		# 						{'id': 23456, 'paper_id': '123', 'paper_title':"hahah", 
-		# 						'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
-		# 						{'id': 34567, 'paper_id': '123', 'paper_title':"hahah", 
-		# 						'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
-		# 						{'id': 45678, 'paper_id': '123', 'paper_title':"hahah", 
-		# 						'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},], 
-		# 						[{'id': 56789, 'paper_id': '123', 'paper_title':"hahah", 
-		# 						'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
-		# 						{'id': 67890, 'paper_id': '123', 'paper_title':"hahah", 
-		# 						'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},
-		# 						{'id': 78901, 'paper_id': '123', 'paper_title':"hahah", 
-		# 						'paper_link':'fsd', 'paper_keyword': 'test', 'paper_abstract': 'haha'},]
-		# 						]
 		result = {
 			'successful': True,
 			'data': related_paper_list,
