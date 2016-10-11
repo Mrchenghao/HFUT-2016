@@ -9,7 +9,6 @@
     <link href="../public/custombox/dist/custombox.min.css" rel="stylesheet"> 
     <link href="../public/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../public/angular-material/angular-material.css" rel="stylesheet">
-    <!--<link href="../public/ng-tags-input.min/ng-tags-input.min.css" rel="stylesheet">-->
     <link href="../public/shCircleLoader-master/jquery.shCircleLoader.css" rel="stylesheet">
     <link href="./css/sb-admin-2.css" rel="stylesheet">   
     <link href="./css/system.css" rel="stylesheet">
@@ -30,16 +29,6 @@
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
-<<<<<<< HEAD
-            	<li>
-            		<!--<tags-input ng-model="compound_tags1"></tags-input>-->
-            		<button class="btn btn-primary" ng-click="jumpToProject()">Project</button>
-=======
-            	<li ><!-- class="compound_tags" -->
-                    <button class="btn btn-primary" type="button">Tags</button>
-            		<!-- <tags-input ng-model="compound_tags1"></tags-input> -->
->>>>>>> 4dae14a7d3b3152e3983cda3da6610c4cd4cf277
-            	</li>
                 <li>
                     <button class="btn btn-danger" ng-click="jumpToProject()">Project</button>
                 </li>
@@ -75,7 +64,7 @@
 	                <i class="fa fa-search"></i>
 	            </button>
 	            <button class="btn btn-success" type="button" ng-click="runCompoundTags()">Run</button>
-	            <button class="btn btn-danger" type="button" ng-click="removeAllCompoundTags()">Remove All</button>
+        		<button class="btn btn-primary" ng-click="tagsDialog()">Your Tags</button>
             </form>
         </nav>
         <div class="container-fluid">
@@ -127,6 +116,26 @@
         	</div>
         </div>
         
+        <!--tags modal-->
+	    <div id="tags" class="modal-demo">
+			<button type="button" class="close" onclick="Custombox.close();">
+				<span>×</span>
+				<span class="sr-only">Close</span>
+			</button>
+			<h4 class="title">Your Tags</h4>
+			<div class="text">
+				<p ng-hide="!(compound_tags.length == 0)"><strong>You hava no tags now ^_^,please chose your tags,haha.</strong></p>
+				<md-chips ng-model="compound_tags" readonly="false" ng-hide="compound_tags.length == 0">
+		        	<md-chip-template>
+		          		<strong>{{$chip.name}}</strong>
+	        		</md-chip-template>
+		      	</md-chips>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" onclick="Custombox.close();">Cancel</button>
+				<button type="button" class="btn btn-danger" ng-click="removeAllCompoundTags()">RemoveAll</button>
+			</div>
+		</div>
         <!--log out modal-->
 	    <div id="logout" class="modal-demo">
 			<button type="button" class="close" onclick="Custombox.close();">
@@ -186,7 +195,6 @@
     <script src="../public/angular-aria/angular-aria.js"></script>
     <script src="../public/angular-material/angular-material.js"></script>
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!--<script src="../public/ng-tags-input.min/ng-tags-input.min.js"></script>-->
     <script src="../public/shCircleLoader-master/jquery.shCircleLoader-min.js"></script>
     <script src="../public/d3/d3.min.js"></script>
     <script src="./js/system_page.js"></script>

@@ -1,10 +1,9 @@
-var system = angular.module('systemApp',['ngMaterial','ngAnimate','ngTagsInput']);
+var system = angular.module('systemApp',['ngMaterial','ngAnimate']);
 
 system.controller('systemController',function($scope, $http, $location, $mdToast){
 	
 	$scope.compound_info = [];//侧边栏数据
 	$scope.compound_tags = [];//导航栏数据
-	$scope.compound_tags1 = [];
 	$scope.message_show = false;//默认侧边栏信息显示
 	$scope.gene_message_show = true;//基因信息不显示
 	
@@ -20,6 +19,13 @@ system.controller('systemController',function($scope, $http, $location, $mdToast
 	$scope.jumpToProject = function(){
   		window.location.href = "../project_page/project_page.html";
   	}
+	//标签模态框
+	$scope.tagsDialog = function(){
+		Custombox.open({
+            target:'#tags',
+            effect:'fadein',
+       	});
+	}
 	//修改密码模态框
 	$scope.changePasswordDialog = function(){
 		Custombox.open({
@@ -171,9 +177,6 @@ system.controller('systemController',function($scope, $http, $location, $mdToast
 	$scope.addCompoundTags = function(compound){
 		if($scope.compound_tags.indexOf(compound) == -1){
 			$scope.compound_tags.push(compound);
-			$scope.compound_tags1.push({
-				text: compound.name,
-			});
 		}
 	}
 	
