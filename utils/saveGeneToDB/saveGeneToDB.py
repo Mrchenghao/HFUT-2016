@@ -18,17 +18,14 @@ def saveGene():
             getGene(geneID)
 
 def getGeneIDList():
-    i = 0
-    readFile = open('newGene.json', 'r')
+    readFile = file('all_gene.json')
     for n in readFile:
         js = json.loads(n)
     geneIdList = []
     while js:
-        i += 1
         gene = js.pop(0)
         geneIdList.append(gene['gene_id'])
     readFile.close()
-    print 'count: %s \n' % i
     return geneIdList
 
 def getGene(gid):

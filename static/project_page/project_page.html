@@ -60,8 +60,8 @@
         		<div class="col-md-2 sidebar">
         			<ul class="nav nav-sidebar">
                     	<li ng-repeat="project in project_info">
-	                        <a ng-click="toggle_device($index)">
-	                            <span>{{project.name}}</span>
+	                        <a style="position: relative;" ng-click="toggle_device($index)">
+	                            <span style="position: relative;">{{project.name}}</span>
 	                            <div class="btn-edit" ng-hide="!isEdit">
 	                                <button class="btn btn-default" aria-label="show-new-device" ng-click="showNewDeviceDialog(project.id)">
 	                                    <i class="fa fa-plus" aria-hidden="true"></i>
@@ -71,16 +71,16 @@
 	                                </button>
 	                            </div>
 	                        </a>
-	                        <ul class="nav nav-second-level" ng-hide="project.isDeviceShowed">
-	                            <li ng-repeat="device in project.devices">
-	                            	
-	                                <a ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">{{device.chain_name}}
+	                        <div class="nav nav-second-level sideBarUl" ng-hide="project.isDeviceShowed">
+	                            <div class="sideBarClick" ng-repeat="device in project.devices">
+	                                <div class="sideBarClick" ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">
+	                                <div class="chainName">{{device.chain_name}}</div>
 										<button class="btn btn-danger dev-edit" aria-label="delete-device" ng-click="delete_device($index,device.chain_id,project.id)">
 		                                    <i class="fa fa-trash" aria-hidden="true"></i>
 		                                </button>
-	                                </a>
-	                            </li>
-	                        </ul>
+	                                </div>
+	                            </div>
+	                        </div>
 	                    </li>
 	               	</ul>
         		</div>

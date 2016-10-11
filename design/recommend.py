@@ -224,17 +224,17 @@ def getMarkovRecommend(part_id):
     return recommend_list
 
 def loadA():
-    tranFile = open(BASE+'/../tran.json', 'r')
+    tranFile = open(BASE+'/../data/tran.json', 'r')
     A = json.loads(tranFile.read())
     return A
 
 def loadB():
-    tranFile = open(BASE+'/../bettwen_matrix_0.json', 'r')
+    tranFile = open(BASE+'/../data/bettwen_matrix_0.json', 'r')
     B = json.loads(tranFile.read())
     return B
 
 def loadC():
-    tranFile = open(BASE+'/../before_matrix_0.json', 'r')
+    tranFile = open(BASE+'/../data/before_matrix_0.json', 'r')
     C = json.loads(tranFile.read())
     return C
 

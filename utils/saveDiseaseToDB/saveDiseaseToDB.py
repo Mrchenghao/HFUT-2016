@@ -7,8 +7,8 @@ from geneRelationship.models import Gene_Disease
 import traceback
 import json
 
-def saveGene_DiseasetoDB():
-	readFile = file('resultDisease.json')
+def saveGene_DiseasetoDB(fileName):
+	readFile = file(fileName)
 	for f in readFile:
 		gnee_disease_objects = json.loads(f)
 	for gene_disease_object in gnee_disease_objects:

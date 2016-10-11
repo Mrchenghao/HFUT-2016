@@ -23,3 +23,6 @@ def parse_fasta_file(fasta_filename):
         for name, seq in read_fasta(fp):
             res_dict[name] = seq
     return res_dict
+
+if __name__ == '__main__':
+    main()

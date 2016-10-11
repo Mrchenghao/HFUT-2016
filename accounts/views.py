@@ -23,13 +23,9 @@ def register(request):
 	try:
 		data = json.loads(request.body)
 		userName = data['username']
-		print userName
 		email = data['email']
-		print email
 		password = data['password']
-		print password
 		repassword = data['repassword']
-		print repassword
 		existEmail = User.objects.filter(email=email).first()
 		if existEmail:
 			raise myError('The email already exists.')
@@ -42,7 +38,6 @@ def register(request):
 		user.userName = userName
 		user.password = make_password(password)
 		user.email = email
-		# send_verificationEmail(email)
 		user.save()
 		result = {
 		'successful': True,
@@ -76,10 +71,8 @@ def getLogin(request):
 def login(request):
 	try:
 		data = json.loads(request.body)
-		print data
 		user = data['username']
 		password = data['password']
-		print password
 		customerUser = User()
 		customerUser = User.objects.filter(userName=user).first()
 		if not customerUser:

@@ -338,9 +338,9 @@ def deleteProjectDevice(request):
 		project = Project.objects.filter(id=project_id).first()
 		if user != project.creator:
 			raise myError('Delete Failed.')
-		chain = Chain()
 		chain = Chain.objects.filter(id=data['device_id']).first()
-		chain.delete()
+		deleteMassage = chain.delete()
+		print deleteMassage
 		result = {
 			'successful': True,
 			'error': {

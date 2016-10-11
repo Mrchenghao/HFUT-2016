@@ -74,7 +74,7 @@
                     	<li ng-repeat="gene in search_info" ng-click="getGeneInfo(gene.name)">
 		                    <img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
 		                    <img ng-src="{{gene.img}}" alt="gene_img">
-							<span>{{gene.name}}</span>
+							<div class="searchItemName">{{gene.name}}</div>
 						</li>
                     </ul>
         		</div>

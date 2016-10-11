@@ -22,7 +22,7 @@ def randomGene(request):
 			user = token.user
 		except:
 			raise myError('Please Log In.')
-		gene_file = open('data\gene_name.json', 'r')
+		gene_file = open('data/gene_name.json', 'r')
 		gene_list = json.loads(gene_file.read())
 		gene_name = random.choice(gene_list)
 		search_result = search_relation(gene_name)
@@ -62,8 +62,6 @@ def randomGene(request):
 			}
 		}
 	finally:
-		with open('data.json', 'wb') as out_put:
-			out_put.write(json.dumps(result))
 		return HttpResponse(json.dumps(result), content_type='application/json')
 
 def searchGenes(request):
@@ -154,9 +152,6 @@ def getRelatedGene(request):
 		gene_name = data['gene_name']
 		realated_gene_list = []
 		realated_genes = search_relation(gene_name)
-		writeFile = open('related_gene.json', 'w')
-		writeFile.write(json.dumps(realated_genes['children']))
-		writeFile.close()
 		if realated_genes['children'] > 10:
 			realated_genes['children'].sort(key=lambda d:float(d['relations']), reverse=True)
 		realated_genes['children'] = realated_genes['children'][:10]

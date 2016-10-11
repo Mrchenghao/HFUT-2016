@@ -138,11 +138,9 @@ def getSequenceResultImage(sequence, width, height, name):
     @rtype: str
     """
     sequenceList = sequence.split('_')
-    print sequenceList
     sequenceInfo = list()
     for partid in sequenceList:
         partObj = Parts.objects.filter(part_id=partid).first()
-        print partid
         infoDict = {
             'name': partObj.part_name,
             'icon_file_name' : BASE + '/../static/img/%s.png' % partObj.part_type,
