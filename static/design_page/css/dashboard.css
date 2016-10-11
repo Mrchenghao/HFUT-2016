@@ -61,27 +61,27 @@
 }
 
 .line{
-    background:url('../img/x_bg.png');
+    background:url('../img/x_bg.png') no-repeat;
     background-size:100%;
 }
 
 .rt{
-    background:url('../img/rt_bg.png');
+    background:url('../img/rt_bg.png') no-repeat;
     background-size:100%;
 }
 
 .rb{
-    background:url('../img/rb_bg.png');
+    background:url('../img/rb_bg.png') no-repeat;
     background-size:100%;
 }
 
 .lt{
-    background:url('../img/lt_bg.png');
+    background:url('../img/lt_bg.png') no-repeat;
     background-size:100%;
 }
 
 .lb{
-    background:url('../img/lb_bg.png');
+    background:url('../img/lb_bg.png') no-repeat;
     background-size:100%;
 }
 
@@ -90,7 +90,7 @@
     width: 25%;
     min-height: 30%;
     float:left;
-    background:url('../img/x_bg.png');
+    background:url('../img/x_bg.png') no-repeat;
     background-size:contain;
 }
 

@@ -1,4 +1,4 @@
-var editPro = angular.module('designApp', ['ng-sortable']);
+var editPro = angular.module('designApp', ['ngMaterial','ngAnimate','ng-sortable']);
 
 editPro.controller('designController', function($scope, $http, $location, $mdToast) {
 	$scope.search_info = [];//搜索结果
