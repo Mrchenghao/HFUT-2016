@@ -10,7 +10,7 @@ body{
 .mainDash li{
 	display: inline-block;
 	width: 20%;
-	height: 100px;
+	height: 80px;
 }
 
 .ghost {

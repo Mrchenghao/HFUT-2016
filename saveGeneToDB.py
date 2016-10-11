@@ -13,7 +13,9 @@ import json
 def saveGene():
     geneIdList = getGeneIDList()
     for geneID in geneIdList:
-        getGene(geneID)
+        gene = Gene.objets.filter(gene_id=geneID).first()
+        if not gene:
+            getGene(geneID)
 
 def getGeneIDList():
     i = 0

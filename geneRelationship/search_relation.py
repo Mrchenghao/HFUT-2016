@@ -61,7 +61,7 @@ def search_one_sentence(gene_name_one, gene_name_two):
 				'paper_keyword': sentence.paper.paper_keyword,
 				'paper_abstract': sentence.paper.paper_abstract[8:]
 				})
-	return sentence_listsentence_list
+	return sentence_list
 
 def search_three_sentence(gene_name_one, gene_name_two):
 	three_keysentences = Three_KeySentence.objects.filter(gene_name_one=gene_name_one, gene_name_two=gene_name_two)

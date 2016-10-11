@@ -3,6 +3,4 @@ $(function(){
 	$('.mainDash').height(h * 0.65);
 	$('.mySidebar').height(h);
 	$('.bottombar').height(h * 0.35);
-    console.log($(window).height());
-    console.log($('.navbar').height());
 })
