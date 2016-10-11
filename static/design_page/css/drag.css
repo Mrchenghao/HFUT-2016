@@ -1,8 +1,3 @@
-body{
-	// height: 100%;
-	// background: blue;
-}
-
 .mainDash{
 	padding: 0;
 	margin: 0;
@@ -14,5 +9,5 @@ body{
 }
 
 .ghost {
-  opacity: 0.4;
+  	opacity: 0.4;
 }
