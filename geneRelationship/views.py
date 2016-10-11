@@ -157,6 +157,9 @@ def getRelatedGene(request):
 		gene_name = data['gene_name']
 		realated_gene_list = []
 		realated_genes = search_relation(gene_name)
+		writeFile = open('related_gene.json', 'w')
+		writeFile.write(json.dumps(realated_genes['children']))
+		writeFile.close()
 		if realated_genes['children'] > 10:
 			realated_genes['children'].sort(key=lambda d:float(d['relations']), reverse=True)
 		realated_genes['children'] = realated_genes['children'][:10]

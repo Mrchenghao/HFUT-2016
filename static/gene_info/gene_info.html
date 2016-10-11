@@ -99,6 +99,9 @@
 		                    </div>
 		                    <div id="{{d.index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 		                    	<div class="panel-body">
+		                    	<div class="panel-body">
+		                        		<p>disease name: {{d.disease_name}}</p>
+		                            </div>
 		                    		<div class="panel-body">
 		                        		<p>paper link: <a ng-href="{{d.paper_url}}">{{d.paper_url}}</a></p>
 		                            </div>
@@ -114,7 +117,7 @@
 						<div class="panel panel-default" ng-repeat="g in gene_info">
 	                        <div class="panel-heading" role="tab" id="headingOne">
 	                            <h4 class="panel-title">
-	                                <a data-toggle="collapse" data-parent="#accordion" href="#father{{g.index}}" aria-expanded="false" aria-controls="father{{g.index}}">TYPE {{g.index}}</a>
+	                                <a data-toggle="collapse" data-parent="#accordion" href="#father{{g.index}}" aria-expanded="false" aria-controls="father{{g.index}}">Group {{g.index+1}}</a>
 	                            </h4>
 	                        </div>
 	                        <div id="father{{g.index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">

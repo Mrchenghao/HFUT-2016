@@ -74,10 +74,12 @@
 	                        </a>
 	                        <ul class="nav nav-second-level" ng-hide="project.isDeviceShowed">
 	                            <li ng-repeat="device in project.devices">
-	                            	<button class="btn btn-danger" aria-label="delete-device" ng-click="delete_device($index,device.chain_id,project.id)">
-	                                    <i class="fa fa-trash" aria-hidden="true"></i>
-	                                </button>
-	                                <a ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">{{device.chain_name}}</a>
+	                            	
+	                                <a ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">{{device.chain_name}}
+										<button class="btn btn-danger dev-edit" aria-label="delete-device" ng-click="delete_device($index,device.chain_id,project.id)">
+		                                    <i class="fa fa-trash" aria-hidden="true"></i>
+		                                </button>
+	                                </a>
 	                            </li>
 	                        </ul>
 	                    </li>

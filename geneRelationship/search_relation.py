@@ -48,12 +48,12 @@ def search_papers(gene_name):
 
 def search_one_sentence(gene_name_one, gene_name_two):
 	one_keysentences = One_KeySentence.objects.filter(gene_name_one=gene_name_one, gene_name_two=gene_name_two)
-	sentenceList = []
+	sentence_list = []
 	sList = []
 	for sentence in one_keysentences:
 		if sentence.sentence not in sList:
 			sList.append(sentence.sentence) 
-			sentenceList.append({
+			sentence_list.append({
 				'sentence': sentence.sentence,
 				'paper_id': sentence.paper.paper_id,
 				'paper_title': sentence.paper.paper_title,
@@ -61,13 +61,13 @@ def search_one_sentence(gene_name_one, gene_name_two):
 				'paper_keyword': sentence.paper.paper_keyword,
 				'paper_abstract': sentence.paper.paper_abstract[8:]
 				})
-	return sentenceList
+	return sentence_listsentence_list
 
 def search_three_sentence(gene_name_one, gene_name_two):
 	three_keysentences = Three_KeySentence.objects.filter(gene_name_one=gene_name_one, gene_name_two=gene_name_two)
-	sentenceList = []
+	sentence_list = []
 	for sentence in three_keysentences:
-		sentenceList.append({
+		sentence_list.append({
 			'sentence': sentence.sentence,
 			'paper_id': sentence.paper.paper_id,
 			'paper_title': sentence.paper.paper_title,
@@ -75,16 +75,21 @@ def search_three_sentence(gene_name_one, gene_name_two):
 			'paper_keyword': sentence.paper.paper_keyword,
 			'paper_abstract': sentence.paper.paper_abstract[8:]
 			})
-	return sentenceList
+	return sentence_list
 
 def search_related_disease(gene_name):
 	base_url = 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=Pubmed&dopt=Abstract&list_uids='
 	gene_diseases = Gene_Disease.objects.filter(gene_name=gene_name)
-	diseaseList = []
+	if not gene_diseases:
+		return None
+	disease_list = []
+	disease_name_list = []
 	for gene_disease in gene_diseases:
-		diseaseList.append({
-			'disease_name': gene_disease.disease_name,
-			'disease_class': gene_disease.disease_class,
-			'paper_url': base_url + str(gene_disease.paper_id)
-			})
-	return diseaseList
+		if gene_disease.disease_name not in disease_name_list:
+			disease_name_list.append(gene_disease.disease_name)
+			disease_list.append({
+				'disease_name': gene_disease.disease_name,
+				'disease_class': gene_disease.disease_class,
+				'paper_url': base_url + str(gene_disease.paper_id)
+				})
+	return disease_list

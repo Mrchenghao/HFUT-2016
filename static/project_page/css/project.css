@@ -47,5 +47,13 @@
     right: 15px;
 }
 .btn-edit{
-    float: right;
+	position: relative;
+	margin-left: 50%;
+    display: inline-block;
 }
+.dev-edit{
+	position: relative;
+	margin-left: 60%;
+	display: inline-block;
+}
+
