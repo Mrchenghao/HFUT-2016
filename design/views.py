@@ -176,10 +176,8 @@ def updateChain(request):
             seq = ''
             for chain_item in data['chain_info']:
                 if seq:
-                    print chain_item
                     seq += '_' + str(chain_item[u'part_id'])
                 else:
-                    print chain_item
                     seq += str(chain_item[u'part_id'])
         chain.sequence = seq
         chain.save()
@@ -296,56 +294,6 @@ def getMRecommend(request):
     finally:
         return HttpResponse(json.dumps(result), content_type='application/json')
 
-# def getBettwenRecommend(request):
-#     try:
-#         data = json.loads(request.body)
-#         try:
-#             token = Token.objects.filter(token=data['token']).first()
-#             user = token.user
-#         except:
-#             raise myError('Please Log In.')
-#         part_id_one = str(data['part_id_one'])
-#         print part_id_one
-#         part_id_two = str(data['part_id_two'])
-#         print part_id_two
-#         recommend_list = getBetweenMarkovRecommend(part_id_one, part_id_two)
-#         print recommend_list
-#         if not recommend_list:
-#             result = {
-#             'successful': False,
-#             'error': {
-#                 'id': '',
-#                 'msg': '',
-#             }
-#         }
-#         else:
-#             result = {
-#                 'successful': True,
-#                 'data': recommend_list,
-#                 'error': {
-#                     'id': '',
-#                     'msg': '',
-#                 }
-#             }
-#     except myError, e:
-#         result = {
-#             'successful': False,
-#             'error': {
-#                 'id': '',
-#                 'msg': e.value,
-#             }
-#         }
-#     except Exception, e:
-#         result = {
-#             'successful': False,
-#             'error': {
-#                 'id': '',
-#                 'msg': e.args,
-#             }
-#         }
-#     finally:
-#         return HttpResponse(json.dumps(result), content_type='application/json')
-
 def getResultImage(request):
     try:
         data = json.loads(request.body)
@@ -360,10 +308,8 @@ def getResultImage(request):
         if user != project.creator:
             raise myError('Get Failed.')
         chainid = data['chain_id']
-        chain = Chain()
         chain = Chain.objects.filter(id=data['chain_id']).first()
         sequence = chain.sequence
-        print sequence
         if not sequence:
             filepath = None
             raise myError('no img.')

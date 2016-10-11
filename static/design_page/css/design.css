@@ -56,3 +56,7 @@
 ul > li{
 	list-style-type: none;
 }
+
+.searchItemName{
+	display: block;
+}
