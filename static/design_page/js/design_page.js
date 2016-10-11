@@ -12,9 +12,9 @@ editPro.controller('designController', function($scope, $http, $location, $mdToa
     $scope.float_right = false;
     $scope.float_left = true;
     
-    $scope.sf = true;//默认展示后面的基因
+    $scope.sb = true;//默认展示后面的基因
     $scope.sm = false;//中间的markv
-    $scope.sb = false;//后面的markv
+    $scope.sf = false;//后面的markv
     
     $scope.show_front = function(){
     	$scope.sf = true;
