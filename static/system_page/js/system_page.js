@@ -203,6 +203,7 @@ system.controller('systemController',function($scope, $http, $location, $mdToast
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
+				$scope.compound_tags = [];
 				$('#my-svg').shCircleLoader('destroy');
 				draw(data.data);
 			}

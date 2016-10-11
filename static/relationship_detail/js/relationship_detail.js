@@ -1,6 +1,6 @@
 var bio_pro = angular.module('relationshipDetailApp', ['ngMaterial','ngAnimate']);
 
-bio_pro.controller('relationshipDetailController', function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast) {
+bio_pro.controller('relationshipDetailController', function($scope, $http, $location, $mdToast) {
 	
 	$scope.relate_detail_info = [];
 	$scope.source_name = "";

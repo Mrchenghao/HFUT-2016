@@ -154,14 +154,18 @@ gi.controller('geneInfoController',function($scope, $http){
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
-				data.data.forEach(function(d, index){
-					$scope.disease_info.push({
-						index: index,
-						paper_url: d.paper_url,
-						disease_class: d.disease_class,
-						disease_name: d.disease_name,
+				if (data.data == null) {
+					$scope.disease_info = [];
+				} else {
+					data.data.forEach(function(d, index){
+						$scope.disease_info.push({
+							index: index,
+							paper_url: d.paper_url,
+							disease_class: d.disease_class,
+							disease_name: d.disease_name,
+						});
 					});
-				});
+				}
 			}
 		});
 		//绘图

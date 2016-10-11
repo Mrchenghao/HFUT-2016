@@ -1,6 +1,6 @@
 var gene = angular.module('geneApp',['ngMaterial','ngAnimate']);
 
-gene.controller('geneController',function($scope, $http, $location, $mdSidenav, $mdDialog, $mdMedia, $mdToast){
+gene.controller('geneController',function($scope, $http, $location, $mdToast){
 	
 	$scope.gene_info = [];
 	
@@ -97,7 +97,6 @@ gene.controller('geneController',function($scope, $http, $location, $mdSidenav, 
 			if(data.successful){
 				$scope.gene_info = [];
 				var gene_result = data.data;
-				console.log(gene_result);
 				for (var i = 0;i < gene_result.length;i++) {
 					$scope.gene_info.push({
 						name: gene_result[i],

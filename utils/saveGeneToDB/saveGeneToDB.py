@@ -2,9 +2,9 @@
 import os,django
 os.environ["DJANGO_SETTINGS_MODULE"] = "../../BioDesignVer.settings"
 django.setup()
-from /../../geneRelationship.models import *
+from geneRelationship.models import *
 from itertools import combinations
-from /../../geneRelationship.models import Gene
+from geneRelationship.models import Gene
 from fasta_reader import parse_fasta_str
 import traceback
 import urllib2

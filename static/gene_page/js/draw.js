@@ -47,8 +47,6 @@ function draw(data){
 		*/
 		var nodes = tree.nodes(roots);
 		var links = tree.links(nodes);
-		console.log(nodes);
-		console.log(links);
 
 		//	renew axis_y of point
 		nodes.forEach(function(d) { d.y = d.depth * 180; });
@@ -98,7 +96,6 @@ function draw(data){
 		//	handle exit part
 		linkExit.attr("d", function(d) {
        				var o = {x: source.x, y: source.y};
-       				console.log(o);
 			        return diagonal({source: o, target: o});
 			     }).remove();
 
