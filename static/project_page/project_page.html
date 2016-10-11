@@ -60,8 +60,8 @@
         		<div class="col-md-2 sidebar">
         			<ul class="nav nav-sidebar">
                     	<li ng-repeat="project in project_info">
-	                        <a ng-click="toggle_device($index)">
-	                            <span>{{project.name}}</span>
+	                        <a style="position: relative;" ng-click="toggle_device($index)">
+	                            <span style="position: relative;">{{project.name}}</span>
 	                            <div class="btn-edit" ng-hide="!isEdit">
 	                                <button class="btn btn-default" aria-label="show-new-device" ng-click="showNewDeviceDialog(project.id)">
 	                                    <i class="fa fa-plus" aria-hidden="true"></i>

@@ -341,6 +341,7 @@ def deleteProjectDevice(request):
 		chain = Chain()
 		chain = Chain.objects.filter(id=data['device_id']).first()
 		chain.delete()
+		print 'chain: %s' % chain.name
 		result = {
 			'successful': True,
 			'error': {

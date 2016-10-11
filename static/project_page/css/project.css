@@ -48,12 +48,15 @@
 }
 .btn-edit{
 	position: relative;
-	margin-left: 50%;
+	float: right;
     display: inline-block;
+    top:-6px;
 }
 .dev-edit{
 	position: relative;
 	margin-left: 60%;
 	display: inline-block;
+	float: right;
+	top: -6px;
 }
 
