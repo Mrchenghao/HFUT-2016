@@ -9,7 +9,7 @@
     <link href="../public/custombox/dist/custombox.min.css" rel="stylesheet"> 
     <link href="../public/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../public/angular-material/angular-material.css" rel="stylesheet">
-    <link href="../public/ng-tags-input.min/ng-tags-input.min.css" rel="stylesheet">
+    <!--<link href="../public/ng-tags-input.min/ng-tags-input.min.css" rel="stylesheet">-->
     <link href="../public/shCircleLoader-master/jquery.shCircleLoader.css" rel="stylesheet">
     <link href="./css/sb-admin-2.css" rel="stylesheet">   
     <link href="./css/system.css" rel="stylesheet">
@@ -30,8 +30,9 @@
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
-            	<li class="compound_tags">
-            		<tags-input ng-model="compound_tags1"></tags-input>
+            	<li>
+            		<!--<tags-input ng-model="compound_tags1"></tags-input>-->
+            		<button class="btn btn-primary" ng-click="jumpToProject()">Project</button>
             	</li>
                 <li>
                     <button class="btn btn-danger" ng-click="jumpToProject()">Project</button>
@@ -179,7 +180,7 @@
     <script src="../public/angular-aria/angular-aria.js"></script>
     <script src="../public/angular-material/angular-material.js"></script>
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../public/ng-tags-input.min/ng-tags-input.min.js"></script>
+    <!--<script src="../public/ng-tags-input.min/ng-tags-input.min.js"></script>-->
     <script src="../public/shCircleLoader-master/jquery.shCircleLoader-min.js"></script>
     <script src="../public/d3/d3.min.js"></script>
     <script src="./js/system_page.js"></script>
