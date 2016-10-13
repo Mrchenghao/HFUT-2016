@@ -11,7 +11,11 @@
     <link href="../public/angular-material/angular-material.min.css" rel="stylesheet">
     <link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="./css/sb-admin-2.css" rel="stylesheet">
-    <link href="./css/project.css" rel="stylesheet"></head>
+    <link href="./css/project.css" rel="stylesheet">
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="img/logo_black_small.png">
+</head>
 <body ng-controller="projectController">
     <div id="wrapper" >
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -60,7 +64,7 @@
         		<div class="col-md-2 sidebar">
         			<ul class="nav nav-sidebar">
                     	<li ng-repeat="project in project_info">
-	                        <a style="position: relative;" ng-click="toggle_device($index)">
+	                        <div class="sideBarUl" style="position: relative;" ng-click="toggle_device($index)">
 	                            <span style="position: relative;">{{project.name}}</span>
 	                            <div class="btn-edit" ng-hide="!isEdit">
 	                                <button class="btn btn-default" aria-label="show-new-device" ng-click="showNewDeviceDialog(project.id)">
@@ -70,11 +74,11 @@
 	                                    <i class="fa fa-trash" aria-hidden="true"></i>
 	                                </button>
 	                            </div>
-	                        </a>
+	                        </div>
 	                        <div class="nav nav-second-level sideBarUl" ng-hide="project.isDeviceShowed">
 	                            <div class="sideBarClick" ng-repeat="device in project.devices">
-	                                <div class="sideBarClick" ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">
-	                                <div class="chainName">{{device.chain_name}}</div>
+	                                <div class="sideBarClick">
+	                                	<div class="chainName" ng-click="device_clicked(device.chain_id,device.chain_name,project.id,device.chain_Length)">{{device.chain_name}}</div>
 										<button class="btn btn-danger dev-edit" aria-label="delete-device" ng-click="delete_device($index,device.chain_id,project.id)">
 		                                    <i class="fa fa-trash" aria-hidden="true"></i>
 		                                </button>

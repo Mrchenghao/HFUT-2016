@@ -15,6 +15,9 @@
     <link href="./css/advanced.css" rel="stylesheet"/>
     <link href="./css/dashboard.css" rel="stylesheet"/>
     <link href="./css/drag.css" rel="stylesheet"/>
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="img/logo_black_small.png">
 </head>
 <body ng-controller="designController">
     <div id="wrapper">
@@ -102,19 +105,28 @@
 							  	<label for="rb">Back</label>
 							  	<input type="radio" name="recommendType" id="rb" ng-click="show_back()" checked="checked"/>
 							</div>
-                            <ul class="recommendMain" ng-sortable="recommendConfig">
-                                <li ng-hide="!sf" ng-repeat="gene in recommend_info.front" class='recommend_item' ng-click="getGeneInfo(gene.name)">
-                                    <img ng-src="{{gene.img}}" alt="gene_img">
-                                    <span>{{gene.name}}</span>
-                                </li>
-                                <li ng-hide="!sm" ng-repeat="gene in recommend_info.middle" class='recommend_item' ng-click="getGeneInfo(gene.name)">
-                                    <img ng-src="{{gene.img}}" alt="gene_img">
-                                    <span>{{gene.name}}</span>
-                                </li>
-                                <li ng-hide="!sb" ng-repeat="gene in recommend_info.back" class='recommend_item' ng-click="getGeneInfo(gene.name)">
-                                    <img ng-src="{{gene.img}}" alt="gene_img">
-                                    <span>{{gene.name}}</span>
-                                </li>
+                            <ul class="recommendMain">
+                                <div ng-sortable="recommendConfig">
+                                    <li ng-hide="!sf" ng-repeat="gene in recommend_info.front" class='recommend_item' ng-click="getGeneInfo(gene.name)">
+                                        <img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
+                                        <img ng-src="{{gene.img}}" alt="gene_img">
+                                        <span>{{gene.name}}</span>
+                                    </li>
+                                </div>
+                                <div ng-sortable="recommendConfig">
+                                    <li ng-hide="!sm" ng-repeat="gene in recommend_info.middle" class='recommend_item' ng-click="getGeneInfo(gene.name)">
+                                        <img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
+                                        <img ng-src="{{gene.img}}" alt="gene_img">
+                                        <span>{{gene.name}}</span>
+                                    </li>
+                                </div>
+                                <div ng-sortable="recommendConfig">
+                                    <li ng-hide="!sb" ng-repeat="gene in recommend_info.back" class='recommend_item' ng-click="getGeneInfo(gene.name)">
+                                        <img class='handle search_item' src="img/drag_handle.svg" alt="drag_img">
+                                        <img ng-src="{{gene.img}}" alt="gene_img">
+                                        <span>{{gene.name}}</span>
+                                    </li>
+                                </div>
                             </ul>
                     	</div>
                     </div>

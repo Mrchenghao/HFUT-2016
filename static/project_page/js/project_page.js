@@ -42,18 +42,17 @@ bio_pro.controller('projectController', function($scope, $http, $location, $mdTo
 		};
 		$http(opt).success(function(data){
 			if(data.successful){
-				var projects = data.data;
-				for (var i = 0;i < projects.length;i++) {
+				data.data.forEach(function(x) {
 					$scope.project_info.push({
-						id:projects[i].project_id,
-						name:projects[i].project_name,
+						id: x.project_id,
+						name: x.project_name,
 						devices:[],
-						isDeviceShowed:true,
-						track:projects[i].track,
-						function:projects[i].function,
-						creator:projects[i].creator
+						isDeviceShowed: true,
+						track: x.track,
+						function: x.function,
+						creator: x.creator
 					});
-				}
+				})
 			}
 		});
 	}

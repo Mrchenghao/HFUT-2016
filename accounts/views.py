@@ -22,8 +22,12 @@ import random
 def register(request):
 	try:
 		data = json.loads(request.body)
-		userName = data['username']
-		email = data['email']
+		userName = noneIfEmptyString(data['username'])
+		if not userName:
+			raise myError('The username can\'t be none.' )
+		email = noneIfEmptyString(data['email'])
+		if not email:
+			raise myError('Wrong email.')
 		password = data['password']
 		repassword = data['repassword']
 		existEmail = User.objects.filter(email=email).first()

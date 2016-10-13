@@ -11,7 +11,11 @@
     <link href="../public/angular-material/angular-material.min.css" rel="stylesheet">
     <link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="./css/sb-admin-2.css" rel="stylesheet">
-    <link href="./css/relationship_detail.css" rel="stylesheet"></head>
+    <link href="./css/relationship_detail.css" rel="stylesheet">
+    
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="img/logo_black_small.png">
+</head>
 <body ng-controller="relationshipDetailController">
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -78,15 +82,15 @@
                     <div class="panel panel-default" ng-repeat="r in relate_detail_info">
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#{{r.index}}" aria-expanded="true" aria-controls="{{r.index}}">{{r.paper_title}}</a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#{{r.index}}" aria-expanded="false" aria-controls="{{r.index}}">{{r.paper_title}}</a>
                             </h4>
                         </div>
-                        <div id="{{r.index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div id="{{r.index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
                             	{{r.sentence}}
                             </div>
                             <div class="panel-body">
-                                <a ng-href="{{r.paper_link}}">see the whole paper ^_^</a>
+                                <a ng-href="{{r.paper_link}}" target="_blank">see the whole paper ^_^</a>
                             </div>
                         </div>
                     </div>

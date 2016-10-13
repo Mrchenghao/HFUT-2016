@@ -17,7 +17,11 @@ lr.controller("loginCtrl",function($scope,$http,$mdToast){
 				sessionStorage.setItem('login',JSON.stringify(data.data.token));
 				window.location.href = "../project_page/project_page.html";
 			} else{
-				showToast($mdToast,data.error.msg);
+				if (data.error.id == '1') {
+					showToast($mdToast,data.error.msg);
+				} else {
+					showToast($mdToast,"LOGIN FAILED!");
+				}
 			}
 		});
 	};
@@ -27,6 +31,10 @@ lr.controller("loginCtrl",function($scope,$http,$mdToast){
           	$scope.login(username,password);
       	}
   	};
+
+  	$scope.slideToRegist = function() {
+  		mySwiper.slideNext();
+  	}
 	
 }).controller("registerCtrl",function($scope,$http,$mdToast){
 		
@@ -46,7 +54,11 @@ lr.controller("loginCtrl",function($scope,$http,$mdToast){
 			if (data.successful) {
 				showToast($mdToast,"Register SUCCESSED!");
 			} else {
-				showToast($mdToast,data.error.msg);
+				if (data.error.id == '1') {
+					showToast($mdToast,data.error.msg);
+				} else {
+					showToast($mdToast,"Register FAILED!");
+				}
 			}
 		});
 		
@@ -57,6 +69,10 @@ lr.controller("loginCtrl",function($scope,$http,$mdToast){
           	$scope.register(username,email,password,repassword);
       	}
   	};
+
+  	$scope.slideToLogin = function() {
+  		mySwiper.slidePrev();
+  	}
 	
 });
 

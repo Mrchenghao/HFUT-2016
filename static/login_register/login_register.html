@@ -13,11 +13,7 @@
 	<link rel="stylesheet" href="css/register.css"/>
 	
 	<!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="img/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/logo-small-57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/logo-small-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-small-72.png">
-    <link rel="apple-touch-icon-precomposed" href="img/logo-small-144.png">
+    <link rel="shortcut icon" href="img/logo_black_small.png">
 </head>
 <body>
 	<!-- Swiper -->
@@ -51,6 +47,9 @@
                     	<md-button ng-click="login(username,password)">
                     		Log In
                     	</md-button>
+                        <md-button ng-click="slideToRegist()">
+                            Click Here To Regist
+                        </md-button>
                     </div>
 	            </div>
             </div>
@@ -93,6 +92,9 @@
                     	<md-button ng-click="register(username,email,password,repassword)">
                     		Register
                     	</md-button>
+                        <md-button ng-click="slideToLogin()">
+                            Back
+                        </md-button>
                     </div>
 	            </div>
             </div>

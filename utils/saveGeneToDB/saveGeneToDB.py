@@ -1,10 +1,9 @@
 # -*- coding:utf-8 -*-
 import os,django
-os.environ["DJANGO_SETTINGS_MODULE"] = "../../BioDesignVer.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "BioDesignVer.settings"
 django.setup()
 from geneRelationship.models import *
 from itertools import combinations
-from geneRelationship.models import Gene
 from fasta_reader import parse_fasta_str
 import traceback
 import urllib2
@@ -13,7 +12,7 @@ import json
 def saveGene():
     geneIdList = getGeneIDList()
     for geneID in geneIdList:
-        gene = Gene.objets.filter(gene_id=geneID).first()
+        gene = Gene.objects.filter(gene_id=geneID).first()
         if not gene:
             getGene(geneID)
 
@@ -34,31 +33,30 @@ def getGeneIDList():
     return geneIdList
 
 def getGene(gid):
-    gene = Gene.objects.filter(gene_id=gid).first()
-    if not gene:
-        baseUrl = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&rettype=fasta&id='
-        print 'geneid: %s \n' % gid
-        req = urllib2.Request(baseUrl + gid)
-        response = urllib2.urlopen(req)
-        resStr = response.read()
-        gene_dict = parse_fasta_str(resStr)
-        for gn in gene_dict.keys():
-            gid = gn.split('|')[1]
-            #get detail information
-            new_gene_obj = Gene(gene_id=gid)
-            detail_info = retrive_gene_detain(gid)
-            if detail_info == None:
-                continue
-            new_gene_obj.name = detail_info['name']
-            new_gene_obj.definition = detail_info['definition']
-            new_gene_obj.organism = detail_info['organism']
-            new_gene_obj.ntseq = gene_dict[gn]
-            new_gene_obj.ntseq_length = len(gene_dict[gn])
-            try:
+    try:
+        gene = Gene.objects.filter(gene_id=gid).first()
+        if not gene:
+            baseUrl = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&rettype=fasta&id='
+            req = urllib2.Request(baseUrl + gid)
+            response = urllib2.urlopen(req)
+            resStr = response.read()
+            gene_dict = parse_fasta_str(resStr)
+            for gn in gene_dict.keys():
+                gid = gn.split('|')[1]
+                #get detail information
+                new_gene_obj = Gene(gene_id=gid)
+                detail_info = retrive_gene_detain(gid)
+                if detail_info == None:
+                    continue
+                new_gene_obj.name = detail_info['name']
+                new_gene_obj.definition = detail_info['definition']
+                new_gene_obj.organism = detail_info['organism']
+                new_gene_obj.ntseq = gene_dict[gn]
+                new_gene_obj.ntseq_length = len(gene_dict[gn])
                 new_gene_obj.save()
                 return new_gene_obj
-            except:
-                pass
+    except:
+        traceback.print_exc()
 
 def retrive_gene_detain(gid):
     """

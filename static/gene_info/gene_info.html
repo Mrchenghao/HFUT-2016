@@ -12,7 +12,11 @@
 	<link href="./css/sb-admin-2.css" rel="stylesheet">
 	<link href="./css/gene_info.css" rel="stylesheet">
 	<link href="./css/style.css" rel="stylesheet"/>
-	<link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet"></head>
+	<link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="img/logo_black_small.png">
+</head>
 <body>
 	<div id="wrapper" ng-controller="geneInfoController">
 		<!-- Navigation -->
@@ -103,7 +107,7 @@
 		                        		<p>disease name: {{d.disease_name}}</p>
 		                            </div>
 		                    		<div class="panel-body">
-		                        		<p>paper link: <a ng-href="{{d.paper_url}}">{{d.paper_url}}</a></p>
+		                        		<p>paper link: <a ng-href="{{d.paper_url}}" target="_blank">{{d.paper_url}}</a></p>
 		                            </div>
 		                            <div class="panel-body">
 		                                <p>disease class: {{d.disease_class}}</p>
@@ -131,7 +135,7 @@
 				                        <div id="{{x.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 				                        	<div class="panel-body">
 				                        		<div class="panel-body">
-				                            		<p>paper link: <a ng-href="{{x.paper_link}}">{{x.paper_title}}</a></p>
+				                            		<p>paper link: <a ng-href="{{x.paper_link}}" target="_blank">{{x.paper_title}}</a></p>
 					                            </div>
 					                            <div class="panel-body">
 					                                <p>keywords: {{x.paper_keyword}}</p>
