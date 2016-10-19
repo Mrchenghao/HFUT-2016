@@ -90,7 +90,7 @@ bio_pro.controller('relationshipDetailController', function($scope, $http, $loca
 		var target_name = sessionStorage.getItem("target_name");
 		var login_token = JSON.parse(sessionStorage.getItem('login'));
 		var opt = {
-			url: '/geneRelationship/getOneSentence',
+			url: '/geneRelationship/getThreeSentences',
 			method: 'POST',
 			data: {
 				token: login_token,

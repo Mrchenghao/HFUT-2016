@@ -87,7 +87,7 @@ ENV/
 # Rope project settings
 .ropeproject
 
-settings.py
+BioDesignVer/settings.py
 
 # device img
 static/project_page/devices_img/

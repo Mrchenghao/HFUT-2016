@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from pymongo import MongoClient
 from models import *
+from elasticsearch import Elasticsearch
 import json,re
 
 client = MongoClient('localhost', 27017)
@@ -15,12 +16,26 @@ def search_relation(key_word):
 	return gene_realation 
 
 def search_genes(key_word):
-	search_result = collection.find({"main_gene":re.compile(key_word)})
-	gene_list = []
-	for gene in search_result:
-		gene_list.append(gene['main_gene'])
-	return gene_list
-
+	query_body = {
+		"from" : 0,
+		"size" : 80,
+		"query" : {
+			"multi_match" : {
+				"fields" : ["gene_id", "name", "definition", "organism"],
+				"query" : key_word,
+				"fuzziness" : "AUTO",
+			}
+		}
+	}
+	es = Elasticsearch()
+	es_result = es.search(index="biodesigners", doc_type="genes", body=query_body)
+	hits = es_result['hits']['hits']
+	for item in hits:
+		hits = sorted(hits, key = lambda x:x['_score'], reverse = True)
+	result = []
+	for hit in hits:
+		result.append(hit['_source']['name'])
+	return result
 def search_papers(gene_name):
 	gene = Gene.objects.filter(name=gene_name).first()
 	papers = Paper_Gene.objects.filter(gene=gene).order_by('paper_class')
